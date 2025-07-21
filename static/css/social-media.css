@@ -1,0 +1,158 @@
+/* ================================================
+   ESTILOS PARA REDES SOCIALES EN FOOTER
+   ================================================ */
+
+/* Contenedor de redes sociales */
+.footer-mini-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0 10px;
+}
+
+/* Enlaces de redes sociales */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Facebook */
+.social-link.facebook {
+    background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+
+.social-link.facebook:hover {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+}
+
+/* TikTok */
+.social-link.tiktok {
+    background: linear-gradient(135deg, #000000, #ff0050);
+}
+
+.social-link.tiktok:hover {
+    background: linear-gradient(135deg, #333333, #ff1744);
+}
+
+/* Efecto de brillo */
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.social-link:hover::before {
+    left: 100%;
+}
+
+/* Responsive para redes sociales */
+@media (max-width: 768px) {
+    .footer-mini-social {
+        gap: 12px;
+        margin: 12px 0 8px;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-mini-social {
+        gap: 10px;
+        margin: 10px 0 6px;
+    }
+    
+    .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
+
+/* Integración con el footer existente */
+@media (max-width: 768px) {
+    .footer-mini {
+        text-align: center;
+        padding: 20px 16px;
+    }
+    
+    .footer-mini-contact {
+        flex-direction: column;
+        gap: 8px;
+        margin: 12px 0;
+    }
+    
+    .footer-mini-divider {
+        display: none;
+    }
+    
+    .footer-mini-bottom {
+        font-size: 0.8rem;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes socialPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.social-link:active {
+    animation: socialPulse 0.3s ease;
+}
+
+/* Tooltip para redes sociales */
+.social-link {
+    position: relative;
+}
+
+.social-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.social-link:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: 130%;
+}

@@ -1,0 +1,276 @@
+/* ================================================
+   MEJORAS DE TIPOGRAFÍA PARA MÓVILES
+   ================================================ */
+
+/* Variables de tipografía móvil */
+:root {
+    --mobile-font-xs: 0.75rem;    /* 12px */
+    --mobile-font-sm: 0.875rem;   /* 14px */
+    --mobile-font-base: 1rem;     /* 16px */
+    --mobile-font-lg: 1.125rem;   /* 18px */
+    --mobile-font-xl: 1.25rem;    /* 20px */
+    --mobile-font-2xl: 1.5rem;    /* 24px */
+    --mobile-font-3xl: 1.875rem;  /* 30px */
+    --mobile-font-4xl: 2.25rem;   /* 36px */
+    
+    --mobile-line-height-tight: 1.2;
+    --mobile-line-height-normal: 1.5;
+    --mobile-line-height-relaxed: 1.7;
+}
+
+/* Tipografía base para móvil */
+@media (max-width: 768px) {
+    body {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-normal);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Headings responsivos */
+    h1 {
+        font-size: var(--mobile-font-3xl);
+        line-height: var(--mobile-line-height-tight);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: var(--mobile-font-2xl);
+        line-height: var(--mobile-line-height-tight);
+        margin-bottom: 0.875rem;
+        text-align: center;
+    }
+    
+    h3 {
+        font-size: var(--mobile-font-xl);
+        line-height: var(--mobile-line-height-tight);
+        margin-bottom: 0.75rem;
+    }
+    
+    h4 {
+        font-size: var(--mobile-font-lg);
+        line-height: var(--mobile-line-height-normal);
+        margin-bottom: 0.625rem;
+    }
+    
+    h5, h6 {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-normal);
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Párrafos */
+    p {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-relaxed);
+        margin-bottom: 1.25rem;
+        text-align: left;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Texto pequeño */
+    small, .small-text {
+        font-size: var(--mobile-font-sm);
+        line-height: var(--mobile-line-height-normal);
+    }
+    
+    /* Texto extra pequeño */
+    .xs-text {
+        font-size: var(--mobile-font-xs);
+        line-height: var(--mobile-line-height-normal);
+    }
+    
+    /* Enlaces */
+    a {
+        font-size: inherit;
+        word-wrap: break-word;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+    }
+    
+    /* Botones con texto más legible */
+    .btn, button {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-normal);
+        padding: 12px 20px;
+        min-height: 44px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Texto de formularios */
+    input, textarea, select {
+        font-size: var(--mobile-font-base) !important; /* Previene zoom en iOS */
+        line-height: var(--mobile-line-height-normal);
+    }
+    
+    /* Listas */
+    ul, ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    li {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-relaxed);
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Cards y componentes */
+    .card-title {
+        font-size: var(--mobile-font-xl);
+        line-height: var(--mobile-line-height-tight);
+        margin-bottom: 0.75rem;
+    }
+    
+    .card-text {
+        font-size: var(--mobile-font-base);
+        line-height: var(--mobile-line-height-relaxed);
+        margin-bottom: 1rem;
+    }
+    
+    .card-subtitle {
+        font-size: var(--mobile-font-sm);
+        line-height: var(--mobile-line-height-normal);
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Mejoras específicas para texto muy pequeño */
+@media (max-width: 576px) {
+    h1 {
+        font-size: var(--mobile-font-2xl);
+        margin-bottom: 0.875rem;
+    }
+    
+    h2 {
+        font-size: var(--mobile-font-xl);
+        margin-bottom: 0.75rem;
+    }
+    
+    h3 {
+        font-size: var(--mobile-font-lg);
+        margin-bottom: 0.625rem;
+    }
+    
+    .btn, button {
+        font-size: var(--mobile-font-sm);
+        padding: 10px 16px;
+        min-height: 40px;
+    }
+    
+    p {
+        margin-bottom: 1rem;
+    }
+    
+    /* Texto más pequeño en pantallas muy pequeñas */
+    .footer-mini-bottom {
+        font-size: var(--mobile-font-xs);
+    }
+    
+    .small-text {
+        font-size: var(--mobile-font-xs);
+    }
+}
+
+/* Clases utilitarias para tipografía móvil */
+@media (max-width: 768px) {
+    .text-xs-mobile { font-size: var(--mobile-font-xs) !important; }
+    .text-sm-mobile { font-size: var(--mobile-font-sm) !important; }
+    .text-base-mobile { font-size: var(--mobile-font-base) !important; }
+    .text-lg-mobile { font-size: var(--mobile-font-lg) !important; }
+    .text-xl-mobile { font-size: var(--mobile-font-xl) !important; }
+    .text-2xl-mobile { font-size: var(--mobile-font-2xl) !important; }
+    .text-3xl-mobile { font-size: var(--mobile-font-3xl) !important; }
+    
+    .leading-tight-mobile { line-height: var(--mobile-line-height-tight) !important; }
+    .leading-normal-mobile { line-height: var(--mobile-line-height-normal) !important; }
+    .leading-relaxed-mobile { line-height: var(--mobile-line-height-relaxed) !important; }
+    
+    .text-center-mobile { text-align: center !important; }
+    .text-left-mobile { text-align: left !important; }
+    .text-right-mobile { text-align: right !important; }
+}
+
+/* Mejoras de contraste para móvil */
+@media (max-width: 768px) {
+    /* Texto sobre fondos oscuros */
+    .text-on-dark {
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* Texto sobre fondos claros */
+    .text-on-light {
+        color: #333333;
+        text-shadow: none;
+    }
+    
+    /* Texto con sombra para mejor legibilidad */
+    .text-shadowed {
+        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    /* Texto destacado */
+    .text-highlighted {
+        background: rgba(255, 160, 0, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--primary-red);
+        font-weight: 600;
+    }
+}
+
+/* Optimizaciones para lectura en móvil */
+@media (max-width: 768px) {
+    /* Espaciado entre párrafos */
+    .content-text p + p {
+        margin-top: 1.5rem;
+    }
+    
+    /* Sangría para listas */
+    .content-text ul, 
+    .content-text ol {
+        padding-left: 1.25rem;
+    }
+    
+    /* Separación de secciones */
+    .section + .section {
+        margin-top: 3rem;
+    }
+    
+    /* Máximo ancho para lectura cómoda */
+    .readable-text {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+}
+
+/* Animaciones de texto para móvil */
+@media (max-width: 768px) {
+    .fade-in-text {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInText 0.6s ease forwards;
+    }
+    
+    @keyframes fadeInText {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Retrasos escalonados para múltiples elementos */
+    .fade-in-text:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in-text:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in-text:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in-text:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in-text:nth-child(5) { animation-delay: 0.5s; }
+}

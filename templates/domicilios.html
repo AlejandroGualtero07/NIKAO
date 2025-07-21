@@ -4,11 +4,23 @@
 
 {% block content %}
 <!-- Hero de Domicilios -->
-<section class="page-hero">
-    <div class="container">
-        <div class="page-hero-content">
-            <h1><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
-            <p>Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-image-full">
+            <img src="{{ url_for('static', filename='images/imagen arepas ej4.jpeg') }}" alt="Servicio de Domicilios NIKAO" class="local-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title"><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
+            <p class="hero-subtitle text-on-dark">Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/573042025223?text=Hola! Quiero hacer un pedido a domicilio" class="btn-primary">
+                    <i class="fab fa-whatsapp"></i> Pedir Ahora
+                </a>
+                <a href="{{ url_for('carta') }}" class="btn-secondary">
+                    <i class="fas fa-utensils"></i> Ver Menú
+                </a>
+            </div>
         </div>
     </div>
 </section>

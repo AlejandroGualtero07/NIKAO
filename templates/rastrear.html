@@ -4,17 +4,29 @@
 
 {% block content %}
 <!-- Hero de Rastrear -->
-<section class="page-hero">
-    <div class="container">
-        <div class="page-hero-content">
-            <h1><i class="fas fa-search"></i> Rastrear tu Pedido</h1>
-            <p>Consulta el estado de tu pedido en tiempo real</p>
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-image-full">
+            <img src="{{ url_for('static', filename='images/imagen arepas ej3.jpeg') }}" alt="Rastrear Pedido NIKAO" class="local-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title"><i class="fas fa-search"></i> Rastrear tu Pedido</h1>
+            <p class="hero-subtitle text-on-dark">Consulta el estado de tu pedido en tiempo real</p>
+            <div class="hero-buttons">
+                <a href="#tracking-section" class="btn-primary">
+                    <i class="fas fa-search"></i> Rastrear Ahora
+                </a>
+                <a href="https://wa.me/573042025223?text=Hola! Necesito ayuda con el estado de mi pedido" class="btn-secondary">
+                    <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Formulario de Rastreo -->
-<section class="tracking-section">
+<section class="tracking-section" id="tracking-section">
     <div class="container">
         <div class="tracking-form-container">
             <div class="tracking-form">
