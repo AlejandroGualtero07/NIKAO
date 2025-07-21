@@ -1,0 +1,451 @@
+{% extends "base.html" %}
+
+{% block title %}Domicilios - Nikao Arepas Rellenas{% endblock %}
+
+{% block content %}
+<!-- Hero de Domicilios -->
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <h1><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
+            <p>Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
+        </div>
+    </div>
+</section>
+
+<!-- Información de Entrega -->
+<section class="delivery-info">
+    <div class="container">
+        <div class="section-header">
+            <h2>¿Cómo funciona nuestro servicio?</h2>
+            <p>Proceso simple y rápido para recibir tus arepas favoritas</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Elige tu arepa</h3>
+                    <p>Selecciona de nuestro menú las arepas que más te gusten</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Haz tu pedido</h3>
+                    <p>Contáctanos por WhatsApp o llámanos directamente</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Preparamos tu orden</h3>
+                    <p>Preparamos tus arepas frescas con los mejores ingredientes</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Entrega rápida</h3>
+                    <p>Te llevamos tu pedido caliente y delicioso</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Zonas de Entrega -->
+<section class="delivery-zones">
+    <div class="container">
+        <div class="section-header">
+            <h2>Zonas de Entrega</h2>
+            <p>Consulta si llegamos hasta tu ubicación</p>
+        </div>
+        
+        <div class="zones-grid">
+            {% for zona in zonas %}
+            <div class="zone-card {% if not zona.disponible %}unavailable{% endif %}">
+                <div class="zone-header">
+                    <h3>{{ zona.zona }}</h3>
+                    {% if zona.disponible %}
+                        <span class="status available">Disponible</span>
+                    {% else %}
+                        <span class="status unavailable">Próximamente</span>
+                    {% endif %}
+                </div>
+                
+                <div class="zone-details">
+                    <div class="detail">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ zona.tiempo }}</span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-motorcycle"></i>
+                        <span>${{ "{:,}".format(zona.costo) }}</span>
+                    </div>
+                </div>
+                
+                {% if zona.disponible %}
+                <a href="https://wa.me/573042025223?text=Hola! Quiero hacer un pedido para {{ zona.zona }}" 
+                   class="zone-order-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Pedir Ahora
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Información Adicional -->
+<section class="delivery-additional-info">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-block">
+                <h3><i class="fas fa-clock"></i> Horarios de Entrega</h3>
+                <ul>
+                    <li><strong>Lunes a Jueves:</strong> 8:00 AM - 9:30 PM</li>
+                    <li><strong>Viernes a Domingo:</strong> 8:00 AM - 10:00 PM</li>
+                    <li><strong>Festivos:</strong> 9:00 AM - 9:00 PM</li>
+                </ul>
+            </div>
+            
+            <div class="info-block">
+                <h3><i class="fas fa-credit-card"></i> Métodos de Pago</h3>
+                <ul>
+                    <li>Efectivo contra entrega</li>
+                    <li>Transferencia bancaria</li>
+                    <li>Nequi / Daviplata</li>
+                    <li>Tarjetas débito/crédito</li>
+                </ul>
+            </div>
+            
+            <div class="info-block">
+                <h3><i class="fas fa-shield-alt"></i> Garantías</h3>
+                <ul>
+                    <li>Arepas frescas y calientes</li>
+                    <li>Empaque hermético y seguro</li>
+                    <li>Entrega en el tiempo estimado</li>
+                    <li>Satisfacción garantizada</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="delivery-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>¿Listo para disfrutar?</h2>
+            <p>Haz tu pedido ahora y recibe las mejores arepas de Soacha en tu casa</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/573042025223" class="btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Pedir por WhatsApp
+                </a>
+                <a href="tel:+573042025223" class="btn-phone">
+                    <i class="fas fa-phone"></i>
+                    Llamar Ahora
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Estilos específicos para la página de domicilios */
+.page-hero {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.page-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.delivery-info {
+    padding: 80px 0;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.step p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.delivery-zones {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.zone-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.zone-card:hover:not(.unavailable) {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.zone-card.unavailable {
+    opacity: 0.6;
+    background: #f5f5f5;
+}
+
+.zone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.zone-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.status {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status.available {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.zone-details {
+    margin-bottom: 25px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.detail i {
+    margin-right: 10px;
+    color: #ff6b00;
+    width: 20px;
+}
+
+.zone-order-btn {
+    display: block;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.zone-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.delivery-additional-info {
+    padding: 80px 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.info-block h3 {
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.info-block h3 i {
+    color: #ff6b00;
+    margin-right: 10px;
+}
+
+.info-block ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-block li {
+    padding: 8px 0;
+    color: #666;
+    border-bottom: 1px solid #eee;
+}
+
+.info-block li:last-child {
+    border-bottom: none;
+}
+
+.delivery-cta {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-whatsapp, .btn-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+}
+
+.btn-phone {
+    background: white;
+    color: #8d6e63;
+}
+
+.btn-whatsapp:hover, .btn-phone:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 32px;
+    }
+    
+    .page-hero p {
+        font-size: 16px;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .zones-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .zone-card {
+        padding: 20px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-whatsapp, .btn-phone {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+</style>
+{% endblock %}

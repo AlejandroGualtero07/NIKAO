@@ -1,0 +1,776 @@
+{% extends "base.html" %}
+
+{% block title %}Ayuda y Preguntas Frecuentes - Nikao Arepas Rellenas{% endblock %}
+
+{% block content %}
+<!-- Hero de Ayuda -->
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <h1><i class="fas fa-question-circle"></i> Centro de Ayuda</h1>
+            <p>Encuentra respuestas a tus preguntas más frecuentes</p>
+        </div>
+    </div>
+</section>
+
+<!-- Buscador de Ayuda -->
+<section class="help-search">
+    <div class="container">
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="helpSearch" placeholder="¿En qué podemos ayudarte? Busca aquí...">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categorías de Ayuda -->
+<section class="help-categories">
+    <div class="container">
+        <div class="section-header">
+            <h2>¿Qué necesitas saber?</h2>
+            <p>Selecciona una categoría para encontrar información específica</p>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card" data-category="pedidos">
+                <div class="category-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Hacer Pedidos</h3>
+                <p>Cómo realizar pedidos, métodos de pago y confirmación</p>
+            </div>
+            
+            <div class="category-card" data-category="entrega">
+                <div class="category-icon">
+                    <i class="fas fa-motorcycle"></i>
+                </div>
+                <h3>Entrega y Domicilios</h3>
+                <p>Zonas de entrega, tiempos y costos de domicilio</p>
+            </div>
+            
+            <div class="category-card" data-category="menu">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Menú y Productos</h3>
+                <p>Información sobre ingredientes, alérgenos y personalización</p>
+            </div>
+            
+            <div class="category-card" data-category="cuenta">
+                <div class="category-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>Mi Cuenta</h3>
+                <p>Gestión de datos personales y preferencias</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Preguntas Frecuentes -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Preguntas Frecuentes</h2>
+            <p>Las respuestas a las dudas más comunes de nuestros clientes</p>
+        </div>
+        
+        <div class="faq-container">
+            {% for faq in faqs %}
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3>{{ faq.pregunta }}</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>{{ faq.respuesta }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- FAQs adicionales por categoría -->
+            <div class="faq-item" data-category="pedidos">
+                <div class="faq-question">
+                    <h3>¿Cómo puedo modificar mi pedido después de enviarlo?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Puedes modificar tu pedido contactándonos inmediatamente por WhatsApp al 304 202 5223, siempre y cuando no hayamos comenzado a preparar tu orden. Una vez iniciada la preparación, no es posible realizar cambios.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="entrega">
+                <div class="faq-question">
+                    <h3>¿Qué pasa si no estoy en casa cuando llega el domicilio?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nuestro domiciliario intentará contactarte cuando esté cerca. Si no hay respuesta, esperará hasta 10 minutos. Te recomendamos estar atento a las llamadas y mantener tu teléfono disponible.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="menu">
+                <div class="faq-question">
+                    <h3>¿Pueden personalizar las arepas según mis gustos?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>¡Por supuesto! Puedes solicitar modificaciones como agregar o quitar ingredientes. Contáctanos por WhatsApp para discutir las opciones disponibles y posibles costos adicionales.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-category="menu">
+                <div class="faq-question">
+                    <h3>¿Tienen opciones para personas con alergias alimentarias?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, podemos adaptar nuestras arepas para personas con alergias comunes. Por favor informa sobre tu alergia al hacer el pedido para que podamos preparar tu arepa de manera segura.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contacto Directo -->
+<section class="direct-contact">
+    <div class="container">
+        <div class="contact-content">
+            <div class="contact-text">
+                <h2>¿No encontraste lo que buscabas?</h2>
+                <p>Nuestro equipo está listo para ayudarte con cualquier duda o consulta específica.</p>
+            </div>
+            
+            <div class="contact-methods">
+                <a href="https://wa.me/573042025223" class="contact-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="contact-info">
+                        <strong>WhatsApp</strong>
+                        <span>304 202 5223</span>
+                    </div>
+                </a>
+                
+                <a href="tel:+573042025223" class="contact-btn phone">
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-info">
+                        <strong>Llamar</strong>
+                        <span>304 202 5223</span>
+                    </div>
+                </a>
+                
+                <div class="contact-btn email">
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-info">
+                        <strong>Email</strong>
+                        <span>info@nikao.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Horarios y Ubicación -->
+<section class="business-info">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-block">
+                <h3><i class="fas fa-clock"></i> Horarios de Atención</h3>
+                <div class="schedule">
+                    <div class="schedule-item">
+                        <span class="day">Lunes - Jueves</span>
+                        <span class="time">8:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day">Viernes - Domingo</span>
+                        <span class="time">8:00 AM - 10:30 PM</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day">Festivos</span>
+                        <span class="time">9:00 AM - 9:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-block">
+                <h3><i class="fas fa-map-marker-alt"></i> Nuestra Ubicación</h3>
+                <div class="location-info">
+                    <p><strong>Soacha, Cundinamarca</strong></p>
+                    <p>Servimos en toda la zona de Soacha y alrededores</p>
+                    <p>Consulta disponibilidad para tu zona específica</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Estilos específicos para la página de ayuda */
+.page-hero {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.page-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.help-search {
+    background: white;
+    padding: 40px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 20px;
+    color: #666;
+    font-size: 18px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 20px 20px 20px 55px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #ff6b00;
+}
+
+.help-categories {
+    padding: 80px 0;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.category-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.category-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 32px;
+}
+
+.category-card h3 {
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.category-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.faq-section {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 50px auto 0;
+}
+
+.faq-item {
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.faq-question {
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #f8f9fa;
+}
+
+.faq-question h3 {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.faq-question i {
+    color: #ff6b00;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.faq-item.active .faq-answer {
+    padding: 25px 30px;
+    max-height: 200px;
+}
+
+.faq-answer p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.direct-contact {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+    color: white;
+    padding: 80px 0;
+}
+
+.contact-content {
+    text-align: center;
+}
+
+.contact-text h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.contact-text p {
+    font-size: 18px;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-btn.whatsapp:hover {
+    border-color: #25D366;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.contact-btn.phone:hover {
+    border-color: #007bff;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.contact-btn i {
+    font-size: 32px;
+    min-width: 40px;
+}
+
+.contact-info strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.contact-info span {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.business-info {
+    padding: 80px 0;
+}
+
+.business-info .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.info-block h3 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.info-block h3 i {
+    color: #ff6b00;
+    margin-right: 15px;
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-item .day {
+    font-weight: 600;
+    color: #333;
+}
+
+.schedule-item .time {
+    color: #ff6b00;
+    font-weight: 600;
+}
+
+.location-info p {
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.location-info p strong {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 32px;
+    }
+    
+    .page-hero p {
+        font-size: 16px;
+    }
+    
+    .search-container {
+        margin: 0 20px;
+    }
+    
+    .search-box input {
+        padding: 15px 15px 15px 50px;
+        font-size: 14px;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 30px 20px 0;
+    }
+    
+    .category-card {
+        padding: 30px 20px;
+    }
+    
+    .faq-container {
+        margin: 30px 20px 0;
+    }
+    
+    .faq-question {
+        padding: 20px;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 20px;
+    }
+    
+    .contact-text h2 {
+        font-size: 28px;
+    }
+    
+    .contact-text p {
+        font-size: 16px;
+    }
+    
+    .contact-methods {
+        grid-template-columns: 1fr;
+        margin: 0 20px;
+        gap: 20px;
+    }
+    
+    .contact-btn {
+        padding: 25px 20px;
+    }
+    
+    .business-info .info-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin: 30px 20px 0;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Funcionalidad de la página de ayuda
+class HelpCenter {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+        this.initSearch();
+    }
+    
+    bindEvents() {
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Cerrar todas las FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Abrir la seleccionada si no estaba activa
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Filtro por categorías
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                this.filterByCategory(category);
+            });
+        });
+    }
+    
+    initSearch() {
+        const searchInput = document.getElementById('helpSearch');
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            this.searchFAQs(searchTerm);
+        });
+    }
+    
+    searchFAQs(searchTerm) {
+        const faqItems = document.querySelectorAll('.faq-item');
+        let hasResults = false;
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                item.style.display = 'block';
+                hasResults = true;
+                
+                // Resaltar términos de búsqueda
+                if (searchTerm.length > 2) {
+                    this.highlightText(item, searchTerm);
+                }
+            } else {
+                item.style.display = searchTerm ? 'none' : 'block';
+            }
+        });
+        
+        // Mostrar mensaje si no hay resultados
+        this.showNoResults(!hasResults && searchTerm.length > 0);
+    }
+    
+    filterByCategory(category) {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            
+            if (category === 'all' || itemCategory === category || itemCategory === 'general') {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Scroll a la sección de FAQs
+        document.querySelector('.faq-section').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
+    
+    highlightText(element, searchTerm) {
+        // Esta es una implementación básica de resaltado
+        // En una aplicación real, usarías una librería más robusta
+        const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
+        
+        const textNodes = [];
+        let node;
+        
+        while (node = walker.nextNode()) {
+            textNodes.push(node);
+        }
+        
+        textNodes.forEach(textNode => {
+            const text = textNode.textContent;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            
+            if (regex.test(text)) {
+                const highlightedText = text.replace(regex, '<mark>$1</mark>');
+                const span = document.createElement('span');
+                span.innerHTML = highlightedText;
+                textNode.parentNode.replaceChild(span, textNode);
+            }
+        });
+    }
+    
+    showNoResults(show) {
+        let noResultsElement = document.getElementById('noResults');
+        
+        if (show && !noResultsElement) {
+            noResultsElement = document.createElement('div');
+            noResultsElement.id = 'noResults';
+            noResultsElement.className = 'no-results';
+            noResultsElement.innerHTML = `
+                <div class="no-results-content">
+                    <i class="fas fa-search"></i>
+                    <h3>No encontramos resultados</h3>
+                    <p>Intenta con otros términos de búsqueda o contacta con nuestro equipo de soporte.</p>
+                </div>
+            `;
+            
+            document.querySelector('.faq-container').appendChild(noResultsElement);
+            
+            // Añadir estilos
+            const style = document.createElement('style');
+            style.textContent = `
+                .no-results {
+                    text-align: center;
+                    padding: 60px 20px;
+                    background: white;
+                    border-radius: 15px;
+                    margin-top: 20px;
+                }
+                
+                .no-results-content i {
+                    font-size: 48px;
+                    color: #ccc;
+                    margin-bottom: 20px;
+                }
+                
+                .no-results-content h3 {
+                    color: #333;
+                    margin-bottom: 15px;
+                }
+                
+                .no-results-content p {
+                    color: #666;
+                }
+            `;
+            document.head.appendChild(style);
+            
+        } else if (!show && noResultsElement) {
+            noResultsElement.remove();
+        }
+    }
+}
+
+// Inicializar centro de ayuda
+const helpCenter = new HelpCenter();
+</script>
+{% endblock %}

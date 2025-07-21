@@ -1,0 +1,448 @@
+/* Animaciones y efectos mejorados */
+
+/* Efectos de hover para tarjetas de producto */
+.product-card {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,193,7,0.05) 0%, rgba(62, 39, 35, 0.05) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card .card-img-wrapper {
+  overflow: hidden;
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.product-card img {
+  transition: transform var(--transition-slow);
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.product-card .card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--accent-red);
+  color: white;
+  padding: 5px 10px;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-subtle);
+  z-index: 10;
+  transform: translateY(-5px);
+  opacity: 0;
+  transition: all var(--transition-normal) 0.1s;
+}
+
+.product-card:hover .card-badge {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.product-card .card-content {
+  padding: var(--spacing-md);
+  background: white;
+  position: relative;
+}
+
+.product-card .card-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: var(--primary-brown);
+  transition: color var(--transition-normal);
+}
+
+.product-card:hover .card-title {
+  color: var(--gold-dark);
+}
+
+.product-card .card-description {
+  font-size: 0.9rem;
+  color: var(--secondary-brown);
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.product-card .card-price {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--primary-brown);
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.product-card .card-price::before {
+  content: '$';
+  font-size: 0.9rem;
+  margin-right: 3px;
+  position: relative;
+  top: -5px;
+}
+
+.product-card .card-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.product-card .card-rating .stars {
+  display: flex;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.product-card .card-rating .rating-count {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.product-card .card-action {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  margin-top: auto;
+}
+
+.product-card .btn-add-cart {
+  padding: 10px 20px;
+  background: var(--primary-brown);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .btn-add-cart::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--gold-dark);
+  transition: width var(--transition-normal);
+  z-index: -1;
+}
+
+.product-card .btn-add-cart:hover {
+  box-shadow: var(--shadow-medium);
+  color: white;
+}
+
+.product-card .btn-add-cart:hover::before {
+  width: 100%;
+}
+
+.product-card .btn-wishlist {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  color: var(--accent-red);
+}
+
+.product-card .btn-wishlist:hover {
+  background: var(--accent-red);
+  color: white;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Efecto de carga */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+}
+
+/* Efecto de aparición en scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación de las imágenes del hero */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.hero-image {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Botones de acción principales */
+.btn-primary {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(198, 40, 40, 0.25);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  letter-spacing: 0.5px;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  transition: width var(--transition-normal);
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+  transform: translateY(-3px);
+  color: white;
+}
+
+.btn-primary:hover::before {
+  width: 100%;
+}
+
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold-dark);
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--primary-brown);
+  transition: height var(--transition-normal);
+  z-index: -1;
+}
+
+.btn-secondary:hover {
+  color: white;
+  box-shadow: var(--shadow-subtle);
+  transform: translateY(-3px);
+}
+
+.btn-secondary:hover::before {
+  height: 100%;
+}
+
+/* Sección Hero con overlay para destaque */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(62, 39, 35, 0.9), rgba(93, 64, 55, 0.8));
+  padding: var(--spacing-xl) 0;
+  color: white;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/nikao bandeja.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px) brightness(0.5);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--gold);
+  text-shadow: var(--shadow-text);
+  line-height: 1.2;
+}
+
+.hero-text h1 span {
+  display: block;
+  font-size: 1.5rem;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.hero-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image-container img {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-strong);
+  transform-style: preserve-3d;
+  animation: float 5s ease-in-out infinite;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive para secciones especiales */
+@media (max-width: 992px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .hero-image-container {
+    margin-top: var(--spacing-md);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-text h1 span {
+    font-size: 1.2rem;
+  }
+  
+  .hero-text p {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
+}

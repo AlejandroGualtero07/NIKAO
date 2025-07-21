@@ -1,0 +1,141 @@
+/* Responsive fixes para Nikao */
+
+/* Ajustes globales para dispositivos móviles */
+@media (max-width: 768px) {
+  /* Ajuste del contenedor principal */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Ajuste del hero */
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 90%;
+    margin: 5px 0;
+  }
+  
+  /* Ajustes para carrusel */
+  .swiper-container {
+    padding: 0 5px;
+  }
+  
+  /* Tarjetas de productos */
+  .product-card {
+    width: 100%;
+  }
+  
+  /* Ajustes para navbar */
+  .navbar-collapse {
+    background-color: #0d0d0d;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 10px 15px;
+    text-align: center;
+  }
+  
+  /* Mejorar visibilidad del logo */
+  .navbar-brand {
+    margin-right: 0;
+  }
+  
+  /* Ajustar botón del carrito */
+  .cart-button {
+    padding: 5px 8px;
+  }
+}
+
+/* Ajustes para teléfonos pequeños */
+@media (max-width: 480px) {
+  /* Header y navegación */
+  .navbar-brand img {
+    max-width: 100px;
+  }
+  
+  .navbar .container {
+    padding: 0 10px;
+  }
+  
+  /* Botón de hamburguesa más grande */
+  .navbar-toggler {
+    padding: 10px;
+  }
+  
+  /* Categorías */
+  .category-title {
+    font-size: 0.9rem;
+  }
+  
+  /* Controles de Swiper más visibles */
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Ajuste de espaciado vertical */
+  section {
+    padding: 30px 0;
+  }
+  
+  /* Botones flotantes más pequeños y ajustados al borde */
+  .floating-buttons {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .floating-buttons .btn {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+  }
+  
+  .floating-buttons .btn i {
+    font-size: 18px;
+  }
+  
+  /* Footer más compacto */
+  .footer {
+    padding: 20px 10px;
+  }
+  
+  .footer-info {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Ajustes específicos para dispositivos muy pequeños */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  /* Ajuste de márgenes y padding */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

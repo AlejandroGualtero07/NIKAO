@@ -1,0 +1,801 @@
+{% extends "base.html" %}
+
+{% block title %}Rastrear Pedido - Nikao Arepas Rellenas{% endblock %}
+
+{% block content %}
+<!-- Hero de Rastrear -->
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <h1><i class="fas fa-search"></i> Rastrear tu Pedido</h1>
+            <p>Consulta el estado de tu pedido en tiempo real</p>
+        </div>
+    </div>
+</section>
+
+<!-- Formulario de Rastreo -->
+<section class="tracking-section">
+    <div class="container">
+        <div class="tracking-form-container">
+            <div class="tracking-form">
+                <h2>Ingresa tu número de pedido</h2>
+                <div class="form-group">
+                    <label for="pedidoId">Número de Pedido:</label>
+                    <input type="number" id="pedidoId" placeholder="Ej: 12345" required>
+                    <button type="button" id="trackBtn" class="btn-track">
+                        <i class="fas fa-search"></i>
+                        Rastrear Pedido
+                    </button>
+                </div>
+                <p class="form-help">
+                    <i class="fas fa-info-circle"></i>
+                    El número de pedido te fue enviado por WhatsApp cuando confirmaste tu orden
+                </p>
+            </div>
+        </div>
+        
+        <!-- Resultado del Rastreo -->
+        <div class="tracking-result" id="trackingResult" style="display: none;">
+            <div class="order-info">
+                <h3>Estado de tu Pedido #<span id="orderNumber"></span></h3>
+                <p>Cliente: <span id="customerName"></span></p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step" data-step="recibido">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <span class="step-label">Pedido Recibido</span>
+                    </div>
+                    <div class="step" data-step="preparando">
+                        <div class="step-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span class="step-label">Preparando</span>
+                    </div>
+                    <div class="step" data-step="en_camino">
+                        <div class="step-icon">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <span class="step-label">En Camino</span>
+                    </div>
+                    <div class="step" data-step="entregado">
+                        <div class="step-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="step-label">Entregado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-details">
+                <div class="detail-card">
+                    <h4><i class="fas fa-clock"></i> Tiempo</h4>
+                    <p>Transcurrido: <span id="timeElapsed"></span> min</p>
+                    <p>Estimado: <span id="timeEstimated"></span> min</p>
+                </div>
+                
+                <div class="detail-card">
+                    <h4><i class="fas fa-info-circle"></i> Estado Actual</h4>
+                    <p id="currentStatus"></p>
+                </div>
+            </div>
+            
+            <div class="tracking-actions">
+                <a href="https://wa.me/573042025223" class="btn-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Contactar por WhatsApp
+                </a>
+                <button type="button" id="refreshBtn" class="btn-refresh">
+                    <i class="fas fa-sync-alt"></i>
+                    Actualizar Estado
+                </button>
+            </div>
+        </div>
+        
+        <!-- Error -->
+        <div class="tracking-error" id="trackingError" style="display: none;">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Pedido no encontrado</h3>
+                <p>No pudimos encontrar un pedido con ese número. Verifica que hayas ingresado el número correcto.</p>
+                <button type="button" id="tryAgainBtn" class="btn-try-again">
+                    <i class="fas fa-redo"></i>
+                    Intentar de nuevo
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Información Adicional -->
+<section class="tracking-info">
+    <div class="container">
+        <div class="section-header">
+            <h2>¿Cómo funciona el rastreo?</h2>
+            <p>Te explicamos cada paso del proceso</p>
+        </div>
+        
+        <div class="info-steps">
+            <div class="info-step">
+                <div class="step-number">1</div>
+                <h3>Pedido Recibido</h3>
+                <p>Confirmamos tu pedido y comenzamos a preparar tus arepas frescas.</p>
+            </div>
+            
+            <div class="info-step">
+                <div class="step-number">2</div>
+                <h3>Preparando</h3>
+                <p>Nuestros chefs están preparando tus arepas con ingredientes frescos y de calidad.</p>
+            </div>
+            
+            <div class="info-step">
+                <div class="step-number">3</div>
+                <h3>En Camino</h3>
+                <p>Tu pedido está empacado y nuestro domiciliario está en camino hacia tu ubicación.</p>
+            </div>
+            
+            <div class="info-step">
+                <div class="step-number">4</div>
+                <h3>Entregado</h3>
+                <p>¡Tu pedido ha sido entregado! Disfruta tus deliciosas arepas Nikao.</p>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>¿Necesitas ayuda?</h3>
+            <p>Si tienes alguna pregunta sobre tu pedido, no dudes en contactarnos:</p>
+            <div class="contact-methods">
+                <a href="https://wa.me/573042025223" class="contact-method" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp: 304 202 5223
+                </a>
+                <a href="tel:+573042025223" class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    Llamar: 304 202 5223
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Estilos específicos para la página de rastreo */
+.page-hero {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.page-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.tracking-section {
+    padding: 80px 0;
+}
+
+.tracking-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.tracking-form h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff6b00;
+}
+
+.btn-track {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.btn-track:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+}
+
+.form-help {
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.form-help i {
+    color: #ff6b00;
+    margin-right: 8px;
+}
+
+.tracking-result {
+    max-width: 800px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.order-info {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-info h3 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.order-info p {
+    color: #666;
+    font-size: 16px;
+}
+
+.progress-container {
+    margin-bottom: 40px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b00, #ff8533);
+    width: 0%;
+    transition: width 1s ease;
+    border-radius: 3px;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.step.active .step-icon {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+}
+
+.step.completed .step-icon {
+    background: #28a745;
+    color: white;
+}
+
+.step-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-align: center;
+}
+
+.step.active .step-label {
+    color: #ff6b00;
+}
+
+.step.completed .step-label {
+    color: #28a745;
+}
+
+.order-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.detail-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.detail-card h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.detail-card h4 i {
+    color: #ff6b00;
+    margin-right: 8px;
+}
+
+.detail-card p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.tracking-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-contact, .btn-refresh {
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-contact {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+}
+
+.btn-refresh {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+    color: white;
+}
+
+.btn-contact:hover, .btn-refresh:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tracking-error {
+    max-width: 600px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.error-content i {
+    font-size: 60px;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.error-content h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.error-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.btn-try-again {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.btn-try-again:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+}
+
+.tracking-info {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.info-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.info-step {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.info-step .step-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.info-step h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.info-step p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.contact-info {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.contact-info p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-method {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .page-hero h1 {
+        font-size: 32px;
+    }
+    
+    .page-hero p {
+        font-size: 16px;
+    }
+    
+    .tracking-form-container {
+        margin: 0 20px;
+        padding: 30px 20px;
+    }
+    
+    .tracking-result {
+        margin: 40px 20px 0;
+        padding: 30px 20px;
+    }
+    
+    .tracking-error {
+        margin: 40px 20px 0;
+        padding: 30px 20px;
+    }
+    
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .step {
+        flex: none;
+        min-width: 120px;
+    }
+    
+    .order-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .tracking-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-contact, .btn-refresh {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-method {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Funcionalidad de rastreo de pedidos
+class OrderTracker {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+    }
+    
+    bindEvents() {
+        document.getElementById('trackBtn').addEventListener('click', () => {
+            this.trackOrder();
+        });
+        
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            this.refreshOrder();
+        });
+        
+        document.getElementById('tryAgainBtn').addEventListener('click', () => {
+            this.resetForm();
+        });
+        
+        // Enter key en el input
+        document.getElementById('pedidoId').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.trackOrder();
+            }
+        });
+    }
+    
+    async trackOrder() {
+        const pedidoId = document.getElementById('pedidoId').value.trim();
+        
+        if (!pedidoId) {
+            this.showError('Por favor ingresa un número de pedido válido');
+            return;
+        }
+        
+        this.showLoading();
+        
+        try {
+            const response = await fetch(`/api/rastrear/${pedidoId}`);
+            const data = await response.json();
+            
+            if (response.ok) {
+                this.showOrderStatus(data);
+            } else {
+                this.showNotFound();
+            }
+        } catch (error) {
+            console.error('Error al rastrear pedido:', error);
+            this.showError('Error de conexión. Intenta nuevamente.');
+        }
+    }
+    
+    async refreshOrder() {
+        const pedidoId = document.getElementById('pedidoId').value.trim();
+        if (pedidoId) {
+            await this.trackOrder();
+        }
+    }
+    
+    showLoading() {
+        const trackBtn = document.getElementById('trackBtn');
+        trackBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
+        trackBtn.disabled = true;
+    }
+    
+    hideLoading() {
+        const trackBtn = document.getElementById('trackBtn');
+        trackBtn.innerHTML = '<i class="fas fa-search"></i> Rastrear Pedido';
+        trackBtn.disabled = false;
+    }
+    
+    showOrderStatus(data) {
+        this.hideLoading();
+        
+        // Ocultar error si estaba visible
+        document.getElementById('trackingError').style.display = 'none';
+        
+        // Mostrar resultado
+        const result = document.getElementById('trackingResult');
+        result.style.display = 'block';
+        
+        // Llenar datos
+        document.getElementById('orderNumber').textContent = data.pedido_id;
+        document.getElementById('customerName').textContent = data.cliente;
+        document.getElementById('timeElapsed').textContent = data.tiempo_transcurrido;
+        document.getElementById('timeEstimated').textContent = data.tiempo_estimado;
+        
+        // Actualizar barra de progreso
+        const progressBar = document.getElementById('progressBar');
+        progressBar.style.width = data.progreso + '%';
+        
+        // Actualizar pasos
+        this.updateSteps(data.estado);
+        
+        // Actualizar estado actual
+        this.updateCurrentStatus(data.estado);
+        
+        // Scroll al resultado
+        result.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    updateSteps(currentState) {
+        const steps = document.querySelectorAll('.step');
+        const stateOrder = ['recibido', 'preparando', 'en_camino', 'entregado'];
+        const currentIndex = stateOrder.indexOf(currentState);
+        
+        steps.forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            
+            if (index < currentIndex) {
+                step.classList.add('completed');
+            } else if (index === currentIndex) {
+                step.classList.add('active');
+            }
+        });
+    }
+    
+    updateCurrentStatus(state) {
+        const statusElement = document.getElementById('currentStatus');
+        const statusMessages = {
+            'recibido': 'Tu pedido ha sido recibido y está en cola para preparación.',
+            'preparando': 'Nuestros chefs están preparando tu deliciosa arepa.',
+            'en_camino': 'Tu pedido está en camino. ¡Pronto estará contigo!',
+            'entregado': '¡Tu pedido ha sido entregado! Esperamos que lo disfrutes.'
+        };
+        
+        statusElement.textContent = statusMessages[state] || 'Estado desconocido';
+    }
+    
+    showNotFound() {
+        this.hideLoading();
+        document.getElementById('trackingResult').style.display = 'none';
+        document.getElementById('trackingError').style.display = 'block';
+        document.getElementById('trackingError').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    showError(message) {
+        this.hideLoading();
+        alert(message); // En una implementación real, usarías un modal o toast más elegante
+    }
+    
+    resetForm() {
+        document.getElementById('trackingResult').style.display = 'none';
+        document.getElementById('trackingError').style.display = 'none';
+        document.getElementById('pedidoId').value = '';
+        document.getElementById('pedidoId').focus();
+    }
+}
+
+// Inicializar rastreador
+const tracker = new OrderTracker();
+</script>
+{% endblock %}

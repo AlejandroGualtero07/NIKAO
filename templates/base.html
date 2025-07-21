@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nikao - Arepas Rellenas{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo_nuevo_nikao.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/logo_nuevo_nikao.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/logo_nuevo_nikao.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo_nuevo_nikao.png') }}">
+    
+    <!-- Favicon alternativo (para Render) -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    
+    <!-- CSS - Tema amaderado primero para establecer variables -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wood-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-design.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations-effects.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home-page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product-card-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/preloader-new.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer-mini.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-fixes.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Preloader ultra-minimalista -->
+    <div class="preloader" id="nikao-preloader">
+        <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" style="width: 80px; height: auto;">
+    </div>
+    
+    <script>
+        // Ocultar preloader inmediatamente
+        (function() {
+            function hidePreloader() {
+                document.getElementById('nikao-preloader').classList.add('hide');
+                setTimeout(() => {
+                    document.getElementById('nikao-preloader').style.display = 'none';
+                }, 200);
+            }
+            
+            if (document.readyState === 'complete') {
+                hidePreloader();
+            } else {
+                window.addEventListener('load', hidePreloader);
+                setTimeout(hidePreloader, 1500); // Fallback
+            }
+        })();
+    </script>
+    
+    <!-- Header Simplificado -->
+    <header class="header">
+        <nav class="navbar dark-navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="nav-brand">
+                        <a href="{{ url_for('index') }}" class="nav-logo" style="text-decoration: none; display: flex; align-items: center;">
+                            <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" style="height: 52px; margin-right: 12px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                            <span class="brand-tagline" style="font-size: 1.2rem; color: var(--gold-light); font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">Arepas Rellenas</span>
+                        </a>
+                    </div>
+                    <div class="nav-center">
+                        <ul class="nav-menu">
+                            <li><a href="{{ url_for('domicilios') }}" class="{% if request.endpoint == 'domicilios' %}active{% endif %}"><i class="fas fa-motorcycle"></i> Domicilios</a></li>
+                            <li><a href="{{ url_for('carta') }}" class="{% if request.endpoint == 'carta' %}active{% endif %}"><i class="fas fa-utensils"></i> Carta</a></li>
+                            <li><a href="{{ url_for('rastrear') }}" class="{% if request.endpoint == 'rastrear' %}active{% endif %}"><i class="fas fa-search"></i> Rastrear pedido</a></li>
+                            <li><a href="{{ url_for('ayuda') }}" class="{% if request.endpoint == 'ayuda' %}active{% endif %}"><i class="fas fa-question-circle"></i> Ayuda</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-right">
+                        <div class="language-selector" tabindex="0" aria-label="Selector de idioma">
+                            <i class="fas fa-globe language-icon"></i>
+                            <span class="language-text">ES</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <button class="menu-toggle" aria-label="Abrir menú">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <section class="main-section">
+            {% block content %}{% endblock %}
+        </section>
+    </main>
+
+    <!-- Footer minimalista -->
+    <footer class="footer">
+        <div class="footer-mini">
+            <div class="footer-mini-brand">NIKAO</div>
+            <div class="footer-mini-contact">
+                <a href="https://wa.me/573042025223" class="footer-mini-link"><i class="fab fa-whatsapp"></i> 304 202 5223</a>
+                <span class="footer-mini-divider">•</span>
+                <span><i class="fas fa-map-marker-alt"></i> Soacha</span>
+                <span class="footer-mini-divider">•</span>
+                <a href="{{ url_for('carta') }}" class="footer-mini-link">Menú</a>
+                <span class="footer-mini-divider">•</span>
+                <a href="{{ url_for('domicilios') }}" class="footer-mini-link">Domicilios</a>
+            </div>
+            <div class="footer-mini-bottom">
+                &copy; 2025 NIKAO - Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Script de emergencia para asegurar que el preloader se oculte
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.querySelector('.preloader');
+            if (preloader) {
+                // Ocultar el preloader después de un tiempo máximo de 3 segundos
+                setTimeout(function() {
+                    preloader.classList.add('hide');
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 3000);
+            }
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/enhanced-main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/product-enhancements.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carousel-script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
