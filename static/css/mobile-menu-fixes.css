@@ -3,16 +3,24 @@
    ================================================ */
 
 /* Asegurar que el menu-toggle sea visible en dispositivos móviles */
+.menu-toggle {
+  display: none;
+  position: relative;
+  z-index: 10001;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex !important;
-    position: relative;
-    z-index: 10001;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    margin: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
   }
   
   .menu-toggle span {

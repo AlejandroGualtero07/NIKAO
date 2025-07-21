@@ -29,23 +29,48 @@ function initMobileMenu() {
     const navCenter = document.querySelector('.nav-center');
     const body = document.body;
     
-    if(!menuToggle || !navCenter) return;
+    if(!menuToggle || !navCenter) {
+        console.log('Menu elements not found:', { menuToggle, navCenter });
+        return;
+    }
+    
+    console.log('Mobile menu initialized successfully');
+    
+    // Crear overlay si no existe
+    let overlay = document.querySelector('.menu-overlay');
+    if(!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+        document.body.appendChild(overlay);
+    }
     
     // Click en el botón del menú
     menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        console.log('Menu toggle clicked');
         toggleMobileMenu();
+    });
+    
+    // Click en overlay para cerrar
+    overlay.addEventListener('click', function() {
+        console.log('Overlay clicked');
+        closeMobileMenu();
     });
     
     // Función para alternar el menú
     function toggleMobileMenu() {
         mobileMenuOpen = !mobileMenuOpen;
+        console.log('Toggle menu:', mobileMenuOpen);
         
         if(mobileMenuOpen) {
             menuToggle.classList.add('active');
             navCenter.classList.add('show');
-            body.style.overflow = 'hidden';
+            overlay.classList.add('show');
+            body.classList.add('menu-open');
+            
+            // Añadir listener para ESC
+            document.addEventListener('keydown', handleEscKey);
             
             // Añadir listener para clicks fuera del menú
             setTimeout(() => {
@@ -58,11 +83,23 @@ function initMobileMenu() {
     
     // Función para cerrar el menú
     function closeMobileMenu() {
+        console.log('Closing mobile menu');
         mobileMenuOpen = false;
         menuToggle.classList.remove('active');
         navCenter.classList.remove('show');
-        body.style.overflow = '';
+        overlay.classList.remove('show');
+        body.classList.remove('menu-open');
+        
+        // Remover event listeners
         document.removeEventListener('click', handleOutsideClick);
+        document.removeEventListener('keydown', handleEscKey);
+    }
+    
+    // Manejar ESC key
+    function handleEscKey(e) {
+        if(e.key === 'Escape' && mobileMenuOpen) {
+            closeMobileMenu();
+        }
     }
     
     // Manejar clicks fuera del menú
@@ -76,6 +113,7 @@ function initMobileMenu() {
     const navLinks = navCenter.querySelectorAll('a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
+            console.log('Nav link clicked');
             closeMobileMenu();
         });
     });
@@ -93,6 +131,8 @@ function initMobileMenu() {
             if(window.innerWidth > 768) {
                 closeMobileMenu();
             }
+            // Recalcular altura del viewport
+            setVhProperty();
         }, 100);
     });
 }

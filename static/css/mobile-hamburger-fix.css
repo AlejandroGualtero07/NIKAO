@@ -1,0 +1,249 @@
+/* ===============================================
+   FIXES CRÍTICOS PARA MENÚ MÓVIL - NIKAO
+   =============================================== */
+
+/* Reset para asegurar que el botón hamburger sea visible */
+@media (max-width: 768px) {
+  /* Forzar visibilidad del botón hamburger */
+  .menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 10002;
+  }
+  
+  .menu-toggle span {
+    display: block !important;
+    width: 100%;
+    height: 3px;
+    background-color: var(--gold, #ffa000);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+  
+  .menu-toggle:hover span {
+    background-color: var(--gold-light, #ffca28);
+  }
+  
+  /* Animaciones del botón hamburger */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+  
+  /* Navbar responsive fixes */
+  .navbar-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 16px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Brand section */
+  .nav-brand {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-brand a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .nav-brand img {
+    height: 42px;
+    width: auto;
+  }
+  
+  /* Right section con el hamburger */
+  .nav-right {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    z-index: 10001;
+  }
+  
+  /* Ocultar language selector en móvil */
+  .nav-right .language-selector {
+    display: none !important;
+  }
+  
+  /* Menu dropdown */
+  .nav-center {
+    display: none;
+    position: fixed;
+    top: 70px; /* Altura del header */
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2c1b18 0%, #3e2723 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    z-index: 9999;
+    border-top: 2px solid var(--gold, #ffa000);
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  
+  .nav-center.show {
+    display: block !important;
+    animation: slideDown 0.3s ease-out forwards;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Menu items */
+  .nav-menu {
+    display: flex !important;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .nav-menu li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 160, 0, 0.1);
+  }
+  
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .nav-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    gap: 15px;
+    background: transparent;
+  }
+  
+  .nav-menu li a i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+    color: var(--gold, #ffa000);
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu li a:hover,
+  .nav-menu li a:focus {
+    background: rgba(255, 160, 0, 0.15);
+    color: var(--gold-light, #ffca28);
+    transform: translateX(5px);
+  }
+  
+  .nav-menu li a:hover i,
+  .nav-menu li a:focus i {
+    color: var(--gold-light, #ffca28);
+  }
+  
+  .nav-menu li a.active {
+    background: rgba(255, 160, 0, 0.2);
+    color: var(--gold-light, #ffca28);
+    font-weight: 600;
+  }
+  
+  .nav-menu li a.active i {
+    color: var(--gold-light, #ffca28);
+  }
+  
+  /* Overlay para cerrar menú */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Body lock cuando menú está abierto */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Header fixed en móvil */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 70px;
+  }
+  
+  /* Compensar altura del header fijo */
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Fallback para dispositivos muy pequeños */
+@media (max-width: 480px) {
+  .menu-toggle {
+    width: 28px;
+    height: 18px;
+  }
+  
+  .menu-toggle span {
+    height: 2.5px;
+  }
+  
+  .navbar-content {
+    padding: 10px 12px;
+  }
+  
+  .nav-brand img {
+    height: 38px;
+  }
+  
+  .brand-tagline {
+    font-size: 0.9rem !important;
+  }
+}
