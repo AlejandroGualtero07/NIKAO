@@ -1,0 +1,121 @@
+/* Paleta de colores amaderada y variables del sitio */
+
+:root {
+    /* Colores base amaderados */
+    --wood-lightest: #f8f4e8;
+    --wood-light: #e6d2b5;
+    --wood-medium: #c4a484;
+    --wood-dark: #8b5a2b;
+    --wood-darkest: #3e2723;
+    
+    /* Acentos */
+    --wood-accent: #a67c52;
+    --wood-accent-light: #d7b693;
+    
+    /* Componentes específicos */
+    --body-bg: var(--wood-lightest);
+    --text-color: var(--wood-darkest);
+    --text-light: #666;
+    --text-lighter: #999;
+    
+    /* Elementos UI */
+    --primary: var(--wood-dark);
+    --secondary: var(--wood-medium);
+    --accent: var(--wood-accent);
+    --highlight: #e08f25;
+    
+    /* Sobrescribir colores existentes */
+    --gold: var(--highlight);
+    --gold-light: #edc580;
+    --primary-brown: var(--wood-dark);
+    --secondary-brown: var(--wood-accent);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-color);
+}
+
+/* Estilos básicos de botones */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    transition: all var(--transition-normal);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: white;
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    transition: all var(--transition-normal);
+}
+
+.btn-secondary:hover {
+    background-color: var(--wood-lightest);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Contenedores y secciones */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    color: var(--primary);
+    position: relative;
+    margin-bottom: var(--spacing-md);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+    bottom: -10px;
+    left: 0;
+}
+
+/* Simplificar tarjetas */
+.card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+}

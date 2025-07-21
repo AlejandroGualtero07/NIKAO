@@ -1,0 +1,642 @@
+{% extends "base.html" %}
+
+{% block title %}Carta - Menú Completo | Nikao Arepas Rellenas{% endblock %}
+
+{% block content %}
+<!-- Hero de Carta -->
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <h1><i class="fas fa-utensils"></i> Nuestra Carta</h1>
+            <p>Descubre todas nuestras deliciosas especialidades</p>
+        </div>
+    </div>
+</section>
+
+<!-- Menú Completo -->
+<section class="products" id="carta-completa">
+    <div class="container">
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Buscar tu arepa favorita..." id="searchInput">
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-utensils"></i>
+                        Todas
+                    </button>
+                    <button class="filter-btn" data-filter="clasicas">
+                        <i class="fas fa-heart"></i>
+                        Clásicas
+                    </button>
+                    <button class="filter-btn" data-filter="picantes">
+                        <i class="fas fa-fire"></i>
+                        Picantes
+                    </button>
+                    <button class="filter-btn" data-filter="vegetarianas">
+                        <i class="fas fa-leaf"></i>
+                        Vegetarianas
+                    </button>
+                    <button class="filter-btn" data-filter="dulces">
+                        <i class="fas fa-candy-cane"></i>
+                        Dulces
+                    </button>
+                    
+                    <div class="sort-container">
+                        <select class="sort-select" id="sortSelect">
+                            <option value="popular">Más Populares</option>
+                            <option value="price-low">Menor Precio</option>
+                            <option value="price-high">Mayor Precio</option>
+                            <option value="name">Nombre A-Z</option>
+                        </select>
+                    </div>
+                    
+                    <button class="clear-filters" id="clearFilters">
+                        <i class="fas fa-times"></i>
+                        Limpiar
+                    </button>
+                </div>
+                
+                <div class="results-counter">
+                    <span id="resultCount">{{ productos|length }}</span> productos encontrados
+                </div>
+            </div>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            {% for producto in productos %}
+            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}">
+                <div class="product-icon">{{ producto.icono }}</div>
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <div class="product-price">${{ "{:,}".format(producto.precio) }}</div>
+                
+                <div class="product-actions">
+                    <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}">
+                        <i class="fas fa-cart-plus"></i>
+                        Agregar
+                    </button>
+                    <a href="https://wa.me/573042025223?text=Hola! Me interesa {{ producto.nombre }} por ${{ '{:,}'.format(producto.precio) }}" 
+                       class="btn-order-now" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Pedir
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Carrito Flotante -->
+<div class="cart-float" id="cartFloat" style="display: none;">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart"></i> Tu Pedido</h3>
+        <button class="cart-toggle" id="cartToggle">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+    
+    <div class="cart-content" id="cartContent">
+        <div class="cart-items" id="cartItems">
+            <!-- Los items se agregan dinámicamente -->
+        </div>
+        
+        <div class="cart-summary">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0</span></strong>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="btn-clear-cart" id="clearCart">
+                    <i class="fas fa-trash"></i>
+                    Vaciar
+                </button>
+                <button class="btn-checkout" id="checkoutBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información Adicional -->
+<section class="menu-info">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Ingredientes Frescos</h3>
+                <p>Utilizamos solo ingredientes frescos y de la mejor calidad en todas nuestras preparaciones.</p>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-hand-sparkles"></i>
+                <h3>Preparación Artesanal</h3>
+                <p>Cada arepa es preparada a mano siguiendo recetas tradicionales familiares.</p>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>Siempre Frescas</h3>
+                <p>Preparamos tu orden al momento para garantizar frescura y sabor en cada bocado.</p>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-heart"></i>
+                <h3>Con Amor</h3>
+                <p>Cada arepa es preparada con amor y pasión por la cocina tradicional colombiana.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Estilos específicos para la página de carta */
+.page-hero {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 80px 0 60px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.page-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-add-cart, .btn-order-now {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.btn-add-cart {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+    color: white;
+    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+}
+
+.btn-add-cart:hover {
+    background: linear-gradient(135deg, #6d4c41, #5d4037);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4);
+}
+
+.btn-order-now {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-order-now:hover {
+    background: linear-gradient(135deg, #128C7E, #0d7969);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Carrito Flotante */
+.cart-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transform: translateY(calc(100% - 60px));
+    transition: transform 0.3s ease;
+}
+
+.cart-float.expanded {
+    transform: translateY(0);
+}
+
+.cart-header {
+    background: linear-gradient(135deg, #ff6b00, #ff8533);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cart-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cart-float.expanded .cart-toggle {
+    transform: rotate(180deg);
+}
+
+.cart-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cart-items {
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cart-item-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background: #f0f0f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.quantity-btn:hover {
+    background: #e0e0e0;
+}
+
+.quantity {
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-summary {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.cart-total {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.cart-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+.btn-clear-cart, .btn-checkout {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-clear-cart {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-checkout {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+}
+
+.menu-info {
+    background: #f8f9fa;
+    padding: 80px 0;
+}
+
+.menu-info .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.menu-info .info-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.menu-info .info-card i {
+    font-size: 40px;
+    color: #ff6b00;
+    margin-bottom: 20px;
+}
+
+.menu-info .info-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.menu-info .info-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .cart-float {
+        width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+    }
+    
+    .product-actions {
+        opacity: 1;
+        transform: translateY(0);
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .btn-add-cart, .btn-order-now {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    
+    .page-hero h1 {
+        font-size: 32px;
+    }
+    
+    .page-hero p {
+        font-size: 16px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Funcionalidad del carrito de compras
+class ShoppingCart {
+    constructor() {
+        this.items = [];
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+        this.updateCartDisplay();
+    }
+    
+    bindEvents() {
+        // Botones de agregar al carrito
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-id');
+                const name = e.target.getAttribute('data-name');
+                const price = parseInt(e.target.getAttribute('data-price'));
+                this.addItem(id, name, price);
+            });
+        });
+        
+        // Toggle del carrito
+        document.getElementById('cartToggle').addEventListener('click', () => {
+            this.toggleCart();
+        });
+        
+        // Vaciar carrito
+        document.getElementById('clearCart').addEventListener('click', () => {
+            this.clearCart();
+        });
+        
+        // Finalizar pedido
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            this.checkout();
+        });
+    }
+    
+    addItem(id, name, price) {
+        const existingItem = this.items.find(item => item.id === id);
+        
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            this.items.push({
+                id: id,
+                name: name,
+                price: price,
+                quantity: 1
+            });
+        }
+        
+        this.updateCartDisplay();
+        this.showCart();
+        this.showNotification(`${name} agregado al carrito`, 'success');
+    }
+    
+    removeItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
+        this.updateCartDisplay();
+    }
+    
+    updateQuantity(id, quantity) {
+        const item = this.items.find(item => item.id === id);
+        if (item) {
+            item.quantity = Math.max(0, quantity);
+            if (item.quantity === 0) {
+                this.removeItem(id);
+            }
+        }
+        this.updateCartDisplay();
+    }
+    
+    clearCart() {
+        this.items = [];
+        this.updateCartDisplay();
+        this.showNotification('Carrito vacío', 'info');
+    }
+    
+    updateCartDisplay() {
+        const cartFloat = document.getElementById('cartFloat');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        
+        if (this.items.length === 0) {
+            cartFloat.style.display = 'none';
+            return;
+        }
+        
+        cartFloat.style.display = 'block';
+        
+        // Mostrar items
+        cartItems.innerHTML = this.items.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>$${item.price.toLocaleString()}</p>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                </div>
+            </div>
+        `).join('');
+        
+        // Calcular total
+        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = total.toLocaleString();
+    }
+    
+    toggleCart() {
+        const cartFloat = document.getElementById('cartFloat');
+        cartFloat.classList.toggle('expanded');
+    }
+    
+    showCart() {
+        const cartFloat = document.getElementById('cartFloat');
+        cartFloat.classList.add('expanded');
+    }
+    
+    checkout() {
+        if (this.items.length === 0) return;
+        
+        const message = this.items.map(item => 
+            `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toLocaleString()}`
+        ).join('\n');
+        
+        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        const whatsappMessage = `Hola! Quiero hacer el siguiente pedido:\n\n${message}\n\nTotal: $${total.toLocaleString()}`;
+        
+        window.open(`https://wa.me/573042025223?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    }
+    
+    showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }
+}
+
+// Inicializar carrito
+const cart = new ShoppingCart();
+
+// Añadir estilos para las animaciones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}

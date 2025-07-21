@@ -1,0 +1,28 @@
+/* Estilos para barra de navegación oscura */
+.dark-navbar {
+    background-color: #0d0d0d; /* Color más oscuro, casi negro */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-navbar .nav-menu li a {
+    color: #ffffff;
+}
+
+.dark-navbar .nav-menu li a:hover {
+    color: var(--gold-light);
+}
+
+.dark-navbar .nav-menu li a.active {
+    color: var(--gold);
+}
+
+/* Estilo para los íconos en la barra de navegación oscura */
+.dark-navbar .fas, 
+.dark-navbar .fab {
+    color: #ffffff;
+}
+
+/* Estilo para el texto de la marca en barra oscura */
+.dark-navbar .brand-tagline {
+    color: var(--gold) !important;
+}
