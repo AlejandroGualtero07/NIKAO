@@ -1,104 +1,268 @@
-// Mejorado JavaScript para funcionalidad general
+// Mejorado JavaScript para funcionalidad general - Optimizado para móvil
 
-// Activación del menú móvil
+// Estado global para el menú móvil
+let mobileMenuOpen = false;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar preloader
     initPreloader();
     
-    // Menú móvil
+    // Inicializar menú móvil mejorado
+    initMobileMenu();
+    
+    // Inicializar optimizaciones móviles
+    initMobileOptimizations();
+    
+    // Detección de scroll para animaciones (optimizado para móvil)
+    initScrollAnimations();
+    
+    // Selector de idioma (simulado)
+    initLanguageSelector();
+    
+    // Touch gestures para móvil
+    initTouchGestures();
+});
+
+// Función mejorada para el menú móvil
+function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navCenter = document.querySelector('.nav-center');
+    const body = document.body;
     
-    if(menuToggle && navCenter) {
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
-            navCenter.classList.toggle('show');
-            
-            // Bloquear/desbloquear scroll cuando el menú está abierto
-            if(navCenter.classList.contains('show')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        });
+    if(!menuToggle || !navCenter) return;
+    
+    // Click en el botón del menú
+    menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu();
+    });
+    
+    // Función para alternar el menú
+    function toggleMobileMenu() {
+        mobileMenuOpen = !mobileMenuOpen;
         
-        // Cerrar el menú al hacer clic en un enlace
-        const navLinks = navCenter.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navCenter.classList.remove('show');
-                document.body.style.overflow = '';
-            });
-        });
+        if(mobileMenuOpen) {
+            menuToggle.classList.add('active');
+            navCenter.classList.add('show');
+            body.style.overflow = 'hidden';
+            
+            // Añadir listener para clicks fuera del menú
+            setTimeout(() => {
+                document.addEventListener('click', handleOutsideClick);
+            }, 100);
+        } else {
+            closeMobileMenu();
+        }
     }
     
-    // Cerrar el menú al cambiar el tamaño de la ventana
+    // Función para cerrar el menú
+    function closeMobileMenu() {
+        mobileMenuOpen = false;
+        menuToggle.classList.remove('active');
+        navCenter.classList.remove('show');
+        body.style.overflow = '';
+        document.removeEventListener('click', handleOutsideClick);
+    }
+    
+    // Manejar clicks fuera del menú
+    function handleOutsideClick(e) {
+        if(!navCenter.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+    }
+    
+    // Cerrar el menú al hacer clic en un enlace
+    const navLinks = navCenter.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+    });
+    
+    // Cerrar el menú al cambiar orientación o redimensionar
     window.addEventListener('resize', function() {
-        if(window.innerWidth > 768 && navCenter && menuToggle) {
-            menuToggle.classList.remove('active');
-            navCenter.classList.remove('show');
-            document.body.style.overflow = '';
+        if(window.innerWidth > 768) {
+            closeMobileMenu();
         }
     });
     
-    // Detección de scroll para animaciones
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    function checkFade() {
-        fadeElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-            
-            if(elementTop < window.innerHeight - elementVisible) {
-                element.classList.add('visible');
+    // Manejar orientationchange para dispositivos móviles
+    window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+            if(window.innerWidth > 768) {
+                closeMobileMenu();
             }
-        });
-    }
+        }, 100);
+    });
+}
+
+// Optimizaciones específicas para móvil
+function initMobileOptimizations() {
+    // Detectar si es un dispositivo móvil
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
-    // Ejecutar al cargar
-    checkFade();
-    
-    // Ejecutar al hacer scroll
-    window.addEventListener('scroll', checkFade);
-    
-    // Inicializar función del preloader
-    function initPreloader() {
-        const preloader = document.querySelector('.preloader');
+    if(isMobile || isTouch) {
+        document.body.classList.add('is-mobile');
         
-        if (!preloader) return;
+        // Optimizar eventos de scroll en móvil
+        let ticking = false;
         
-        // Función para ocultar el preloader
-        const hidePreloader = () => {
-            setTimeout(() => {
-                preloader.classList.add('hide');
-                
-                // Eliminar del DOM después de la animación
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 800);
-        };
-        
-        // Si el documento ya está completamente cargado, ocultar el preloader inmediatamente
-        if (document.readyState === 'complete') {
-            hidePreloader();
-        } else {
-            // Si no está cargado, añadir evento para ocultarlo cuando se cargue
-            window.addEventListener('load', hidePreloader);
+        function updateOnScroll() {
+            // Actualizar navbar en scroll
+            const header = document.querySelector('.header');
+            if(header) {
+                if(window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
             
-            // Fallback: si después de 5 segundos no se ha ocultado, forzar su ocultación
-            setTimeout(hidePreloader, 5000);
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if(!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        // Prevenir zoom en iOS en inputs
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('touchstart', function() {
+                input.style.fontSize = '16px';
+            });
+        });
+        
+        // Optimizar transiciones en móvil
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if(reduceMotion.matches) {
+            document.body.classList.add('reduce-motion');
         }
     }
     
-    // Selector de idioma (simulado)
+    // Manejar viewport height en móvil (problema con barra de navegación)
+    function setVhProperty() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setVhProperty();
+    window.addEventListener('resize', setVhProperty);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(setVhProperty, 100);
+    });
+}
+
+// Animaciones de scroll optimizadas para móvil
+function initScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    if(!fadeElements.length) return;
+    
+    // Usar Intersection Observer para mejor rendimiento en móvil
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Gestos táctiles para móvil
+function initTouchGestures() {
+    let startY = 0;
+    let isScrolling = false;
+    
+    document.addEventListener('touchstart', function(e) {
+        startY = e.touches[0].clientY;
+        isScrolling = false;
+    }, { passive: true });
+    
+    document.addEventListener('touchmove', function(e) {
+        if(!startY) return;
+        
+        const currentY = e.touches[0].clientY;
+        const diffY = Math.abs(currentY - startY);
+        
+        if(diffY > 5) {
+            isScrolling = true;
+        }
+        
+        // Si el menú móvil está abierto y se está haciendo scroll, cerrarlo
+        if(mobileMenuOpen && isScrolling) {
+            const navCenter = document.querySelector('.nav-center');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if(navCenter && menuToggle) {
+                menuToggle.classList.remove('active');
+                navCenter.classList.remove('show');
+                document.body.style.overflow = '';
+                mobileMenuOpen = false;
+            }
+        }
+    }, { passive: true });
+    
+    document.addEventListener('touchend', function() {
+        startY = 0;
+        isScrolling = false;
+    }, { passive: true });
+}
+
+// Inicializar función del preloader
+function initPreloader() {
+    const preloader = document.querySelector('.preloader');
+    
+    if (!preloader) return;
+    
+    // Función para ocultar el preloader
+    const hidePreloader = () => {
+        setTimeout(() => {
+            preloader.classList.add('hide');
+            
+            // Eliminar del DOM después de la animación
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 800);
+    };
+    
+    // Si el documento ya está completamente cargado, ocultar el preloader inmediatamente
+    if (document.readyState === 'complete') {
+        hidePreloader();
+    } else {
+        // Si no está cargado, añadir evento para ocultarlo cuando se cargue
+        window.addEventListener('load', hidePreloader);
+        
+        // Fallback: si después de 5 segundos no se ha ocultado, forzar su ocultación
+        setTimeout(hidePreloader, 5000);
+    }
+}
+
+// Selector de idioma (simulado)
+function initLanguageSelector() {
     const langSelector = document.querySelector('.language-selector');
     if(langSelector) {
         langSelector.addEventListener('click', function() {
             alert('Cambiador de idioma en desarrollo. Actualmente solo español está disponible.');
         });
     }
+}
     
     // Inicializar tooltips si se usan en la página
     initTooltips();

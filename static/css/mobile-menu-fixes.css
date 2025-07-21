@@ -1,0 +1,239 @@
+/* ================================================
+   CORRECCIONES Y MEJORAS PARA EL MENÚ MÓVIL
+   ================================================ */
+
+/* Asegurar que el menu-toggle sea visible en dispositivos móviles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex !important;
+    position: relative;
+    z-index: 10001;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0;
+  }
+  
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    margin: 2px 0;
+  }
+  
+  .menu-toggle:hover span {
+    background: var(--gold-light);
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* Estilos para el navbar responsive */
+@media (max-width: 768px) {
+  .navbar-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+  }
+  
+  .nav-brand {
+    flex: 1;
+  }
+  
+  .nav-center {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2c1b18 0%, #3e2723 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9998;
+    border-top: 2px solid var(--gold);
+  }
+  
+  .nav-center.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-center::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+}
+
+/* Mejoras para los enlaces del menú móvil */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .nav-menu li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 160, 0, 0.1);
+  }
+  
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .nav-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    gap: 15px;
+    background: transparent;
+  }
+  
+  .nav-menu li a:hover,
+  .nav-menu li a:focus {
+    background: rgba(255, 160, 0, 0.15);
+    color: var(--gold-light);
+    transform: translateX(8px);
+  }
+  
+  .nav-menu li a:active {
+    background: rgba(255, 160, 0, 0.25);
+    transform: scale(0.98);
+  }
+  
+  .nav-menu li a i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+    color: var(--gold);
+    transition: color 0.3s ease;
+  }
+  
+  .nav-menu li a:hover i {
+    color: var(--gold-light);
+  }
+  
+  .nav-menu li a.active {
+    background: rgba(255, 160, 0, 0.2);
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  
+  .nav-menu li a.active i {
+    color: var(--gold-light);
+  }
+}
+
+/* Overlay para el menú móvil */
+@media (max-width: 768px) {
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9997;
+    backdrop-filter: blur(2px);
+  }
+  
+  .mobile-menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Correcciones para la navegación cuando el menú está abierto */
+@media (max-width: 768px) {
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  .header.menu-open {
+    z-index: 10000;
+  }
+}
+
+/* Mejoras para elementos ocultos en móvil */
+@media (max-width: 768px) {
+  .nav-right .language-selector {
+    display: none;
+  }
+  
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  .show-on-mobile {
+    display: block !important;
+  }
+}
+
+/* Animación suave para el contenido cuando se abre el menú */
+@media (max-width: 768px) {
+  .main-content {
+    transition: transform 0.3s ease;
+  }
+  
+  body.menu-open .main-content {
+    transform: translateY(0);
+    filter: blur(1px);
+    pointer-events: none;
+  }
+  
+  body.menu-open .footer {
+    filter: blur(1px);
+    pointer-events: none;
+  }
+}
+
+/* Estados de focus mejorados para accesibilidad */
+@media (max-width: 768px) {
+  .menu-toggle:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  .nav-menu li a:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+  }
+}

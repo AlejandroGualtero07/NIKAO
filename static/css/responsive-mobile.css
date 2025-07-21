@@ -1,0 +1,639 @@
+/* ========================================
+   RESPONSIVE DESIGN MEJORADO PARA NIKAO
+   ======================================== */
+
+/* Variables específicas para móvil */
+:root {
+  --mobile-padding: 16px;
+  --mobile-font-base: 14px;
+  --mobile-line-height: 1.5;
+  --mobile-border-radius: 8px;
+  --mobile-transition: 0.3s ease;
+}
+
+/* ========================================
+   UTILIDADES RESPONSIVE
+   ======================================== */
+.hide-mobile {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
+}
+
+.text-center-mobile {
+  text-align: left;
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL RESPONSIVE
+   ======================================== */
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 var(--mobile-padding);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   NAVEGACIÓN RESPONSIVE
+   ======================================== */
+@media (max-width: 991px) {
+  .navbar-content {
+    padding: 12px var(--mobile-padding);
+  }
+  
+  .nav-brand img {
+    height: 45px;
+  }
+  
+  .nav-menu li a {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+  
+  body {
+    padding-top: 70px; /* Espacio para navbar fija */
+  }
+  
+  .navbar-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px var(--mobile-padding);
+    position: relative;
+  }
+  
+  .nav-brand {
+    margin-bottom: 0;
+  }
+  
+  .nav-brand img {
+    height: 40px;
+  }
+  
+  .brand-tagline {
+    font-size: 1rem !important;
+  }
+  
+  .nav-center {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2c1b18 0%, #3e2723 100%);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--mobile-transition);
+    border-top: 1px solid rgba(255, 160, 0, 0.2);
+  }
+  
+  .nav-center.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-menu {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-menu li {
+    margin: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .nav-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .nav-menu li a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px var(--mobile-padding);
+    font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    transition: all var(--mobile-transition);
+    gap: 12px;
+  }
+  
+  .nav-menu li a:hover {
+    background: rgba(255, 160, 0, 0.1);
+    color: var(--gold);
+    transform: translateX(5px);
+  }
+  
+  .nav-menu li a i {
+    font-size: 1.1rem;
+    width: 20px;
+  }
+  
+  .menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 10000;
+  }
+  
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all var(--mobile-transition);
+    transform-origin: center;
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .nav-right {
+    display: none;
+  }
+}
+
+/* ========================================
+   HERO SECTION RESPONSIVE
+   ======================================== */
+@media (max-width: 992px) {
+  .welcome-section {
+    padding: 60px 0 40px;
+  }
+  
+  .welcome-title {
+    font-size: 2.8rem;
+    line-height: 1.2;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .welcome-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 40px 0 30px;
+    min-height: auto;
+  }
+  
+  .welcome-content {
+    padding: 0 var(--mobile-padding);
+    max-width: 100%;
+  }
+  
+  .welcome-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .welcome-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .welcome-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .welcome-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    font-size: 1rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-section {
+    padding: 30px 0 20px;
+  }
+  
+  .welcome-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .welcome-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .welcome-badge {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+  }
+}
+
+/* ========================================
+   CAROUSEL RESPONSIVE
+   ======================================== */
+@media (max-width: 992px) {
+  .carousel-image {
+    height: 400px;
+  }
+  
+  .carousel-caption {
+    padding: 24px;
+  }
+  
+  .carousel-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    margin: 0 -var(--mobile-padding);
+  }
+  
+  .carousel-image {
+    height: 320px;
+  }
+  
+  .carousel-caption {
+    padding: 20px var(--mobile-padding);
+    background: linear-gradient(transparent 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.8) 100%);
+  }
+  
+  .carousel-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .carousel-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .carousel-buttons {
+    gap: 10px;
+  }
+  
+  .carousel-buttons .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-image {
+    height: 280px;
+  }
+  
+  .carousel-caption {
+    padding: 16px;
+  }
+  
+  .carousel-title {
+    font-size: 1.3rem;
+  }
+  
+  .carousel-description {
+    display: none;
+  }
+  
+  .carousel-buttons .btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   SECCIONES DE CONTENIDO
+   ======================================== */
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .about-features {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-content {
+    gap: 1.5rem;
+  }
+  
+  .about-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 24px;
+  }
+  
+  .feature-card h4 {
+    font-size: 1.1rem;
+  }
+  
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 30px var(--mobile-padding);
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .feature-card {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .feature-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ========================================
+   CTA SECTION RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 40px var(--mobile-padding);
+  }
+  
+  .cta-content {
+    text-align: center;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta-section {
+    padding: 30px var(--mobile-padding);
+  }
+  
+  .cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .cta-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   FOOTER RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .footer-mini {
+    padding: 20px var(--mobile-padding);
+    text-align: center;
+  }
+  
+  .footer-mini-contact {
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .footer-mini-contact a,
+  .footer-mini-contact span {
+    font-size: 0.9rem;
+  }
+  
+  .footer-mini-divider {
+    display: none;
+  }
+  
+  .footer-mini-bottom {
+    font-size: 0.8rem;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* ========================================
+   UTILIDADES MÓVILES
+   ======================================== */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .show-mobile {
+    display: block !important;
+  }
+  
+  .text-center-mobile {
+    text-align: center !important;
+  }
+  
+  .full-width-mobile {
+    width: 100% !important;
+  }
+  
+  .no-padding-mobile {
+    padding: 0 !important;
+  }
+  
+  .padding-mobile {
+    padding: var(--mobile-padding) !important;
+  }
+  
+  /* Mejoras en botones para móvil */
+  .btn {
+    min-height: 44px; /* Tamaño mínimo para touch */
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .btn i {
+    font-size: 1.1rem;
+  }
+  
+  /* Mejoras en formularios para móvil */
+  input, textarea, select {
+    font-size: 16px; /* Evita zoom en iOS */
+    min-height: 44px;
+  }
+  
+  /* Espaciado mejorado */
+  .mb-mobile {
+    margin-bottom: 1rem;
+  }
+  
+  .mt-mobile {
+    margin-top: 1rem;
+  }
+  
+  .p-mobile {
+    padding: var(--mobile-padding);
+  }
+}
+
+/* ========================================
+   ANIMACIONES OPTIMIZADAS PARA MÓVIL
+   ======================================== */
+@media (max-width: 768px) {
+  /* Reducir animaciones en móvil para mejor rendimiento */
+  *, *::before, *::after {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Animación suave para el menú móvil */
+  .nav-center {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Hover effects optimizados para touch */
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .nav-menu li a:active {
+    background: rgba(255, 160, 0, 0.2);
+  }
+}
+
+/* ========================================
+   MEJORAS DE ACCESIBILIDAD MÓVIL
+   ======================================== */
+@media (max-width: 768px) {
+  /* Área de toque más grande para elementos interactivos */
+  a, button, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Contraste mejorado para texto pequeño */
+  .small-text {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Espaciado mejorado para lectura */
+  p {
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+}
+
+/* ========================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ======================================== */
+@media (max-width: 768px) {
+  /* Optimizar imágenes para móvil */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Optimizar transforms para GPU */
+  .carousel-item,
+  .nav-center,
+  .menu-toggle span {
+    will-change: transform;
+    transform: translateZ(0); /* Fuerza aceleración por hardware */
+  }
+}
