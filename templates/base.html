@@ -83,7 +83,7 @@
                         </a>
                     </div>
                     <div class="nav-center">
-                        <ul class="nav-menu">
+                        <ul class="nav-menu desktop-menu">
                             <li><a href="{{ url_for('domicilios') }}" class="{% if request.endpoint == 'domicilios' %}active{% endif %}"><i class="fas fa-motorcycle"></i> Domicilios</a></li>
                             <li><a href="{{ url_for('carta') }}" class="{% if request.endpoint == 'carta' %}active{% endif %}"><i class="fas fa-utensils"></i> Carta</a></li>
                             <li><a href="{{ url_for('rastrear') }}" class="{% if request.endpoint == 'rastrear' %}active{% endif %}"><i class="fas fa-search"></i> Rastrear pedido</a></li>
@@ -95,7 +95,7 @@
                     <div class="mobile-menu-overlay"></div>
                     
                     <!-- Menú móvil mejorado -->
-                    <ul class="nav-menu" id="mobile-menu">
+                    <ul class="mobile-nav-menu" id="mobile-menu">
                         <div class="mobile-menu-header">
                             <div class="mobile-menu-logo">
                                 <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao">

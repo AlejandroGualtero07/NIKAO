@@ -1,10 +1,13 @@
 /* ================================================
    JAVASCRIPT MEJORADO PARA MENÚ MÓVIL HAMBURGER
-   ================================================ */
+   ==============================================/* Función para manejar focus trap en el menú móvil */
+function setupFocusTrap() {
+    const mobileMenu = document.querySelector('.mobile-nav-menu');
+    if (!mobileMenu) return;/
 
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('#mobile-menu');
+    const mobileMenu = document.querySelector('.mobile-nav-menu');
     const menuOverlay = document.querySelector('.mobile-menu-overlay');
     const menuClose = document.querySelector('.mobile-menu-close');
     const body = document.body;

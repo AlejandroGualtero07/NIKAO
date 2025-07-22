@@ -2,6 +2,62 @@
    MENÚ MÓVIL HAMBURGER MEJORADO Y ELEGANTE
    ================================================ */
 
+/* Asegurar que el menú de escritorio funcione correctamente */
+.desktop-menu {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    gap: 2rem;
+}
+
+.desktop-menu li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.desktop-menu a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.5rem 1rem !important;
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: visible !important;
+    background: none !important;
+}
+
+.desktop-menu a:hover,
+.desktop-menu a.active {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--gold) !important;
+    transform: translateY(-1px) !important;
+}
+
+.desktop-menu a i {
+    font-size: 0.9rem !important;
+    opacity: 0.9 !important;
+}
+
+.desktop-menu a:hover i,
+.desktop-menu a.active i {
+    opacity: 1 !important;
+}
+
 /* Overlay del menú - más sutil */
 .mobile-menu-overlay {
     position: fixed;
@@ -22,8 +78,8 @@
     visibility: visible;
 }
 
-/* Menú deslizable desde la derecha - más compacto */
-.nav-menu {
+/* Menú móvil deslizable desde la derecha - más compacto */
+.mobile-nav-menu {
     position: fixed;
     top: 0;
     right: -100%;
@@ -46,7 +102,7 @@
     list-style: none;
 }
 
-.nav-menu.active {
+.mobile-nav-menu.active {
     right: 0;
 }
 
@@ -101,13 +157,13 @@
     transform: rotate(90deg);
 }
 
-/* Enlaces del menú - más compactos y elegantes */
-.nav-menu li {
+/* Enlaces del menú móvil - más compactos y elegantes */
+.mobile-nav-menu li {
     margin: 0;
     padding: 0;
 }
 
-.nav-menu a {
+.mobile-nav-menu a {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -122,7 +178,7 @@
     overflow: hidden;
 }
 
-.nav-menu a::before {
+.mobile-nav-menu a::before {
     content: '';
     position: absolute;
     left: 0;
@@ -134,27 +190,27 @@
     transition: transform 0.3s ease;
 }
 
-.nav-menu a:hover::before,
-.nav-menu a.active::before {
+.mobile-nav-menu a:hover::before,
+.mobile-nav-menu a.active::before {
     transform: scaleY(1);
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a.active {
     background: rgba(255, 255, 255, 0.1);
     color: var(--gold);
     padding-left: 2rem;
 }
 
-.nav-menu a i {
+.mobile-nav-menu a i {
     font-size: 1.2rem;
     width: 20px;
     text-align: center;
     opacity: 0.9;
 }
 
-.nav-menu a:hover i,
-.nav-menu a.active i {
+.mobile-nav-menu a:hover i,
+.mobile-nav-menu a.active i {
     opacity: 1;
     transform: scale(1.1);
 }
@@ -252,21 +308,34 @@
 
 /* Responsive */
 @media (max-width: 992px) {
+    .desktop-menu,
     .nav-center {
-        display: none;
+        display: none !important;
     }
     
     .menu-toggle {
         display: flex;
     }
     
-    .nav-menu {
+    .mobile-nav-menu {
         width: 300px;
     }
 }
 
+@media (min-width: 993px) {
+    .mobile-nav-menu,
+    .mobile-menu-overlay,
+    .menu-toggle {
+        display: none !important;
+    }
+    
+    .desktop-menu {
+        display: flex !important;
+    }
+}
+
 @media (max-width: 576px) {
-    .nav-menu {
+    .mobile-nav-menu {
         width: 280px;
         max-width: 90vw;
     }
@@ -275,7 +344,7 @@
         padding: 1.5rem 1.25rem 1.25rem;
     }
     
-    .nav-menu a {
+    .mobile-nav-menu a {
         padding: 0.875rem 1.25rem;
         font-size: 1rem;
     }
@@ -306,7 +375,7 @@ html.menu-open {
 }
 
 /* Asegurar que el menú se vea por encima de todo */
-.nav-menu,
+.mobile-nav-menu,
 .mobile-menu-overlay {
     z-index: 10000;
 }
