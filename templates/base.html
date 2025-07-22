@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-typography.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/social-media.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/consistent-pages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/improved-mobile-menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/preloader-new.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer-mini.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-navbar.css') }}">
@@ -89,6 +90,42 @@
                             <li><a href="{{ url_for('ayuda') }}" class="{% if request.endpoint == 'ayuda' %}active{% endif %}"><i class="fas fa-question-circle"></i> Ayuda</a></li>
                         </ul>
                     </div>
+                    
+                    <!-- Overlay del menú móvil -->
+                    <div class="mobile-menu-overlay"></div>
+                    
+                    <!-- Menú móvil mejorado -->
+                    <ul class="nav-menu" id="mobile-menu">
+                        <div class="mobile-menu-header">
+                            <div class="mobile-menu-logo">
+                                <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao">
+                                <span class="mobile-menu-brand">NIKAO</span>
+                            </div>
+                            <button class="mobile-menu-close" aria-label="Cerrar menú">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="{{ url_for('domicilios') }}" class="{% if request.endpoint == 'domicilios' %}active{% endif %}"><i class="fas fa-motorcycle"></i> Domicilios</a></li>
+                        <li><a href="{{ url_for('carta') }}" class="{% if request.endpoint == 'carta' %}active{% endif %}"><i class="fas fa-utensils"></i> Carta</a></li>
+                        <li><a href="{{ url_for('rastrear') }}" class="{% if request.endpoint == 'rastrear' %}active{% endif %}"><i class="fas fa-search"></i> Rastrear pedido</a></li>
+                        <li><a href="{{ url_for('ayuda') }}" class="{% if request.endpoint == 'ayuda' %}active{% endif %}"><i class="fas fa-question-circle"></i> Ayuda</a></li>
+                        
+                        <div class="mobile-menu-contact">
+                            <div class="mobile-contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Soacha, Colombia</span>
+                            </div>
+                            <div class="mobile-contact-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Lun - Dom: 10:00 AM - 10:00 PM</span>
+                            </div>
+                            <a href="https://wa.me/573042025223" class="mobile-whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                Contactar por WhatsApp
+                            </a>
+                        </div>
+                    </ul>
                     <div class="nav-right">
                         <div class="language-selector" tabindex="0" aria-label="Selector de idioma">
                             <i class="fas fa-globe language-icon"></i>
@@ -126,14 +163,6 @@
                 <span class="footer-mini-divider">•</span>
                 <a href="{{ url_for('domicilios') }}" class="footer-mini-link">Domicilios</a>
             </div>
-            <div class="footer-mini-social">
-                <a href="https://web.facebook.com/profile.php?id=61578271123013" target="_blank" class="social-link facebook" data-tooltip="Síguenos en Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.tiktok.com/@nikao.arepas.rell?_t=ZS-8yE1KDf8cPh&_r=1" target="_blank" class="social-link tiktok" data-tooltip="Síguenos en TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-            </div>
             <div class="footer-mini-bottom">
                 &copy; 2025 NIKAO - Todos los derechos reservados
             </div>
@@ -158,6 +187,7 @@
     </script>
     <script src="{{ url_for('static', filename='js/enhanced-main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/mobile-menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/improved-mobile-menu.js') }}"></script>
     <script src="{{ url_for('static', filename='js/product-enhancements.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carousel-script.js') }}"></script>
     {% block extra_js %}{% endblock %}
