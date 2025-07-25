@@ -11,15 +11,17 @@
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title"><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
-            <p class="hero-subtitle text-on-dark">Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
-            <div class="hero-buttons">
-                <a href="https://wa.me/573042025223?text=Hola! Quiero hacer un pedido a domicilio" class="btn-primary">
-                    <i class="fab fa-whatsapp"></i> Pedir Ahora
-                </a>
-                <a href="{{ url_for('carta') }}" class="btn-secondary">
-                    <i class="fas fa-utensils"></i> Ver Menú
-                </a>
+            <div class="hero-content-nikao">
+                <h1 class="hero-title-nikao"><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
+                <p class="hero-subtitle-nikao">Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
+                <div class="hero-btns-nikao">
+                    <a href="https://wa.me/573042025223?text=Hola! Quiero hacer un pedido a domicilio" class="btn-hero-main btn-hero-sec">
+                        <i class="fab fa-whatsapp"></i> Pedir Ahora
+                    </a>
+                    <a href="{{ url_for('carta') }}" class="btn-hero-main">
+                        <i class="fas fa-utensils"></i> Ver Menú
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -172,12 +174,74 @@
 
 {% block extra_css %}
 <style>
-/* Estilos específicos para la página de domicilios */
-.page-hero {
-    background: linear-gradient(135deg, #ff6b00, #ff8533);
-    color: white;
-    padding: 80px 0 60px;
-    text-align: center;
+.hero-content-nikao {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 2.2rem 0.5rem 1.2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero-title-nikao {
+  font-family: 'Playfair Display',serif;
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 2px 4px 12px #000b;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+}
+.hero-subtitle-nikao {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 2px 8px #000a;
+}
+.hero-btns-nikao {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-hero-main {
+  background: #ff9800;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 12px #0003;
+  transition: background 0.2s;
+  text-decoration: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-hero-main.btn-hero-sec {
+  background: #4e342e;
+}
+@media (max-width: 600px) {
+  .hero-content-nikao {
+    padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
+  }
+  .hero-title-nikao {
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero-subtitle-nikao {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
+  .hero-btns-nikao {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
 }
 
 .page-hero h1 {

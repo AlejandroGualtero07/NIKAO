@@ -83,6 +83,70 @@
                 <button class="menu-toggle-modern" aria-label="Abrir menú">
                     <span></span><span></span><span></span>
                 </button>
+                <style>
+                .menu-toggle-modern {
+                  display: none;
+                }
+                @media (max-width: 600px) {
+                  .menu-toggle-modern {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    right: 18px;
+                    top: 12px;
+                    width: 48px;
+                    height: 48px;
+                    background: #fff;
+                    border-radius: 50%;
+                    border: 2px solid #c62828;
+                    box-shadow: 0 2px 8px #0002;
+                    cursor: pointer;
+                    transition: background 0.2s, border 0.2s;
+                    z-index: 1002;
+                  }
+                  .menu-toggle-modern:hover, .menu-toggle-modern:focus {
+                    background: #fff8;
+                    border-color: #ff9800;
+                    outline: none;
+                  }
+                  .menu-toggle-modern span {
+                    display: block;
+                    width: 26px;
+                    height: 4px;
+                    margin: 3px 0;
+                    background: #c62828;
+                    border-radius: 2px;
+                    transition: all 0.2s;
+                  }
+                }
+                /* Solo igualar proporción de imágenes hero a la del index */
+                .hero-image-full img.local-image {
+                  width: 100%;
+                  height: 360px;
+                  object-fit: cover;
+                  object-position: center;
+                  border-radius: 22px 22px 0 0;
+                  display: block;
+                  max-width: 1200px;
+                  margin: 0 auto;
+                  box-shadow: 0 4px 24px #0002;
+                  filter: blur(4px);
+                }
+                @media (max-width: 900px) {
+                  .hero-image-full img.local-image {
+                    height: 220px;
+                    border-radius: 16px 16px 0 0;
+                  }
+                }
+                @media (max-width: 600px) {
+                  .hero-image-full img.local-image {
+                    height: 140px;
+                    border-radius: 10px 10px 0 0;
+                  }
+                }
+                </style>
                 <ul class="nav-menu-modern">
                     <li><a href="{{ url_for('domicilios') }}"><i class="fas fa-motorcycle"></i> Domicilios</a></li>
                     <li><a href="{{ url_for('carta') }}"><i class="fas fa-utensils"></i> Carta</a></li>
@@ -113,6 +177,23 @@
     <main class="main-content">
         <section class="main-section">
             {% block content %}{% endblock %}
+        </section>
+    </main>
+    <style>
+    @media (max-width: 600px) {
+      .main-content, .main-section {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+      body {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+      header.header-modern {
+        margin-bottom: 0 !important;
+      }
+    }
+    </style>
         </section>
     </main>
 
