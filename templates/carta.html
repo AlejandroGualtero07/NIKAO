@@ -28,40 +28,40 @@
 </section>
 
 <!-- Menú Completo -->
-<section class="products" id="carta-completa">
-    <div class="container">
+<section class="products" id="carta-completa" style="padding: 40px 20px; background: #f8f9fa;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
         <!-- Search and Filter Section -->
-        <div class="search-filter-section">
+        <div class="search-filter-section" style="margin-bottom: 30px; padding: 20px; background: rgba(141, 110, 99, 0.05); border-radius: 10px; border: 1px solid rgba(141, 110, 99, 0.1);">
             <div class="search-container">
-                <div class="search-input-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Buscar tu arepa favorita..." id="searchInput">
+                <div class="search-input-container" style="position: relative; margin-bottom: 20px;">
+                    <i class="fas fa-search search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #8d6e63;"></i>
+                    <input type="text" class="search-input" placeholder="Buscar tu arepa favorita..." id="searchInput" style="width: 100%; padding: 12px 20px; padding-left: 40px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
                 </div>
                 
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-utensils"></i>
+                <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px;">
+                    <button class="filter-btn active" data-filter="all" style="background: rgba(255, 193, 7, 0.2); border: 1px solid #ffc107; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-utensils" style="color: #ffc107;"></i>
                         Todas
                     </button>
-                    <button class="filter-btn" data-filter="clasicas">
-                        <i class="fas fa-heart"></i>
+                    <button class="filter-btn" data-filter="clasicas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-heart" style="color: #ffc107;"></i>
                         Clásicas
                     </button>
-                    <button class="filter-btn" data-filter="picantes">
-                        <i class="fas fa-fire"></i>
+                    <button class="filter-btn" data-filter="picantes" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-fire" style="color: #ffc107;"></i>
                         Picantes
                     </button>
-                    <button class="filter-btn" data-filter="vegetarianas">
-                        <i class="fas fa-leaf"></i>
+                    <button class="filter-btn" data-filter="vegetarianas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-leaf" style="color: #ffc107;"></i>
                         Vegetarianas
                     </button>
-                    <button class="filter-btn" data-filter="dulces">
-                        <i class="fas fa-candy-cane"></i>
+                    <button class="filter-btn" data-filter="dulces" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-candy-cane" style="color: #ffc107;"></i>
                         Dulces
                     </button>
                     
-                    <div class="sort-container">
-                        <select class="sort-select" id="sortSelect">
+                    <div class="sort-container" style="margin-left: auto;">
+                        <select class="sort-select" id="sortSelect" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 8px; background: white; font-size: 0.9rem; cursor: pointer;">
                             <option value="popular">Más Populares</option>
                             <option value="price-low">Menor Precio</option>
                             <option value="price-high">Mayor Precio</option>
@@ -69,33 +69,33 @@
                         </select>
                     </div>
                     
-                    <button class="clear-filters" id="clearFilters">
+                    <button class="clear-filters" id="clearFilters" style="background: #dc3545; color: white; border: none; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
                         <i class="fas fa-times"></i>
                         Limpiar
                     </button>
                 </div>
                 
-                <div class="results-counter">
+                <div class="results-counter" style="color: #666; font-size: 0.9rem; font-weight: 600;">
                     <span id="resultCount">{{ productos|length }}</span> productos encontrados
                 </div>
             </div>
         </div>
         
-        <div class="products-grid" id="productsGrid">
+        <div class="products-grid" id="productsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
             {% for producto in productos %}
-            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}">
-                <div class="product-icon">{{ producto.icono }}</div>
-                <h3>{{ producto.nombre }}</h3>
-                <p>{{ producto.descripcion }}</p>
-                <div class="product-price">${{ "{:,}".format(producto.precio) }}</div>
+            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="product-icon" style="font-size: 2rem; margin-bottom: 10px; text-align: center;">{{ producto.icono }}</div>
+                <h3 style="color: #8d6e63; margin-bottom: 10px; font-size: 1.3rem; text-align: center; font-family: 'Fredoka One', cursive;">{{ producto.nombre }}</h3>
+                <p style="color: #666; margin-bottom: 15px; line-height: 1.5; text-align: center; font-size: 0.9rem;">{{ producto.descripcion }}</p>
+                <div class="product-price" style="font-size: 1.4rem; font-weight: 700; color: #6d4c41; margin-bottom: 15px; background: rgba(255, 193, 7, 0.15); padding: 8px 15px; border-radius: 5px; display: block; text-align: center;">${{ "{:,}".format(producto.precio) }}</div>
                 
-                <div class="product-actions">
-                    <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}">
+                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}" style="background: #8d6e63; color: white; padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; transition: all 0.3s ease;">
                         <i class="fas fa-cart-plus"></i>
                         Agregar
                     </button>
                     <a href="https://wa.me/573042025223?text=Hola! Me interesa {{ producto.nombre }} por ${{ '{:,}'.format(producto.precio) }}" 
-                       class="btn-order-now" target="_blank">
+                       class="btn-order-now" target="_blank" style="background: #25D366; color: white; padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
                         <i class="fab fa-whatsapp"></i>
                         Pedir
                     </a>
@@ -173,6 +173,70 @@
 
 {% block extra_css %}
 <style>
+/* Estilos específicos para la página de carta */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+    border-color: #ffc107 !important;
+}
+
+.btn-add-cart:hover {
+    background: #6d4c41 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+}
+
+.btn-order-now:hover {
+    background: #128C7E !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: rgba(255, 193, 7, 0.2) !important;
+    border-color: #ffc107 !important;
+    color: #8d6e63 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .filter-buttons {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    .sort-container {
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+    
+    .product-actions {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-filter-section {
+        padding: 15px !important;
+        margin: 0 10px 20px 10px !important;
+    }
+    
+    .products-grid {
+        margin: 0 10px !important;
+    }
+    
+    .product-card {
+        margin: 10px 0 !important;
+        padding: 15px !important;
+    }
+}
+
 .hero-content-nikao {
   position: relative;
   z-index: 2;
@@ -708,6 +772,118 @@ class ShoppingCart {
 
 // Inicializar carrito
 const cart = new ShoppingCart();
+
+// Funcionalidad de búsqueda y filtros
+class ProductFilter {
+    constructor() {
+        this.products = document.querySelectorAll('.product-card');
+        this.searchInput = document.getElementById('searchInput');
+        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.sortSelect = document.getElementById('sortSelect');
+        this.clearFiltersBtn = document.getElementById('clearFilters');
+        this.resultCount = document.getElementById('resultCount');
+        
+        this.init();
+    }
+    
+    init() {
+        this.bindEvents();
+        this.updateResultCount();
+    }
+    
+    bindEvents() {
+        // Búsqueda en tiempo real
+        this.searchInput.addEventListener('input', () => {
+            this.filterProducts();
+        });
+        
+        // Filtros por categoría
+        this.filterButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.filterButtons.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                this.filterProducts();
+            });
+        });
+        
+        // Ordenamiento
+        this.sortSelect.addEventListener('change', () => {
+            this.sortProducts();
+        });
+        
+        // Limpiar filtros
+        this.clearFiltersBtn.addEventListener('click', () => {
+            this.clearFilters();
+        });
+    }
+    
+    filterProducts() {
+        const searchTerm = this.searchInput.value.toLowerCase();
+        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+        
+        let visibleCount = 0;
+        
+        this.products.forEach(product => {
+            const name = product.getAttribute('data-name');
+            const category = product.getAttribute('data-category');
+            
+            const matchesSearch = name.includes(searchTerm);
+            const matchesFilter = activeFilter === 'all' || category === activeFilter;
+            
+            if (matchesSearch && matchesFilter) {
+                product.style.display = 'block';
+                visibleCount++;
+            } else {
+                product.style.display = 'none';
+            }
+        });
+        
+        this.updateResultCount(visibleCount);
+    }
+    
+    sortProducts() {
+        const sortBy = this.sortSelect.value;
+        const productsGrid = document.getElementById('productsGrid');
+        const productsArray = Array.from(this.products);
+        
+        productsArray.sort((a, b) => {
+            switch (sortBy) {
+                case 'price-low':
+                    return parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price'));
+                case 'price-high':
+                    return parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'));
+                case 'name':
+                    return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+                default: // popular
+                    return 0;
+            }
+        });
+        
+        // Reorganizar en el DOM
+        productsArray.forEach(product => {
+            productsGrid.appendChild(product);
+        });
+    }
+    
+    clearFilters() {
+        this.searchInput.value = '';
+        this.filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.filterButtons[0].classList.add('active'); // Activar "Todas"
+        this.sortSelect.value = 'popular';
+        this.filterProducts();
+    }
+    
+    updateResultCount(count = null) {
+        const visibleProducts = count !== null ? count : 
+            Array.from(this.products).filter(p => p.style.display !== 'none').length;
+        this.resultCount.textContent = visibleProducts;
+    }
+}
+
+// Inicializar filtros cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    new ProductFilter();
+});
 
 // Añadir estilos para las animaciones
 const style = document.createElement('style');
