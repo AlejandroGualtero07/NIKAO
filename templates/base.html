@@ -77,8 +77,7 @@
         <nav class="navbar-modern">
             <div class="container-navbar">
                 <a href="{{ url_for('index') }}" class="nav-logo-modern">
-                    <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" class="logo-modern">
-                    <span class="brand-modern">NIKAO</span>
+                    <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" class="logo-modern" style="height:64px; width:64px; display:block; margin:0 auto; background:#fff; border-radius:50%; box-shadow:0 2px 12px #0002; object-fit:cover; object-position:center; padding:4px;">
                 </a>
                 <button class="menu-toggle-modern" aria-label="Abrir menú">
                     <span></span><span></span><span></span>
@@ -103,13 +102,17 @@
                     border: 2px solid #c62828;
                     box-shadow: 0 2px 8px #0002;
                     cursor: pointer;
-                    transition: background 0.2s, border 0.2s;
+                    transition: all 0.3s ease;
                     z-index: 1002;
                   }
                   .menu-toggle-modern:hover, .menu-toggle-modern:focus {
                     background: #fff8;
                     border-color: #ff9800;
                     outline: none;
+                    transform: scale(1.05);
+                  }
+                  .menu-toggle-modern:active {
+                    transform: scale(0.95);
                   }
                   .menu-toggle-modern span {
                     display: block;
@@ -118,7 +121,17 @@
                     margin: 3px 0;
                     background: #c62828;
                     border-radius: 2px;
-                    transition: all 0.2s;
+                    transition: all 0.3s ease;
+                  }
+                  .menu-toggle-modern.active span:nth-child(1) {
+                    transform: rotate(45deg) translate(9px, 9px);
+                  }
+                  .menu-toggle-modern.active span:nth-child(2) {
+                    opacity: 0;
+                  }
+                  .menu-toggle-modern.active span:nth-child(3) {
+                    transform: rotate(-45deg) translate(7px, -6px);
+                  }
                   }
                 }
                 /* Solo igualar proporción de imágenes hero a la del index */
@@ -158,8 +171,9 @@
             <div class="mobile-menu-modern-overlay"></div>
             <div class="mobile-menu-modern" id="mobile-menu-modern">
                 <div class="mobile-menu-modern-header">
-                    <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" class="logo-modern">
-                    <span class="brand-modern">NIKAO</span>
+                    <div class="mobile-menu-logo-container">
+                        <img src="{{ url_for('static', filename='images/LOGO_NUEVO_NIKAO.png') }}" alt="Logo Nikao" class="logo-modern">
+                    </div>
                     <button class="mobile-menu-modern-close" aria-label="Cerrar menú"><i class="fas fa-times"></i></button>
                 </div>
                 <ul class="mobile-menu-modern-list">
@@ -232,6 +246,17 @@
                         preloader.style.display = 'none';
                     }, 500);
                 }, 3000);
+            }
+
+            // Debug del menú móvil
+            const menuToggle = document.querySelector('.menu-toggle-modern');
+            if (menuToggle) {
+                console.log('Menu toggle encontrado');
+                menuToggle.addEventListener('click', function() {
+                    console.log('Click detectado en el menú toggle');
+                });
+            } else {
+                console.log('Menu toggle NO encontrado');
             }
         });
     </script>

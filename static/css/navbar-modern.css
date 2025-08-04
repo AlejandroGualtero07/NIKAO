@@ -85,7 +85,7 @@
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 9999;
+  z-index: 9998;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -98,8 +98,8 @@
   height: 100vh;
   background: #fff;
   box-shadow: -8px 0 32px rgba(0,0,0,0.18);
-  z-index: 10000;
-  transition: right 0.4s;
+  z-index: 9999;
+  transition: right 0.4s ease;
   flex-direction: column;
 }
 .mobile-menu-modern.active {
@@ -113,10 +113,56 @@
 .mobile-menu-modern-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 1.5rem 1rem 1.5rem;
-  border-bottom: 1px solid #eee;
-  background: #c62828;
+  justify-content: center;
+  position: relative;
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #c62828 0%, #d84315 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu-modern-header .logo-modern {
+  height: 56px;
+  width: 56px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  padding: 6px;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid rgba(255, 215, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-modern-header .logo-modern:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-color: #ffd700;
+}
+
+.mobile-menu-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-menu-brand-text {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.mobile-menu-modern-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .mobile-menu-modern-list {
   list-style: none;
@@ -149,8 +195,18 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: #ffd700;
+  color: #fff;
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-modern-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(90deg) scale(1.1);
+  color: #ffd700;
 }
 @media (max-width: 900px) {
   .nav-menu-modern {

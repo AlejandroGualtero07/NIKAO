@@ -4,13 +4,12 @@
 
 {% block content %}
 <!-- Hero de Domicilios -->
-<section class="hero-section">
-    <div class="hero-container">
-        <div class="hero-image-full">
-            <img src="{{ url_for('static', filename='images/imagen arepas ej4.jpeg') }}" alt="Servicio de Domicilios NIKAO" class="local-image">
-            <div class="hero-overlay"></div>
+<section class="hero-section" style="position:relative; min-height: 60vh; display:flex; align-items:center; justify-content:center; padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+    <div class="hero-container" style="position:relative; width:100%; height:100%;">
+        <div class="hero-bg-blur" style="position:absolute; inset:0; z-index:1; width:100%; height:100%; pointer-events:none;">
+            <img src="{{ url_for('static', filename='images/imagen arepas ej4.jpeg') }}" alt="Servicio de Domicilios NIKAO" style="width:100%; height:100%; object-fit:cover; filter:blur(12px) brightness(0.85);">
         </div>
-        <div class="hero-content">
+        <div class="hero-content" style="position:relative; z-index:2; text-align:center; width:100%; max-width:900px; margin:auto; padding:2.2rem 0.5rem 1.2rem 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
             <div class="hero-content-nikao">
                 <h1 class="hero-title-nikao"><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
                 <p class="hero-subtitle-nikao">Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
@@ -483,6 +482,15 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+
+/* Eliminar overlay y bordes del hero-section */
+.hero-section, .hero-container, .hero-image-full, .hero-overlay {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+.hero-overlay { display: none !important; }
+.hero-image-full { display: none !important; }
 
 @media (max-width: 768px) {
     .page-hero h1 {

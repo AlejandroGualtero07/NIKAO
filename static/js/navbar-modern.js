@@ -6,20 +6,50 @@ document.addEventListener('DOMContentLoaded', function() {
   const overlay = document.querySelector('.mobile-menu-modern-overlay');
   const closeBtn = document.querySelector('.mobile-menu-modern-close');
 
+  // Verificar que existen los elementos
+  if (!menuToggle || !mobileMenu || !overlay || !closeBtn) {
+    console.log('Algunos elementos del menú no se encontraron');
+    return;
+  }
+
   function openMenu() {
+    console.log('Abriendo menú móvil');
     mobileMenu.classList.add('active');
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Agregar animación al toggle
+    menuToggle.classList.add('active');
   }
+  
   function closeMenu() {
+    console.log('Cerrando menú móvil');
     mobileMenu.classList.remove('active');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Remover animación del toggle
+    menuToggle.classList.remove('active');
   }
 
-  menuToggle.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
-  overlay.addEventListener('click', closeMenu);
+  // Event listeners
+  menuToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Click en menu toggle');
+    openMenu();
+  });
+  
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    closeMenu();
+  });
+  
+  overlay.addEventListener('click', function(e) {
+    e.preventDefault();
+    closeMenu();
+  });
 
   // Cerrar menú al hacer click en un enlace
   mobileMenu.querySelectorAll('a').forEach(link => {

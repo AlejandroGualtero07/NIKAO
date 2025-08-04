@@ -4,96 +4,25 @@
 
 {% block content %}
 <!-- Hero de Carta -->
-<section class="hero-section">
-    <div class="hero-container">
-        <div class="hero-image-full">
-            <img src="{{ url_for('static', filename='images/imagen arepas ej6.jpeg') }}" alt="Menú NIKAO Arepas Rellenas" class="local-image">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-content-nikao">
-                <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> Nuestra Carta</h1>
-                <p class="hero-subtitle-nikao">Descubre todas nuestras deliciosas especialidades</p>
-                <div class="hero-btns-nikao">
-                    <a href="#carta-completa" class="btn-hero-main">
-                        <i class="fas fa-search"></i> Explorar Menú
-                    </a>
-                    <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-hero-sec">
-                        <i class="fab fa-whatsapp"></i> Consultar
-                    </a>
-                </div>
+<section class="hero-section" style="position:relative; min-height: 60vh; display:flex; align-items:center; justify-content:center; padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+    <div class="hero-bg-blur" style="position:absolute; inset:0; z-index:1; width:100%; height:100%; pointer-events:none; overflow:hidden;">
+        <video autoplay loop muted playsinline style="width:100vw; height:100vh; object-fit:cover; filter:blur(12px) brightness(0.7);">
+            <source src="{{ url_for('static', filename='images/VIDEO NIKAO.mp4') }}" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+    </div>
+    <div class="hero-content" style="position:relative; z-index:2; text-align:center; width:100%; max-width:900px; margin:auto; padding:2.2rem 0.5rem 1.2rem 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <div class="hero-content-nikao">
+            <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> Nuestra Carta</h1>
+            <p class="hero-subtitle-nikao">Descubre todas nuestras deliciosas especialidades</p>
+            <div class="hero-btns-nikao">
+                <a href="#carta-completa" class="btn-hero-main">
+                    <i class="fas fa-search"></i> Explorar Menú
+                </a>
+                <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-hero-sec">
+                    <i class="fab fa-whatsapp"></i> Consultar
+                </a>
             </div>
-<style>
-.hero-content-nikao {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-  padding: 2.2rem 0.5rem 1.2rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.hero-title-nikao {
-  font-family: 'Playfair Display',serif;
-  font-size: 3rem;
-  color: #fff;
-  font-weight: 800;
-  text-shadow: 2px 4px 12px #000b;
-  letter-spacing: 2px;
-  margin-bottom: 1.2rem;
-}
-.hero-subtitle-nikao {
-  font-size: 1.4rem;
-  color: #fff;
-  margin-bottom: 2.5rem;
-  text-shadow: 1px 2px 8px #000a;
-}
-.hero-btns-nikao {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.btn-hero-main {
-  background: #ff9800;
-  color: #fff;
-  font-weight: 700;
-  padding: 0.9rem 2.2rem;
-  border-radius: 2rem;
-  font-size: 1.1rem;
-  box-shadow: 0 2px 12px #0003;
-  transition: background 0.2s;
-  text-decoration: none;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn-hero-main.btn-hero-sec {
-  background: #4e342e;
-}
-@media (max-width: 600px) {
-  .hero-content-nikao {
-    padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
-  }
-  .hero-title-nikao {
-    font-size: 2rem;
-    margin-bottom: 0.7rem;
-  }
-  .hero-subtitle-nikao {
-    font-size: 1.05rem;
-    margin-bottom: 1.2rem;
-  }
-  .hero-btns-nikao {
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-}
-</style>
         </div>
     </div>
 </section>
@@ -244,6 +173,34 @@
 
 {% block extra_css %}
 <style>
+.hero-content-nikao {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 2.2rem 0.5rem 1.2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero-title-nikao {
+  font-family: 'Playfair Display',serif;
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 2px 4px 12px #000b;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+}
+.hero-subtitle-nikao {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 2px 8px #000a;
+}
 .hero-btns-nikao {
   display: flex;
   gap: 1.5rem;
@@ -269,6 +226,17 @@
   background: #4e342e;
 }
 @media (max-width: 600px) {
+  .hero-content-nikao {
+    padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
+  }
+  .hero-title-nikao {
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero-subtitle-nikao {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
   .hero-btns-nikao {
     flex-direction: column;
     gap: 0.7rem;
@@ -554,6 +522,15 @@
         font-size: 16px;
     }
 }
+
+/* Eliminar overlay y bordes del hero-section de carta */
+.hero-section, .hero-container, .hero-image-full, .hero-overlay {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+.hero-overlay { display: none !important; }
+.hero-image-full { display: none !important; }
 </style>
 {% endblock %}
 
