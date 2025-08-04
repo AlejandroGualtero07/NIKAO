@@ -121,34 +121,34 @@ def domicilios():
     """Página de información sobre domicilios"""
     zonas_entrega = [
         {
-            'zona': 'Soacha Centro',
+            'zona': 'Ciudad Latina',
             'tiempo': '20-30 min',
             'costo': 3500,
             'disponible': True
         },
         {
-            'zona': 'Compartir',
+            'zona': 'Hogares Soacha',
             'tiempo': '25-35 min',
             'costo': 4000,
             'disponible': True
         },
         {
-            'zona': 'Ciudad Verde',
+            'zona': 'Maipore',
             'tiempo': '30-40 min',
             'costo': 4500,
             'disponible': True
         },
         {
-            'zona': 'León XIII',
-            'tiempo': '15-25 min',
-            'costo': 3000,
+            'zona': 'Soacha Compartir',
+            'tiempo': '25-35 min',
+            'costo': 4000,
             'disponible': True
         },
         {
-            'zona': 'Cazucá',
+            'zona': 'Parque de Soacha Altico',
             'tiempo': '35-45 min',
             'costo': 5000,
-            'disponible': False
+            'disponible': True
         }
     ]
     return render_template('domicilios.html', zonas=zonas_entrega)
