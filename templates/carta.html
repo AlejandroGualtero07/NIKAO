@@ -16,10 +16,10 @@
             <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> Nuestra Carta</h1>
             <p class="hero-subtitle-nikao">Descubre todas nuestras deliciosas especialidades</p>
             <div class="hero-btns-nikao">
-                <a href="#carta-completa" class="btn-hero-main">
+                <a href="#carta-completa" class="btn-hero-main btn-orange">
                     <i class="fas fa-search"></i> Explorar Menú
                 </a>
-                <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-hero-sec">
+                <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-brown">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
             </div>
@@ -43,21 +43,25 @@
                         <i class="fas fa-utensils" style="color: #ffc107;"></i>
                         Todas
                     </button>
+                    <button class="filter-btn" data-filter="sencillas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-circle" style="color: #ffc107;"></i>
+                        Sencillas
+                    </button>
                     <button class="filter-btn" data-filter="clasicas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
                         <i class="fas fa-heart" style="color: #ffc107;"></i>
                         Clásicas
                     </button>
-                    <button class="filter-btn" data-filter="picantes" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
-                        <i class="fas fa-fire" style="color: #ffc107;"></i>
-                        Picantes
+                    <button class="filter-btn" data-filter="especiales" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-star" style="color: #ffc107;"></i>
+                        Especiales
                     </button>
-                    <button class="filter-btn" data-filter="vegetarianas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
-                        <i class="fas fa-leaf" style="color: #ffc107;"></i>
-                        Vegetarianas
+                    <button class="filter-btn" data-filter="perros" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-hotdog" style="color: #ffc107;"></i>
+                        Perros
                     </button>
-                    <button class="filter-btn" data-filter="dulces" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
-                        <i class="fas fa-candy-cane" style="color: #ffc107;"></i>
-                        Dulces
+                    <button class="filter-btn" data-filter="premium" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <i class="fas fa-crown" style="color: #ffc107;"></i>
+                        Premium
                     </button>
                     
                     <div class="sort-container" style="margin-left: auto;">
@@ -81,24 +85,42 @@
             </div>
         </div>
         
-        <div class="products-grid" id="productsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
+        <div class="products-grid" id="productsGrid" style="display: grid !important; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 25px !important; margin-top: 30px !important; visibility: visible !important;">
             {% for producto in productos %}
-            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block; background: white; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                <div class="product-icon" style="font-size: 2rem; margin-bottom: 10px; text-align: center;">{{ producto.icono }}</div>
-                <h3 style="color: #8d6e63; margin-bottom: 10px; font-size: 1.3rem; text-align: center; font-family: 'Fredoka One', cursive;">{{ producto.nombre }}</h3>
-                <p style="color: #666; margin-bottom: 15px; line-height: 1.5; text-align: center; font-size: 0.9rem;">{{ producto.descripcion }}</p>
-                <div class="product-price" style="font-size: 1.4rem; font-weight: 700; color: #6d4c41; margin-bottom: 15px; background: rgba(255, 193, 7, 0.15); padding: 8px 15px; border-radius: 5px; display: block; text-align: center;">${{ "{:,}".format(producto.precio) }}</div>
+            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; height: auto;">
+                {% if loop.first %}<div class="card-badge" style="position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; padding: 5px 10px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;">Más Vendido</div>{% endif %}
                 
-                <div class="product-actions" style="display: flex; gap: 10px; margin-top: 15px;">
-                    <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}" style="background: #8d6e63; color: white; padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fas fa-cart-plus"></i>
-                        Agregar
-                    </button>
-                    <a href="https://wa.me/573042025223?text=Hola! Me interesa {{ producto.nombre }} por ${{ '{:,}'.format(producto.precio) }}" 
-                       class="btn-order-now" target="_blank" style="background: #25D366; color: white; padding: 10px 15px; border: none; border-radius: 20px; cursor: pointer; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fab fa-whatsapp"></i>
-                        Pedir
-                    </a>
+                <div class="card-img-wrapper" style="overflow: hidden; border-radius: 15px 15px 0 0; position: relative;">
+                    <img src="{{ url_for('static', filename='images/imagen arepas ej'~(loop.index % 4 + 3)|string~'.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                </div>
+                
+                <div class="card-content" style="padding: 20px; background: white;">
+                    <h3 class="card-title" style="font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.2rem; color: #8d6e63; transition: color 0.3s ease;">{{ producto.nombre }}</h3>
+                    <p class="card-description" style="font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.5;">{{ producto.descripcion }}</p>
+                    
+                    <div class="card-rating" style="display: flex; align-items: center; gap: 5px; margin-bottom: 15px;">
+                        <div class="stars" style="display: flex; color: #ffc107; font-size: 0.9rem;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count" style="font-size: 0.85rem; color: #888;">({{ range(40, 130)|random }})</span>
+                    </div>
+                    
+                    <div class="card-price" style="font-weight: 800; font-size: 1.4rem; color: #8d6e63; margin-bottom: 15px; display: flex; align-items: center;">${{ "{:,}".format(producto.precio) }}</div>
+                    
+                    <div class="card-action" style="display: flex; gap: 10px;">
+                        <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}" style="padding: 12px 18px !important; background: #8d6e63 !important; color: white !important; border: none !important; border-radius: 8px !important; display: flex !important; align-items: center !important; gap: 8px !important; font-weight: 600 !important; cursor: pointer !important; transition: all 0.3s ease !important; flex: 1 !important; justify-content: center !important; overflow: hidden !important; position: relative !important; z-index: 1 !important; font-size: 14px !important;">
+                            <i class="fas fa-shopping-cart"></i>
+                            Añadir
+                        </button>
+                        <a href="https://wa.me/573042025223?text=Hola! Me interesa {{ producto.nombre }} por ${{ '{:,}'.format(producto.precio) }}" 
+                           class="btn-wishlist" target="_blank" style="padding: 12px 18px !important; background: #25D366 !important; color: white !important; border-radius: 8px !important; display: flex !important; align-items: center !important; justify-content: center !important; text-decoration: none !important; transition: all 0.3s ease !important; font-size: 14px !important; font-weight: 600 !important; min-width: 50px !important;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -107,7 +129,7 @@
 </section>
 
 <!-- Carrito Flotante -->
-<div class="cart-float" id="cartFloat" style="display: none;">
+<div class="cart-float hidden" id="cartFloat">
     <div class="cart-header">
         <h3><i class="fas fa-shopping-cart"></i> Tu Pedido</h3>
         <button class="cart-toggle" id="cartToggle">
@@ -137,6 +159,56 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal del Carrito de Compras -->
+<div id="cartModal" class="cart-modal" style="display: none;">
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h2><i class="fas fa-shopping-cart"></i> Carrito de Compras</h2>
+            <button class="cart-modal-close" id="closeCartModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-modal-body">
+            <div id="cartItemsContainer" class="cart-items-container">
+                <!-- Los productos se agregan dinámicamente aquí -->
+            </div>
+            
+            <div class="cart-empty" id="cartEmpty" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Tu carrito está vacío</p>
+                <small>¡Agrega algunos productos deliciosos!</small>
+            </div>
+        </div>
+        
+        <div class="cart-modal-footer">
+            <div class="cart-total-section">
+                <div class="cart-subtotal">
+                    <span>Total:</span>
+                    <strong id="cartModalTotal">$0</strong>
+                </div>
+            </div>
+            
+            <div class="cart-actions-section">
+                <button id="clearCartBtn" class="btn-clear">
+                    <i class="fas fa-trash-alt"></i>
+                    Vaciar Carrito
+                </button>
+                <button id="checkoutCartBtn" class="btn-checkout">
+                    <i class="fab fa-whatsapp"></i>
+                    Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón flotante del carrito -->
+<div id="floatingCartBtn" class="floating-cart-btn" style="display: none;">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount" class="cart-count">0</span>
 </div>
 
 <!-- Información Adicional -->
@@ -173,29 +245,603 @@
 
 {% block extra_css %}
 <style>
-/* Estilos específicos para la página de carta */
+/* Variables de colores del inicio */
+:root {
+    --gold: #ffa000;
+    --primary-color: #8d6e63;
+    --secondary-color: #ffc107;
+    --success-color: #25D366;
+    --danger-color: #dc3545;
+    --dark-color: #333;
+    --light-color: #f8f9fa;
+}
+
+/* Estilos para el Modal del Carrito */
+.cart-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.cart-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cart-modal.show .cart-modal-content {
+    transform: scale(1);
+}
+
+.cart-modal-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.cart-modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cart-modal-body {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.cart-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.cart-item-price {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(141, 110, 99, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(141, 110, 99, 0.1);
+}
+
+.quantity-btn {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(141, 110, 99, 0.3);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+.quantity-display {
+    font-weight: 700;
+    min-width: 35px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--primary-color);
+    background: #f8f9fa;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.cart-item-remove {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cart-item-remove:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+}
+
+.cart-empty i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.cart-empty p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.cart-modal-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.cart-total-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid var(--secondary-color);
+}
+
+.cart-subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.cart-subtotal strong {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+
+.cart-actions-section {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-clear, .btn-checkout {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-clear {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-clear:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.btn-checkout {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-checkout:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+/* Botón flotante del carrito */
+.floating-cart-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.floating-cart-btn:hover {
+    background: #6d4c41;
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger-color);
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Notificación de producto agregado */
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--success-color);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 10001;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cart-notification.show {
+    transform: translateX(0);
+}
+
+.cart-notification i {
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-modal-content {
+        width: 95%;
+        max-height: 85vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cart-modal-header {
+        padding: 15px;
+        flex-shrink: 0;
+    }
+    
+    .cart-modal-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .cart-modal-body {
+        padding: 15px;
+        flex: 1;
+        overflow-y: auto;
+        max-height: calc(85vh - 180px);
+    }
+    
+    .cart-modal-footer {
+        padding: 15px;
+        flex-shrink: 0;
+        background: white;
+        border-top: 1px solid #eee;
+    }
+    
+    .cart-actions-section {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .btn-clear, .btn-checkout {
+        width: 100% !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        margin: 0 !important;
+    }
+    
+    .floating-cart-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .cart-count {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Variables adicionales */
+:root {
+    --gold-light: #ffca28;
+    --gold-dark: #ff8f00;
+    --orange-vibrant: #ff9500;
+    --orange-hover: #ff8800;
+    --orange-light: #ffb347;
+    --transition-normal: 0.3s ease;
+    --shadow-medium: 0 5px 15px rgba(0,0,0,0.12);
+    --shadow-strong: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Forzar estilos del botón Añadir */
+button[data-name].btn-add-cart,
+.product-card button[data-name].btn-add-cart,
+div.product-card button[data-name].btn-add-cart,
+.products-grid .product-card button[data-name].btn-add-cart {
+    background: #8d6e63 !important;
+    background-color: #8d6e63 !important;
+    transition: all 0.3s ease !important;
+}
+
+button[data-name].btn-add-cart:hover,
+.product-card button[data-name].btn-add-cart:hover,
+div.product-card button[data-name].btn-add-cart:hover,
+.products-grid .product-card button[data-name].btn-add-cart:hover {
+    background: #ff8800 !important;
+    background-color: #ff8800 !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(255, 136, 0, 0.5) !important;
+}
+
+/* Estilos específicos para sobrescribir CSS externo */
+.product-card .btn-add-cart,
+div.product-card button.btn-add-cart,
+.products-grid .product-card .btn-add-cart {
+    background: #8d6e63 !important;
+    background-color: #8d6e63 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* Color marrón base para botón Añadir */
+.btn-add-cart,
+button.btn-add-cart {
+    background: #8d6e63 !important;
+    background-color: #8d6e63 !important;
+}
+
+.product-card .btn-wishlist,
+div.product-card a.btn-wishlist,
+.products-grid .product-card .btn-wishlist {
+    background: #25D366 !important;
+    background-color: #25D366 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    color: white !important;
+    min-width: 50px !important;
+}
+.product-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,193,7,0.05) 0%, rgba(62, 39, 35, 0.05) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+    z-index: 0;
+}
+
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
-    border-color: #ffc107 !important;
+    transform: translateY(-10px) !important;
+    box-shadow: var(--shadow-strong) !important;
+    border-color: var(--orange-vibrant) !important;
 }
 
-.btn-add-cart:hover {
-    background: #6d4c41 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+.product-card:hover::before {
+    opacity: 1;
 }
 
-.btn-order-now:hover {
+.product-card img {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Animación naranja en hover del botón "Añadir" */
+.btn-add-cart,
+.product-card .btn-add-cart,
+div.product-card button.btn-add-cart,
+.products-grid .product-card .btn-add-cart {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background: #8d6e63 !important;
+    background-color: #8d6e63 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-add-cart::before,
+.product-card .btn-add-cart::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #ff8800 !important;
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.btn-add-cart:hover,
+.product-card .btn-add-cart:hover,
+div.product-card button.btn-add-cart:hover {
+    color: white !important;
+    background: #ff8800 !important;
+    background-color: #ff8800 !important;
+    box-shadow: 0 4px 15px rgba(255, 136, 0, 0.5) !important;
+    transform: translateY(-2px) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+.btn-add-cart:hover::before,
+.product-card .btn-add-cart:hover::before {
+    left: 0;
+}
+
+/* Animación del botón WhatsApp */
+.btn-wishlist,
+.product-card .btn-wishlist,
+div.product-card a.btn-wishlist,
+.products-grid .product-card .btn-wishlist {
+    background: #25D366 !important;
+}
+
+.btn-wishlist:hover,
+.product-card .btn-wishlist:hover,
+div.product-card a.btn-wishlist:hover {
     background: #128C7E !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4) !important;
 }
 
+/* Efectos adicionales de entrada */
+.product-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+.product-card:nth-child(6) { animation-delay: 0.6s; }
+.product-card:nth-child(7) { animation-delay: 0.7s; }
+.product-card:nth-child(8) { animation-delay: 0.8s; }
+.product-card:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto para filtros */
 .filter-btn:hover, .filter-btn.active {
-    background: rgba(255, 193, 7, 0.2) !important;
-    border-color: #ffc107 !important;
+    background: rgba(255, 149, 0, 0.2) !important;
+    border-color: var(--orange-vibrant) !important;
     color: #8d6e63 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
 }
 
 /* Responsive design */
@@ -289,6 +935,53 @@
 .btn-hero-main.btn-hero-sec {
   background: #4e342e;
 }
+
+/* Estilos específicos para botones naranja y marrón en carta */
+.btn-orange, .btn-hero-main.btn-orange {
+  background: #ff9500 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 14px 28px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.btn-orange:hover, .btn-hero-main.btn-orange:hover {
+  background: #ff8800 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 149, 0, 0.4) !important;
+}
+
+.btn-brown, .btn-hero-main.btn-brown {
+  background: #8d6e63 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 14px 28px !important;
+  border-radius: 25px !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3) !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.btn-brown:hover, .btn-hero-main.btn-brown:hover {
+  background: #6d4c41 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4) !important;
+}
 @media (max-width: 600px) {
   .hero-content-nikao {
     padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
@@ -304,6 +997,15 @@
   .hero-btns-nikao {
     flex-direction: column;
     gap: 0.7rem;
+  }
+  
+  /* Estilos responsive para botones en carta */
+  .btn-orange, .btn-hero-main.btn-orange,
+  .btn-brown, .btn-hero-main.btn-brown {
+    width: 100% !important;
+    max-width: 280px !important;
+    padding: 12px 24px !important;
+    font-size: 1rem !important;
   }
 }
 
@@ -384,8 +1086,13 @@
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    transform: translateY(calc(100% - 60px));
+    transform: translateY(calc(100% - 40px));
     transition: transform 0.3s ease;
+    display: block;
+}
+
+.cart-float.hidden {
+    display: none;
 }
 
 .cart-float.expanded {
@@ -401,6 +1108,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .cart-header h3 {
@@ -416,10 +1124,16 @@
     font-size: 16px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    padding: 5px;
+    border-radius: 3px;
 }
 
-.cart-float.expanded .cart-toggle {
-    transform: rotate(180deg);
+.cart-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cart-toggle i {
+    transition: transform 0.2s ease;
 }
 
 .cart-content {
@@ -458,30 +1172,85 @@
 .cart-item-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    background: rgba(141, 110, 99, 0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(141, 110, 99, 0.1);
 }
 
 .quantity-btn {
-    width: 25px;
-    height: 25px;
-    border: none;
-    border-radius: 50%;
-    background: #f0f0f0;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #8d6e63;
+    border-radius: 6px;
+    background: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8d6e63;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .quantity-btn:hover {
-    background: #e0e0e0;
+    background: #8d6e63;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(141, 110, 99, 0.3);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+/* Efectos adicionales para botones de cantidad */
+.quantity-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.quantity-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quantity-btn:hover::before {
+    opacity: 1;
+}
+
+.cart-item-controls {
+    transition: all 0.3s ease;
+}
+
+.cart-item-controls:hover {
+    background: rgba(141, 110, 99, 0.1);
+    border-color: rgba(141, 110, 99, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .quantity {
-    font-weight: 600;
-    min-width: 20px;
+    font-weight: 700;
+    min-width: 35px;
     text-align: center;
+    font-size: 16px;
+    color: #8d6e63;
+    background: #f8f9fa;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
 }
 
 .cart-summary {
@@ -596,6 +1365,28 @@
 .hero-overlay { display: none !important; }
 .hero-image-full { display: none !important; }
 </style>
+
+<!-- Estilos específicos FORZADOS para botón Añadir -->
+<style>
+html body .products-grid .product-card button.btn-add-cart[data-name],
+html body div.product-card button.btn-add-cart[data-name],
+html body .card-action button.btn-add-cart[data-name] {
+    background: #8d6e63 !important;
+    background-color: #8d6e63 !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+html body .products-grid .product-card button.btn-add-cart[data-name]:hover,
+html body div.product-card button.btn-add-cart[data-name]:hover,
+html body .card-action button.btn-add-cart[data-name]:hover {
+    background: #ff8800 !important;
+    background-color: #ff8800 !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(255, 136, 0, 0.5) !important;
+}
+</style>
 {% endblock %}
 
 {% block extra_js %}
@@ -624,9 +1415,12 @@ class ShoppingCart {
         });
         
         // Toggle del carrito
-        document.getElementById('cartToggle').addEventListener('click', () => {
-            this.toggleCart();
-        });
+        const cartToggle = document.getElementById('cartToggle');
+        if (cartToggle) {
+            cartToggle.addEventListener('click', () => {
+                this.toggleCart();
+            });
+        }
         
         // Vaciar carrito
         document.getElementById('clearCart').addEventListener('click', () => {
@@ -661,14 +1455,27 @@ class ShoppingCart {
     removeItem(id) {
         this.items = this.items.filter(item => item.id !== id);
         this.updateCartDisplay();
+        
+        // Si el carrito queda vacío, minimizarlo
+        if (this.items.length === 0) {
+            if (window.showCartMinimized) {
+                window.showCartMinimized();
+            }
+        }
     }
     
     updateQuantity(id, quantity) {
         const item = this.items.find(item => item.id === id);
         if (item) {
+            const oldQuantity = item.quantity;
             item.quantity = Math.max(0, quantity);
+            
             if (item.quantity === 0) {
+                // Encontrar el nombre del producto antes de eliminarlo
+                const productName = item.name;
                 this.removeItem(id);
+                this.showNotification(`${productName} eliminado del carrito`, 'info');
+                return; // No necesitamos updateCartDisplay porque removeItem ya lo hace
             }
         }
         this.updateCartDisplay();
@@ -677,6 +1484,10 @@ class ShoppingCart {
     clearCart() {
         this.items = [];
         this.updateCartDisplay();
+        // Minimizar el carrito cuando se vacía
+        if (window.showCartMinimized) {
+            window.showCartMinimized();
+        }
         this.showNotification('Carrito vacío', 'info');
     }
     
@@ -686,11 +1497,11 @@ class ShoppingCart {
         const cartTotal = document.getElementById('cartTotal');
         
         if (this.items.length === 0) {
-            cartFloat.style.display = 'none';
+            cartFloat.classList.add('hidden');
             return;
         }
         
-        cartFloat.style.display = 'block';
+        cartFloat.classList.remove('hidden');
         
         // Mostrar items
         cartItems.innerHTML = this.items.map(item => `
@@ -700,7 +1511,7 @@ class ShoppingCart {
                     <p>$${item.price.toLocaleString()}</p>
                 </div>
                 <div class="cart-item-controls">
-                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', Math.max(0, ${item.quantity - 1}))">-</button>
                     <span class="quantity">${item.quantity}</span>
                     <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
                 </div>
@@ -719,7 +1530,13 @@ class ShoppingCart {
     
     showCart() {
         const cartFloat = document.getElementById('cartFloat');
-        cartFloat.classList.add('expanded');
+        if (cartFloat) {
+            cartFloat.classList.add('expanded');
+            // Actualizar la flecha si la función está disponible
+            if (window.updateCartArrow) {
+                window.updateCartArrow();
+            }
+        }
     }
     
     checkout() {
@@ -897,7 +1714,215 @@ style.textContent = `
         from { transform: translateX(0); opacity: 1; }
         to { transform: translateX(100%); opacity: 0; }
     }
+    
+    /* Efectos hover para las tarjetas de producto */
+    .product-card:hover {
+        transform: translateY(-10px) !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+    }
+    
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+    
+    .product-card:hover .card-title {
+        color: #6d4c41 !important;
+    }
+    
+    /* Estilos específicos para coincidir con la imagen */
+    .product-card .card-price::before {
+        content: '$';
+        font-size: 0.9rem;
+        margin-right: 3px;
+        position: relative;
+        top: -5px;
+    }
+    
+    .product-card .btn-add-cart {
+        background: linear-gradient(135deg, #8d6e63, #6d4c41) !important;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .product-card .btn-add-cart::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .product-card .btn-add-cart:hover::before {
+        left: 100%;
+    }
+    
+    .product-card .btn-add-cart:hover {
+        background: linear-gradient(135deg, #6d4c41, #5d4037) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3);
+    }
+    
+    .product-card .btn-wishlist:hover {
+        background: #128C7E !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    
+    .card-badge {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    /* Efectos de entrada para las tarjetas */
+    .product-card {
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    .product-card:nth-child(1) { animation-delay: 0.1s; }
+    .product-card:nth-child(2) { animation-delay: 0.2s; }
+    .product-card:nth-child(3) { animation-delay: 0.3s; }
+    .product-card:nth-child(4) { animation-delay: 0.4s; }
+    .product-card:nth-child(5) { animation-delay: 0.5s; }
+    .product-card:nth-child(6) { animation-delay: 0.6s; }
+    .product-card:nth-child(7) { animation-delay: 0.7s; }
+    .product-card:nth-child(8) { animation-delay: 0.8s; }
+    .product-card:nth-child(9) { animation-delay: 0.9s; }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 `;
 document.head.appendChild(style);
+</script>
+
+<!-- Script del Sistema de Carrito -->
+<script src="{{ url_for('static', filename='js/cart-system.js') }}"></script>
+<script>
+// Inicializar el sistema de carrito para la página de carta
+document.addEventListener('DOMContentLoaded', function() {
+    const cart = new ShoppingCart();
+    
+    // Configurar elementos específicos de la carta
+    cart.cartModal = document.getElementById('cartModal');
+    cart.floatingCartBtn = document.getElementById('floatingCartBtn');
+    cart.cartCount = document.getElementById('cartCount');
+    cart.cartItemsContainer = document.getElementById('cartItemsContainer');
+    cart.cartEmpty = document.getElementById('cartEmpty');
+    cart.cartModalTotal = document.getElementById('cartModalTotal');
+    cart.closeCartModal = document.getElementById('closeCartModal');
+    cart.clearCartBtn = document.getElementById('clearCartBtn');
+    cart.checkoutCartBtn = document.getElementById('checkoutCartBtn');
+    
+    // Event listeners específicos para la carta
+    if (cart.closeCartModal) {
+        cart.closeCartModal.addEventListener('click', () => cart.hideCartModal());
+    }
+    
+    if (cart.clearCartBtn) {
+        cart.clearCartBtn.addEventListener('click', () => cart.clearCart());
+    }
+    
+    if (cart.checkoutCartBtn) {
+        cart.checkoutCartBtn.addEventListener('click', () => cart.checkout());
+    }
+    
+    if (cart.floatingCartBtn) {
+        cart.floatingCartBtn.addEventListener('click', () => cart.showCartModal());
+    }
+    
+    // Cerrar modal al hacer clic fuera
+    if (cart.cartModal) {
+        cart.cartModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                cart.hideCartModal();
+            }
+        });
+    }
+    
+    // Inicializar la visualización del carrito
+    cart.updateCartDisplay();
+});
+
+// JavaScript directo para el toggle del carrito
+document.addEventListener('DOMContentLoaded', function() {
+    const cartFloat = document.getElementById('cartFloat');
+    const cartToggle = document.getElementById('cartToggle');
+    const cartHeader = cartFloat ? cartFloat.querySelector('.cart-header') : null;
+    
+    function updateArrowIcon() {
+        const icon = cartToggle ? cartToggle.querySelector('i') : null;
+        if (icon && cartFloat) {
+            if (cartFloat.classList.contains('expanded')) {
+                // Carrito expandido = flecha hacia abajo (para minimizar)
+                icon.className = 'fas fa-chevron-down';
+            } else {
+                // Carrito minimizado = flecha hacia arriba (para expandir)
+                icon.className = 'fas fa-chevron-up';
+            }
+        }
+    }
+    
+    function toggleCartFloat() {
+        if (cartFloat) {
+            cartFloat.classList.toggle('expanded');
+            updateArrowIcon();
+        }
+    }
+    
+    // Función para mostrar el carrito expandido
+    function showCartExpanded() {
+        if (cartFloat) {
+            cartFloat.classList.add('expanded');
+            updateArrowIcon();
+        }
+    }
+    
+    // Función para mostrar el carrito minimizado
+    function showCartMinimized() {
+        if (cartFloat) {
+            cartFloat.classList.remove('expanded');
+            updateArrowIcon();
+        }
+    }
+    
+    // Evento en el botón toggle
+    if (cartToggle) {
+        cartToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleCartFloat();
+        });
+    }
+    
+    // Evento en el header completo
+    if (cartHeader) {
+        cartHeader.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleCartFloat();
+        });
+    }
+    
+    // Inicializar la flecha correctamente
+    updateArrowIcon();
+    
+    // Hacer las funciones globales para uso en otras partes
+    window.showCartExpanded = showCartExpanded;
+    window.showCartMinimized = showCartMinimized;
+    window.updateCartArrow = updateArrowIcon;
+});
 </script>
 {% endblock %}

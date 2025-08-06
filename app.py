@@ -20,83 +20,164 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 PRODUCTOS = [
     {
         'id': 1,
-        'nombre': 'AREPA RELLENA CLÁSICA',
-        'descripcion': 'Arepa dorada con queso campesino, carne desmechada jugosa, aguacate fresco y hogao criollo. El sabor tradicional que nunca pasa de moda.',
-        'precio': 18000,
-        'categoria': 'clasicas',
+        'nombre': 'AREPA SENCILLA',
+        'descripcion': 'Arepa tradicional con mantequilla y sal. Simple y deliciosa.',
+        'precio': 1000,
+        'categoria': 'sencillas',
         'icono': '🫓',
         'disponible': True
     },
     {
         'id': 2,
-        'nombre': 'AREPA SÚPER QUESO',
-        'descripcion': 'Delicias cremosas con mezcla de queso mozzarella, campesino y costeño derretidos, acompañado de jamón ahumado y tomate cherry.',
-        'precio': 16500,
-        'categoria': 'clasicas',
-        'icono': '🧀',
+        'nombre': 'AREPA DE QUESO',
+        'descripcion': 'Arepa rellena con queso derretido.',
+        'precio': 2800,
+        'categoria': 'sencillas',
+        'icono': '�',
         'disponible': True
     },
     {
         'id': 3,
-        'nombre': 'AREPA PAISA COMPLETA',
-        'descripcion': 'La auténtica experiencia antioqueña: chicharrón crocante, chorizo paisa, morcilla, frijoles rojos, huevo frito y plátano maduro.',
-        'precio': 22000,
-        'categoria': 'clasicas',
-        'icono': '🥩',
+        'nombre': 'AREPA DE JAMÓN Y QUESO',
+        'descripcion': 'Clásica combinación de jamón y queso derretido.',
+        'precio': 4000,
+        'categoria': 'sencillas',
+        'icono': '🥪',
         'disponible': True
     },
     {
         'id': 4,
-        'nombre': 'AREPA PICANTE NIKAO',
-        'descripcion': 'Pollo desmechado en salsa BBQ picante, queso gratinado, cebolla caramelizada y nuestra salsa especial de la casa con toques de ají.',
-        'precio': 19500,
-        'categoria': 'picantes',
-        'icono': '🌶️',
+        'nombre': 'AREPA QUESUDA',
+        'descripcion': 'Arepa con 3 lonjas de queso derretido.',
+        'precio': 5500,
+        'categoria': 'sencillas',
+        'icono': '🧀',
         'disponible': True
     },
     {
         'id': 5,
-        'nombre': 'AREPA VEGGIE FRESCA',
-        'descripcion': 'Opción saludable con aguacate hass, tomate riñón, queso fresco, lechuga crespa, zanahoria rallada y aderezo de yogurt.',
-        'precio': 15000,
-        'categoria': 'vegetarianas',
-        'icono': '🥑',
+        'nombre': 'AREPA DE CHORIZO',
+        'descripcion': 'Arepa rellena con chorizo artesanal.',
+        'precio': 6500,
+        'categoria': 'clasicas',
+        'icono': '🌭',
         'disponible': True
     },
     {
         'id': 6,
-        'nombre': 'AREPA MECHADA ESPECIAL',
-        'descripcion': 'Carne mechada en su jugo con cebolla, pimentón, acompañada de queso rallado, tajadas de plátano y guacamole cremoso.',
-        'precio': 20000,
+        'nombre': 'AREPA RANCHERA',
+        'descripcion': 'Chorizo, queso y salsa al gusto.',
+        'precio': 8500,
+        'categoria': 'clasicas',
+        'icono': '�',
+        'disponible': True
+    },
+    {
+        'id': 7,
+        'nombre': 'AREPA BURGER',
+        'descripcion': 'Carne de hamburguesa 125gr, jamón, queso y papas chips.',
+        'precio': 9500,
+        'categoria': 'especiales',
+        'icono': '🍔',
+        'disponible': True
+    },
+    {
+        'id': 8,
+        'nombre': 'AREPA DE POLLO',
+        'descripcion': 'Pollo, huevo de codorniz o jamón.',
+        'precio': 9500,
+        'categoria': 'clasicas',
+        'icono': '🐔',
+        'disponible': True
+    },
+    {
+        'id': 9,
+        'nombre': 'AREPA RANCHERA FELIZ',
+        'descripcion': 'Chorizo, queso, jamón, papas chips y salsa al gusto.',
+        'precio': 9500,
+        'categoria': 'especiales',
+        'icono': '😊',
+        'disponible': True
+    },
+    {
+        'id': 10,
+        'nombre': 'PERRO CALIENTE',
+        'descripcion': 'Chorizo, queso, jamón y papas chips.',
+        'precio': 9500,
+        'categoria': 'perros',
+        'icono': '🌭',
+        'disponible': True
+    },
+    {
+        'id': 11,
+        'nombre': 'AREPA DE CARNE',
+        'descripcion': 'Carne, huevo de codorniz o jamón.',
+        'precio': 10500,
+        'categoria': 'clasicas',
+        'icono': '�',
+        'disponible': True
+    },
+    {
+        'id': 12,
+        'nombre': 'AREPA MIXTA',
+        'descripcion': 'Pollo, carne, huevo de codorniz o jamón.',
+        'precio': 11500,
         'categoria': 'clasicas',
         'icono': '🍖',
         'disponible': True
     },
     {
-        'id': 7,
-        'nombre': 'AREPA COSTEÑA',
-        'descripcion': 'Sabores del Caribe con pescado desmechado, yuca cocida, suero costeño, cebolla encurtida y cilantro fresco.',
-        'precio': 21000,
-        'categoria': 'clasicas',
-        'icono': '🐟',
+        'id': 13,
+        'nombre': 'AREPA DE LA CASA',
+        'descripcion': 'Carne, pollo, chicharrón, queso, jamón, huevo de codorniz y salsas al gusto.',
+        'precio': 19000,
+        'categoria': 'especiales',
+        'icono': '�',
         'disponible': True
     },
     {
-        'id': 8,
-        'nombre': 'AREPA DULCE MAÍZ',
-        'descripcion': 'Arepa de maíz dulce rellena con queso crema, maíz tierno, bocadillo veleño y un toque de canela. Perfecta para los amantes de lo dulce.',
-        'precio': 17000,
-        'categoria': 'dulces',
-        'icono': '🌽',
+        'id': 14,
+        'nombre': 'AREPA ESQUINA DEL ANTOJO',
+        'descripcion': 'Carne, pollo, chorizo, queso, jamón, huevo de codorniz y salsas al gusto.',
+        'precio': 19000,
+        'categoria': 'especiales',
+        'icono': '�',
         'disponible': True
     },
     {
-        'id': 9,
-        'nombre': 'AREPA CAMPESINA',
-        'descripcion': 'Tocineta crocante, huevo revuelto, queso campesino, frijoles refritos y chorizo artesanal. Un desayuno completo en cada bocado.',
-        'precio': 18500,
-        'categoria': 'clasicas',
-        'icono': '🥓',
+        'id': 15,
+        'nombre': 'AREPA MASTER',
+        'descripcion': 'Carne, pollo, jamón, huevo de codorniz, costilla ahumada, maíz tierno y baño de queso.',
+        'precio': 19000,
+        'categoria': 'especiales',
+        'icono': '👑',
+        'disponible': True
+    },
+    {
+        'id': 16,
+        'nombre': 'PERRO CALIENTE FELIZ',
+        'descripcion': 'Pan Bimbo, chorizo, carne, pollo, queso, jamón y papas chips.',
+        'precio': 20000,
+        'categoria': 'perros',
+        'icono': '�',
+        'disponible': True
+    },
+    {
+        'id': 17,
+        'nombre': 'DORILOCO',
+        'descripcion': 'Doritos, chorizo, pollo, carne, costilla, chicharrón, queso y salsas al gusto.',
+        'precio': 30000,
+        'categoria': 'premium',
+        'icono': '🔥',
+        'disponible': True
+    },
+    {
+        'id': 18,
+        'nombre': 'DORIESPECIAL',
+        'descripcion': 'Chorizo, carne, pollo, costilla, chicharrón, huevos de codorniz y Doritos.',
+        'precio': 65000,
+        'categoria': 'premium',
+        'icono': '💎',
         'disponible': True
     }
 ]
@@ -156,7 +237,7 @@ def domicilios():
 @app.route('/carta')
 def carta():
     """Página completa del menú con filtros"""
-    categorias = ['todas', 'clasicas', 'picantes', 'vegetarianas', 'dulces']
+    categorias = ['todas', 'sencillas', 'clasicas', 'especiales', 'perros', 'premium']
     return render_template('carta.html', productos=PRODUCTOS, categorias=categorias)
 
 @app.route('/rastrear')
