@@ -10,10 +10,10 @@
         <h1 class="hero-title-nikao">NIKAO AREPAS RELLENAS</h1>
         <p class="hero-subtitle-nikao">El auténtico sabor colombiano en cada bocado</p>
         <div class="hero-btns-nikao">
-            <a href="{{ url_for('carta') }}" class="btn-hero-main btn-orange">
+            <a href="{{ url_for('carta') }}" class="btn-hero-main">
                 <i class="fas fa-utensils"></i> Ver Menú Completo
             </a>
-            <a href="{{ url_for('domicilios') }}" class="btn-hero-main btn-brown">
+            <a href="{{ url_for('domicilios') }}" class="btn-hero-main btn-hero-sec">
                 <i class="fas fa-motorcycle"></i> Pedir Domicilio
             </a>
         </div>
@@ -88,49 +88,49 @@
 
 /* Estilos específicos para botones naranja y marrón */
 .btn-orange, .btn-hero-main.btn-orange {
-  background: #ff9500 !important;
-  color: white !important;
+  background: #ff9800 !important;
+  color: #fff !important;
   font-weight: 700 !important;
-  padding: 14px 28px !important;
-  border-radius: 25px !important;
+  padding: 0.9rem 2.2rem !important;
+  border-radius: 2rem !important;
   font-size: 1.1rem !important;
-  box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px #0003 !important;
+  transition: background 0.2s !important;
   text-decoration: none !important;
   border: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+  min-width: 200px !important;
 }
 
 .btn-orange:hover, .btn-hero-main.btn-orange:hover {
-  background: #ff8800 !important;
+  background: #e8890b !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(255, 149, 0, 0.4) !important;
 }
 
 .btn-brown, .btn-hero-main.btn-brown, .btn-secondary.btn-brown {
-  background: #8d6e63 !important;
-  color: white !important;
+  background: #4e342e !important;
+  color: #fff !important;
   font-weight: 700 !important;
-  padding: 14px 28px !important;
-  border-radius: 25px !important;
+  padding: 0.9rem 2.2rem !important;
+  border-radius: 2rem !important;
   font-size: 1.1rem !important;
-  box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px #0003 !important;
+  transition: background 0.2s !important;
   text-decoration: none !important;
   border: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+  min-width: 200px !important;
 }
 
 .btn-brown:hover, .btn-hero-main.btn-brown:hover, .btn-secondary.btn-brown:hover {
-  background: #6d4c41 !important;
+  background: #3d261f !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4) !important;
 }
 @media (max-width: 600px) {
   .hero-welcome {
@@ -158,8 +158,10 @@
   .btn-brown, .btn-hero-main.btn-brown, .btn-secondary.btn-brown {
     width: 100% !important;
     max-width: 280px !important;
-    padding: 12px 24px !important;
+    padding: 0.9rem 2.2rem !important;
+    border-radius: 2rem !important;
     font-size: 1rem !important;
+    min-width: 200px !important;
   }
 }
 </style>
@@ -801,14 +803,19 @@
 
 .hero-buttons {
     display: flex;
+    gap: 1.5rem;
     justify-content: center;
-    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .hero-buttons .btn-primary,
 .hero-buttons .btn-secondary {
-    min-width: 160px;
-    padding: 12px 25px;
+    min-width: 200px;
+    padding: 0.9rem 2.2rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    box-shadow: 0 2px 12px #0003;
+    transition: background 0.2s;
 }
 
 @media (max-width: 768px) {
@@ -827,13 +834,18 @@
     .hero-buttons {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 0.7rem;
     }
     
     .hero-buttons .btn-primary,
     .hero-buttons .btn-secondary {
         width: 100%;
-        max-width: 200px;
+        max-width: 280px;
+        padding: 0.9rem 2.2rem;
+        border-radius: 2rem;
+        min-width: 200px;
+        font-weight: 700;
+        box-shadow: 0 2px 12px #0003;
     }
 }
 

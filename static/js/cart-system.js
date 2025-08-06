@@ -81,21 +81,30 @@ class ShoppingCart {
         const productName = button.getAttribute('data-name');
         const productPrice = parseInt(button.getAttribute('data-price'));
 
+        console.log('=== AÑADIENDO PRODUCTO ===');
+        console.log('ID:', productId, 'Nombre:', productName);
+        console.log('Carrito antes de añadir:', this.items);
+
         // Verificar si el producto ya está en el carrito
         const existingItem = this.items.find(item => item.id === productId);
 
         if (existingItem) {
             existingItem.quantity += 1;
+            console.log('Producto existente encontrado, nueva cantidad:', existingItem.quantity);
         } else {
-            this.items.push({
+            const newItem = {
                 id: productId,
                 name: productName,
                 price: productPrice,
                 quantity: 1,
                 image: this.getProductImage(productId)
-            });
+            };
+            this.items.push(newItem);
+            console.log('Producto nuevo añadido:', newItem);
         }
 
+        console.log('Carrito después de añadir:', this.items);
+        
         this.updateCartDisplay();
         this.saveCartToStorage();
         this.showNotification(`${productName} añadido al carrito`);
@@ -118,17 +127,44 @@ class ShoppingCart {
     }
 
     updateQuantity(productId, newQuantity) {
-        const item = this.items.find(item => item.id === productId);
-        if (item) {
+        console.log('=== UPDATE QUANTITY ===');
+        console.log('ID:', productId, 'Nueva cantidad:', newQuantity);
+        console.log('Carrito antes de actualizar:', JSON.stringify(this.items));
+        
+        const itemIndex = this.items.findIndex(item => item.id === productId);
+        
+        if (itemIndex !== -1) {
+            const item = this.items[itemIndex];
+            console.log('Item encontrado:', item.name, 'Cantidad actual:', item.quantity);
+            
             if (newQuantity <= 0) {
+                // Eliminar producto completamente
                 const productName = item.name;
-                this.removeFromCart(productId);
-                this.showNotification(`${productName} eliminado del carrito`);
-            } else {
-                item.quantity = newQuantity;
-                this.updateCartDisplay();
+                this.items.splice(itemIndex, 1); // Eliminar por índice
+                
+                console.log('Producto eliminado:', productName);
+                console.log('Carrito después de eliminar:', JSON.stringify(this.items));
+                
+                // Guardar inmediatamente
                 this.saveCartToStorage();
+                this.updateCartDisplay();
+                this.showNotification(`${productName} eliminado del carrito`);
+                
+                // Si el carrito queda vacío, cerrar modal
+                if (this.items.length === 0) {
+                    setTimeout(() => {
+                        this.closeCartModal();
+                    }, 1500);
+                }
+            } else {
+                // Actualizar cantidad
+                this.items[itemIndex].quantity = newQuantity;
+                console.log('Cantidad actualizada a:', newQuantity);
+                this.saveCartToStorage();
+                this.updateCartDisplay();
             }
+        } else {
+            console.log('Item no encontrado para ID:', productId);
         }
     }
 
@@ -169,11 +205,11 @@ class ShoppingCart {
             </div>
             <div class="cart-item-controls">
                 <div class="quantity-control">
-                    <button class="quantity-btn" onclick="cart.updateQuantity(${item.id}, Math.max(0, ${item.quantity - 1}))">
+                    <button class="quantity-btn" onclick="cart.updateQuantity(${item.id}, ${item.quantity - 1})">
                         <i class="fas fa-minus"></i>
                     </button>
                     <input type="number" class="quantity-input" value="${item.quantity}" 
-                           onchange="cart.updateQuantity(${item.id}, parseInt(this.value))" min="0">
+                           onchange="cart.updateQuantity(${item.id}, parseInt(this.value)||0)" min="0">
                     <button class="quantity-btn" onclick="cart.updateQuantity(${item.id}, ${item.quantity + 1})">
                         <i class="fas fa-plus"></i>
                     </button>
@@ -305,19 +341,32 @@ class ShoppingCart {
     }
 
     saveCartToStorage() {
-        localStorage.setItem('nikao_cart', JSON.stringify(this.items));
+        try {
+            const cartData = JSON.stringify(this.items);
+            localStorage.setItem('nikao_cart', cartData);
+            console.log('Carrito guardado en localStorage:', cartData);
+        } catch (e) {
+            console.error('Error guardando carrito:', e);
+        }
     }
 
     loadCartFromStorage() {
         const saved = localStorage.getItem('nikao_cart');
+        console.log('Cargando carrito desde localStorage:', saved);
+        
         if (saved) {
             try {
                 this.items = JSON.parse(saved);
+                console.log('Items cargados desde localStorage:', this.items);
                 this.updateCartDisplay();
             } catch (e) {
                 console.error('Error loading cart from storage:', e);
                 this.items = [];
+                localStorage.removeItem('nikao_cart');
             }
+        } else {
+            console.log('No hay carrito guardado en localStorage');
+            this.items = [];
         }
     }
 }

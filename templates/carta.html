@@ -16,10 +16,10 @@
             <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> Nuestra Carta</h1>
             <p class="hero-subtitle-nikao">Descubre todas nuestras deliciosas especialidades</p>
             <div class="hero-btns-nikao">
-                <a href="#carta-completa" class="btn-hero-main btn-orange">
+                <a href="#carta-completa" class="btn-hero-main">
                     <i class="fas fa-search"></i> Explorar Menú
                 </a>
-                <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-brown">
+                <a href="https://wa.me/573042025223?text=Hola! Quiero ver el menú completo" class="btn-hero-main btn-hero-sec">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
             </div>
@@ -166,37 +166,41 @@
     <div class="cart-modal-content">
         <div class="cart-modal-header">
             <h2><i class="fas fa-shopping-cart"></i> Carrito de Compras</h2>
-            <button class="cart-modal-close" id="closeCartModal">
+            <button class="cart-modal-close cart-close" id="closeCartModal">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
         <div class="cart-modal-body">
-            <div id="cartItemsContainer" class="cart-items-container">
+            <div id="cart-items" class="cart-items-container">
                 <!-- Los productos se agregan dinámicamente aquí -->
             </div>
             
-            <div class="cart-empty" id="cartEmpty" style="display: none;">
+            <div class="cart-empty" id="cart-empty" style="display: none;">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Tu carrito está vacío</p>
                 <small>¡Agrega algunos productos deliciosos!</small>
             </div>
         </div>
         
-        <div class="cart-modal-footer">
+        <div class="cart-modal-footer" id="cart-footer">
             <div class="cart-total-section">
                 <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <strong id="cart-subtotal">$0</strong>
+                </div>
+                <div class="cart-subtotal">
                     <span>Total:</span>
-                    <strong id="cartModalTotal">$0</strong>
+                    <strong id="cart-total">$0</strong>
                 </div>
             </div>
             
             <div class="cart-actions-section">
-                <button id="clearCartBtn" class="btn-clear">
+                <button id="clear-cart" class="btn-clear">
                     <i class="fas fa-trash-alt"></i>
                     Vaciar Carrito
                 </button>
-                <button id="checkoutCartBtn" class="btn-checkout">
+                <button id="checkout-btn" class="btn-checkout">
                     <i class="fab fa-whatsapp"></i>
                     Finalizar Pedido
                 </button>
@@ -206,9 +210,9 @@
 </div>
 
 <!-- Botón flotante del carrito -->
-<div id="floatingCartBtn" class="floating-cart-btn" style="display: none;">
+<div id="cart-button" class="floating-cart-btn" style="display: none;">
     <i class="fas fa-shopping-cart"></i>
-    <span id="cartCount" class="cart-count">0</span>
+    <span id="cart-count" class="cart-count">0</span>
 </div>
 
 <!-- Información Adicional -->
@@ -938,49 +942,49 @@ div.product-card a.btn-wishlist:hover {
 
 /* Estilos específicos para botones naranja y marrón en carta */
 .btn-orange, .btn-hero-main.btn-orange {
-  background: #ff9500 !important;
-  color: white !important;
+  background: #ff9800 !important;
+  color: #fff !important;
   font-weight: 700 !important;
-  padding: 14px 28px !important;
-  border-radius: 25px !important;
+  padding: 0.9rem 2.2rem !important;
+  border-radius: 2rem !important;
   font-size: 1.1rem !important;
-  box-shadow: 0 4px 15px rgba(255, 149, 0, 0.3) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px #0003 !important;
+  transition: background 0.2s !important;
   text-decoration: none !important;
   border: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+  min-width: 200px !important;
 }
 
 .btn-orange:hover, .btn-hero-main.btn-orange:hover {
-  background: #ff8800 !important;
+  background: #e8890b !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(255, 149, 0, 0.4) !important;
 }
 
 .btn-brown, .btn-hero-main.btn-brown {
-  background: #8d6e63 !important;
-  color: white !important;
+  background: #4e342e !important;
+  color: #fff !important;
   font-weight: 700 !important;
-  padding: 14px 28px !important;
-  border-radius: 25px !important;
+  padding: 0.9rem 2.2rem !important;
+  border-radius: 2rem !important;
   font-size: 1.1rem !important;
-  box-shadow: 0 4px 15px rgba(141, 110, 99, 0.3) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 12px #0003 !important;
+  transition: background 0.2s !important;
   text-decoration: none !important;
   border: none !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
+  gap: 10px !important;
+  min-width: 200px !important;
 }
 
 .btn-brown:hover, .btn-hero-main.btn-brown:hover {
-  background: #6d4c41 !important;
+  background: #3d261f !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(141, 110, 99, 0.4) !important;
 }
 @media (max-width: 600px) {
   .hero-content-nikao {
@@ -993,6 +997,7 @@ div.product-card a.btn-wishlist:hover {
   .hero-subtitle-nikao {
     font-size: 1.05rem;
     margin-bottom: 1.2rem;
+    text-align: center;
   }
   .hero-btns-nikao {
     flex-direction: column;
@@ -1004,8 +1009,10 @@ div.product-card a.btn-wishlist:hover {
   .btn-brown, .btn-hero-main.btn-brown {
     width: 100% !important;
     max-width: 280px !important;
-    padding: 12px 24px !important;
+    padding: 0.9rem 2.2rem !important;
+    border-radius: 2rem !important;
     font-size: 1rem !important;
+    min-width: 200px !important;
   }
 }
 
@@ -1455,27 +1462,14 @@ class ShoppingCart {
     removeItem(id) {
         this.items = this.items.filter(item => item.id !== id);
         this.updateCartDisplay();
-        
-        // Si el carrito queda vacío, minimizarlo
-        if (this.items.length === 0) {
-            if (window.showCartMinimized) {
-                window.showCartMinimized();
-            }
-        }
     }
     
     updateQuantity(id, quantity) {
         const item = this.items.find(item => item.id === id);
         if (item) {
-            const oldQuantity = item.quantity;
             item.quantity = Math.max(0, quantity);
-            
             if (item.quantity === 0) {
-                // Encontrar el nombre del producto antes de eliminarlo
-                const productName = item.name;
                 this.removeItem(id);
-                this.showNotification(`${productName} eliminado del carrito`, 'info');
-                return; // No necesitamos updateCartDisplay porque removeItem ya lo hace
             }
         }
         this.updateCartDisplay();
@@ -1511,7 +1505,7 @@ class ShoppingCart {
                     <p>$${item.price.toLocaleString()}</p>
                 </div>
                 <div class="cart-item-controls">
-                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', Math.max(0, ${item.quantity - 1}))">-</button>
+                    <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
                     <span class="quantity">${item.quantity}</span>
                     <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
                 </div>
@@ -1811,50 +1805,9 @@ document.head.appendChild(style);
 <!-- Script del Sistema de Carrito -->
 <script src="{{ url_for('static', filename='js/cart-system.js') }}"></script>
 <script>
-// Inicializar el sistema de carrito para la página de carta
-document.addEventListener('DOMContentLoaded', function() {
-    const cart = new ShoppingCart();
-    
-    // Configurar elementos específicos de la carta
-    cart.cartModal = document.getElementById('cartModal');
-    cart.floatingCartBtn = document.getElementById('floatingCartBtn');
-    cart.cartCount = document.getElementById('cartCount');
-    cart.cartItemsContainer = document.getElementById('cartItemsContainer');
-    cart.cartEmpty = document.getElementById('cartEmpty');
-    cart.cartModalTotal = document.getElementById('cartModalTotal');
-    cart.closeCartModal = document.getElementById('closeCartModal');
-    cart.clearCartBtn = document.getElementById('clearCartBtn');
-    cart.checkoutCartBtn = document.getElementById('checkoutCartBtn');
-    
-    // Event listeners específicos para la carta
-    if (cart.closeCartModal) {
-        cart.closeCartModal.addEventListener('click', () => cart.hideCartModal());
-    }
-    
-    if (cart.clearCartBtn) {
-        cart.clearCartBtn.addEventListener('click', () => cart.clearCart());
-    }
-    
-    if (cart.checkoutCartBtn) {
-        cart.checkoutCartBtn.addEventListener('click', () => cart.checkout());
-    }
-    
-    if (cart.floatingCartBtn) {
-        cart.floatingCartBtn.addEventListener('click', () => cart.showCartModal());
-    }
-    
-    // Cerrar modal al hacer clic fuera
-    if (cart.cartModal) {
-        cart.cartModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                cart.hideCartModal();
-            }
-        });
-    }
-    
-    // Inicializar la visualización del carrito
-    cart.updateCartDisplay();
-});
+// El carrito se inicializa automáticamente desde cart-system.js
+// NO necesitamos configuración adicional aquí
+</script>
 
 // JavaScript directo para el toggle del carrito
 document.addEventListener('DOMContentLoaded', function() {
