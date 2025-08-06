@@ -260,6 +260,73 @@
     --light-color: #f8f9fa;
 }
 
+/* Corrección para la barra de búsqueda en desktop */
+@media (min-width: 769px) {
+    .search-filter-section {
+        padding: 20px !important;
+        margin-bottom: 30px !important;
+        background: rgba(141, 110, 99, 0.05) !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(141, 110, 99, 0.1) !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+    
+    .search-input-container {
+        position: relative !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .search-input {
+        width: 100% !important;
+        padding: 12px 20px !important;
+        padding-left: 40px !important;
+        border: 1px solid #ddd !important;
+        border-radius: 8px !important;
+        font-size: 1rem !important;
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+    
+    .search-icon {
+        position: absolute !important;
+        left: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        color: #8d6e63 !important;
+        z-index: 2 !important;
+    }
+    
+    .filter-buttons {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        align-items: center !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Asegurar que la sección de productos también esté bien contenida */
+    .products {
+        padding: 40px 20px !important;
+        background: #f8f9fa !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+}
+
 /* Estilos para el Modal del Carrito */
 .cart-modal {
     position: fixed;
@@ -1809,6 +1876,7 @@ document.head.appendChild(style);
 // NO necesitamos configuración adicional aquí
 </script>
 
+<script>
 // JavaScript directo para el toggle del carrito
 document.addEventListener('DOMContentLoaded', function() {
     const cartFloat = document.getElementById('cartFloat');
