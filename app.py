@@ -251,7 +251,7 @@ def ayuda():
     faqs = [
         {
             'pregunta': '¿Cuáles son los horarios de atención?',
-            'respuesta': 'Atendemos de lunes a domingo de 8:00 AM a 10:00 PM. Los domicilios se realizan hasta las 9:30 PM.'
+            'respuesta': 'Atendemos de lunes a sábados de 5:00 PM a 10:00 PM. Los domicilios se realizan hasta las 10:30 PM.'
         },
         {
             'pregunta': '¿Cuál es el tiempo de entrega?',
@@ -260,10 +260,6 @@ def ayuda():
         {
             'pregunta': '¿Cuáles son las formas de pago?',
             'respuesta': 'Aceptamos efectivo, transferencias bancarias, Nequi, Daviplata y tarjetas débito/crédito.'
-        },
-        {
-            'pregunta': '¿Hacen arepas vegetarianas?',
-            'respuesta': 'Sí, tenemos opciones vegetarianas como la Arepa Veggie Fresca. También podemos personalizar arepas según tus preferencias.'
         },
         {
             'pregunta': '¿Puedo cancelar mi pedido?',

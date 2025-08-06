@@ -22,12 +22,43 @@
 <style>
 .hero-title-nikao {
   font-family: 'Playfair Display',serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #fff;
   font-weight: 800;
-  text-shadow: 2px 4px 12px #000b;
-  letter-spacing: 2px;
-  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  animation: subtleGlow 4s ease-in-out infinite alternate;
+  position: relative;
+}
+
+@keyframes subtleGlow {
+  0% { 
+    text-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  }
+  100% { 
+    text-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Responsive para el título */
+@media (max-width: 768px) {
+  .hero-title-nikao {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title-nikao {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
 }
 /* Fondo desenfocado para hero-welcome */
 .hero-welcome .hero-bg {
@@ -184,15 +215,6 @@
                 </div>
                 
                 <div class="swiper-slide">
-                    <a href="{{ url_for('carta') }}?category=sencillas" class="category-card">
-                        <img src="{{ url_for('static', filename='images/imagen arepas ej6.jpeg') }}" alt="Arepas Sencillas" class="category-image">
-                        <div class="category-overlay">
-                            <h3 class="category-title">Arepas Sencillas</h3>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="swiper-slide">
                     <a href="{{ url_for('carta') }}?category=especiales" class="category-card">
                         <img src="{{ url_for('static', filename='images/imagen arepas ej7.jpeg') }}" alt="Arepas Especiales" class="category-image">
                         <div class="category-overlay">
@@ -220,6 +242,9 @@
                 </div>
             </div>
             
+            <!-- Navegación del carrusel de categorías -->
+            <div class="swiper-button-next category-next"></div>
+            <div class="swiper-button-prev category-prev"></div>
             <!-- Paginación para el carrusel de categorías -->
             <div class="swiper-pagination category-pagination"></div>
         </div>
@@ -426,10 +451,14 @@
             slidesPerView: 1,
             spaceBetween: 20,
             grabCursor: true,
-            loop: true,
+            loop: false, // Desactivar loop para controlar las flechas
             pagination: {
                 el: '.category-pagination',
                 clickable: true,
+            },
+            navigation: {
+                nextEl: '.category-next',
+                prevEl: '.category-prev',
             },
             breakpoints: {
                 // Cuando la ventana sea >= 480px
@@ -447,15 +476,45 @@
                     slidesPerView: 4,
                     spaceBetween: 20
                 }
+            },
+            on: {
+                init: function() {
+                    updateCategoryNavigation(this);
+                },
+                slideChange: function() {
+                    updateCategoryNavigation(this);
+                }
             }
         });
+
+        // Función para actualizar la visibilidad de las flechas de navegación
+        function updateCategoryNavigation(swiper) {
+            const prevButton = document.querySelector('.category-prev');
+            const nextButton = document.querySelector('.category-next');
+            
+            if (prevButton && nextButton) {
+                // Si es el primer slide, ocultar flecha anterior
+                if (swiper.isBeginning) {
+                    prevButton.style.display = 'none';
+                } else {
+                    prevButton.style.display = 'flex';
+                }
+                
+                // Si es el último slide, ocultar flecha siguiente
+                if (swiper.isEnd) {
+                    nextButton.style.display = 'none';
+                } else {
+                    nextButton.style.display = 'flex';
+                }
+            }
+        }
         
         // Inicializar el carrusel de productos
         const productCarousel = new Swiper('.product-carousel', {
             slidesPerView: 1,
             spaceBetween: 20,
             grabCursor: true,
-            loop: true,
+            loop: false, // Desactivar loop para control manual
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
@@ -489,8 +548,50 @@
                     slidesPerView: 4,
                     spaceBetween: 30
                 }
+            },
+            on: {
+                init: function() {
+                    setupProductCycleLogic(this);
+                },
+                resize: function() {
+                    setupProductCycleLogic(this);
+                }
             }
         });
+
+        // Función para configurar el ciclo infinito manual
+        function setupProductCycleLogic(swiper) {
+            // Remover event listeners previos
+            const nextBtn = document.querySelector('.swiper-button-next');
+            const prevBtn = document.querySelector('.swiper-button-prev');
+            
+            if (nextBtn && prevBtn) {
+                // Clonar botones para remover event listeners previos
+                const newNextBtn = nextBtn.cloneNode(true);
+                const newPrevBtn = prevBtn.cloneNode(true);
+                nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+                prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+                
+                // Agregar nuevos event listeners
+                newNextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (swiper.isEnd) {
+                        swiper.slideTo(0, 300); // Ir al primer slide con animación
+                    } else {
+                        swiper.slideNext();
+                    }
+                });
+                
+                newPrevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (swiper.isBeginning) {
+                        swiper.slideTo(swiper.slides.length - 1, 300); // Ir al último slide
+                    } else {
+                        swiper.slidePrev();
+                    }
+                });
+            }
+        }
     });
 </script>
 {% endblock %}
@@ -704,12 +805,18 @@
 @media (max-width: 768px) {
     .section-actions {
         margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
     
     .btn-primary, .btn-secondary {
         display: block;
         margin: 10px auto;
         max-width: 250px;
+        width: 85%;
+        text-align: center;
     }
     
     .info-grid {
@@ -1282,6 +1389,15 @@
     text-align: center;
     padding: 40px 20px;
     color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-empty .btn {
+    margin-top: 25px;
+    min-width: 200px;
 }
 
 .empty-cart-icon {
@@ -1451,6 +1567,28 @@
         width: 50px;
         height: 50px;
         margin-right: 12px;
+    }
+    
+    .cart-empty {
+        padding: 30px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .cart-empty .btn {
+        width: 80%;
+        max-width: 250px;
+        margin: 25px auto 0 auto !important;
+        display: block !important;
+        text-align: center !important;
+        padding: 15px 20px;
+        font-size: 1rem;
+        align-self: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 </style>

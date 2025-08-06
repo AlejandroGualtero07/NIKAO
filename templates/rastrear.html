@@ -335,7 +335,7 @@
     color: #666;
     font-size: 14px;
     margin-top: 15px;
-    text-align: left;
+    text-align: center;
 }
 
 .form-help i {
@@ -465,6 +465,7 @@
     margin-bottom: 15px;
     font-size: 16px;
     font-weight: 700;
+    text-align: center;
 }
 
 .detail-card h4 i {
@@ -475,6 +476,7 @@
 .detail-card p {
     color: #666;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .tracking-actions {
@@ -600,11 +602,13 @@
     margin-bottom: 15px;
     font-size: 18px;
     font-weight: 700;
+    text-align: center;
 }
 
 .info-step p {
     color: #666;
     line-height: 1.6;
+    text-align: center;
 }
 
 .contact-info {
@@ -711,6 +715,108 @@
         max-width: 250px;
         justify-content: center;
     }
+    
+    /* Centrar secciones de información en responsive */
+    .info-steps {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin: 30px auto !important;
+        max-width: 400px !important;
+    }
+    
+    .info-step {
+        margin: 0 auto !important;
+        max-width: 350px !important;
+        text-align: center !important;
+        padding: 25px 20px !important;
+    }
+    
+    .info-step h3 {
+        text-align: center !important;
+    }
+    
+    .info-step p {
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .contact-info {
+        margin: 0 auto !important;
+        max-width: 400px !important;
+        padding: 30px 20px !important;
+    }
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 576px) {
+    .tracking-form-container {
+        margin: 0 15px !important;
+        padding: 25px 15px !important;
+    }
+    
+    .tracking-result, .tracking-error {
+        margin: 30px 15px 0 !important;
+        padding: 25px 15px !important;
+    }
+    
+    .info-steps {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        margin: 20px auto !important;
+        max-width: 320px !important;
+    }
+    
+    .info-step {
+        margin: 0 auto !important;
+        max-width: 300px !important;
+        padding: 20px 15px !important;
+    }
+    
+    .info-step h3 {
+        font-size: 1.1rem !important;
+        text-align: center !important;
+    }
+    
+    .info-step p {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+        line-height: 1.5 !important;
+    }
+    
+    .contact-info {
+        margin: 0 auto !important;
+        max-width: 320px !important;
+        padding: 25px 15px !important;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.3rem !important;
+        text-align: center !important;
+    }
+    
+    .contact-info p {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+    }
+    
+    .contact-method {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Centrar header de sección */
+.section-header {
+    text-align: center !important;
+}
+
+.section-header h2 {
+    text-align: center !important;
+    margin-bottom: 15px !important;
+}
+
+.section-header p {
+    text-align: center !important;
 }
 </style>
 {% endblock %}

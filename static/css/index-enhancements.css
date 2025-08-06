@@ -115,6 +115,7 @@
   color: #666;
   font-size: 0.95rem;
   line-height: 1.6;
+  text-align: center;
 }
 
 /* Estilos para la sección de testimonios */
@@ -246,18 +247,22 @@
 .info-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 
 .info-icon {
   background: var(--gold);
+  margin: 0 auto 15px auto;
 }
 
 .info-card h3 {
   color: white;
+  text-align: center;
 }
 
 .info-card p {
   color: rgba(255, 255, 255, 0.7);
+  text-align: center;
 }
 
 .info-card p a {
@@ -361,6 +366,77 @@
   
   .feature-item::before {
     height: 4px;
+  }
+  
+  /* Centrar tarjetas de información en responsive */
+  .info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    text-align: center !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+  
+  .info-card {
+    padding: 25px 20px !important;
+    margin: 0 auto !important;
+    max-width: 350px !important;
+    text-align: center !important;
+  }
+  
+  .info-card h3 {
+    text-align: center !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .info-card p {
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  
+  .info-icon {
+    margin: 0 auto 15px auto !important;
+    display: block !important;
+    text-align: center !important;
+  }
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 576px) {
+  .info-rapida {
+    padding: 40px 15px !important;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+    padding: 0 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  
+  .info-card {
+    padding: 20px 15px !important;
+    margin: 0 auto !important;
+    max-width: 300px !important;
+    text-align: center !important;
+  }
+  
+  .info-card h3 {
+    font-size: 1.1rem !important;
+    text-align: center !important;
+  }
+  
+  .info-card p {
+    font-size: 0.9rem !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+  }
+  
+  .info-icon {
+    margin: 0 auto 15px auto !important;
+    display: block !important;
+    text-align: center !important;
   }
 }
 

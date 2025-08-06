@@ -43,10 +43,6 @@
                         <i class="fas fa-utensils" style="color: #ffc107;"></i>
                         Todas
                     </button>
-                    <button class="filter-btn" data-filter="sencillas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
-                        <i class="fas fa-circle" style="color: #ffc107;"></i>
-                        Sencillas
-                    </button>
                     <button class="filter-btn" data-filter="clasicas" style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
                         <i class="fas fa-heart" style="color: #ffc107;"></i>
                         Clásicas
@@ -85,7 +81,7 @@
             </div>
         </div>
         
-        <div class="products-grid" id="productsGrid" style="display: grid !important; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 25px !important; margin-top: 30px !important; visibility: visible !important;">
+        <div class="products-grid" id="productsGrid" style="display: grid !important; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 25px !important; margin-top: 30px !important; visibility: visible !important; justify-items: start !important;">
             {% for producto in productos %}
             <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; height: auto;">
                 {% if loop.first %}<div class="card-badge" style="position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; padding: 5px 10px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;">Más Vendido</div>{% endif %}
@@ -95,7 +91,7 @@
                 </div>
                 
                 <div class="card-content" style="padding: 20px; background: white;">
-                    <h3 class="card-title" style="font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.2rem; color: #8d6e63; transition: color 0.3s ease;">{{ producto.nombre }}</h3>
+                    <h3 class="card-title" style="font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.2rem; background: linear-gradient(135deg, #8d6e63, #6d4c41, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: all 0.3s ease;">{{ producto.nombre }}</h3>
                     <p class="card-description" style="font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.5;">{{ producto.descripcion }}</p>
                     
                     <div class="card-rating" style="display: flex; align-items: center; gap: 5px; margin-bottom: 15px;">
@@ -180,6 +176,7 @@
                 <i class="fas fa-shopping-cart"></i>
                 <p>Tu carrito está vacío</p>
                 <small>¡Agrega algunos productos deliciosos!</small>
+                <a href="{{ url_for('carta') }}" class="btn-menu-completo">Ver Menú Completo</a>
             </div>
         </div>
         
@@ -258,6 +255,23 @@
     --danger-color: #dc3545;
     --dark-color: #333;
     --light-color: #f8f9fa;
+}
+
+/* Estilo gradiente para nombres de productos */
+.card-title {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41, #ff6b00) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    text-shadow: none !important;
+}
+
+/* Fallback para navegadores que no soportan background-clip */
+@supports not (-webkit-background-clip: text) {
+    .card-title {
+        color: #8d6e63 !important;
+    }
 }
 
 /* Corrección para la barra de búsqueda en desktop */
@@ -515,6 +529,10 @@
     text-align: center;
     padding: 40px 20px;
     color: #888;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart-empty i {
@@ -526,6 +544,51 @@
 .cart-empty p {
     font-size: 1.2rem;
     margin-bottom: 10px;
+}
+
+.btn-menu-completo {
+    display: inline-block;
+    background: #ff8c00;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+    min-width: 200px;
+}
+
+.btn-menu-completo:hover {
+    background: #e67700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive para el carrito vacío */
+@media (max-width: 768px) {
+    .cart-empty {
+        padding: 25px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-menu-completo {
+        width: 90%;
+        max-width: 280px;
+        margin: 25px 0 0 0;
+        display: block;
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 1rem;
+        align-self: center;
+    }
 }
 
 .cart-modal-footer {
@@ -1181,7 +1244,6 @@ div.product-card a.btn-wishlist:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -1195,15 +1257,25 @@ div.product-card a.btn-wishlist:hover {
     background: none;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    padding: 5px;
-    border-radius: 3px;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.cart-toggle:active {
+    transform: scale(0.95);
 }
 
 .cart-toggle i {
@@ -1428,6 +1500,77 @@ div.product-card a.btn-wishlist:hover {
     .page-hero p {
         font-size: 16px;
     }
+    
+    /* Centrar tarjetas de información en carta responsive */
+    .menu-info {
+        padding: 60px 20px !important;
+    }
+    
+    .menu-info .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        max-width: 400px !important;
+        margin: 30px auto 0 auto !important;
+    }
+    
+    .menu-info .info-card {
+        margin: 0 auto !important;
+        text-align: center !important;
+        max-width: 350px !important;
+        padding: 25px 20px !important;
+    }
+    
+    .menu-info .info-card h3 {
+        text-align: center !important;
+    }
+    
+    .menu-info .info-card p {
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+    
+    .menu-info .info-card i {
+        display: block !important;
+        text-align: center !important;
+        margin: 0 auto 20px auto !important;
+    }
+}
+
+/* Responsive para pantallas pequeñas en carta */
+@media (max-width: 576px) {
+    .menu-info {
+        padding: 40px 15px !important;
+    }
+    
+    .menu-info .info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        max-width: 320px !important;
+        margin: 20px auto 0 auto !important;
+    }
+    
+    .menu-info .info-card {
+        padding: 20px 15px !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+    
+    .menu-info .info-card h3 {
+        font-size: 1.1rem !important;
+        text-align: center !important;
+    }
+    
+    .menu-info .info-card p {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+        line-height: 1.5 !important;
+    }
+    
+    .menu-info .info-card i {
+        font-size: 2.2rem !important;
+        margin: 0 auto 15px auto !important;
+    }
 }
 
 /* Eliminar overlay y bordes del hero-section de carta */
@@ -1488,13 +1631,8 @@ class ShoppingCart {
             });
         });
         
-        // Toggle del carrito
-        const cartToggle = document.getElementById('cartToggle');
-        if (cartToggle) {
-            cartToggle.addEventListener('click', () => {
-                this.toggleCart();
-            });
-        }
+        // Toggle del carrito - REMOVIDO PARA EVITAR CONFLICTOS
+        // La funcionalidad del toggle se maneja en el script separado más abajo
         
         // Vaciar carrito
         document.getElementById('clearCart').addEventListener('click', () => {
@@ -1569,7 +1707,7 @@ class ShoppingCart {
             <div class="cart-item">
                 <div class="cart-item-info">
                     <h4>${item.name}</h4>
-                    <p>$${item.price.toLocaleString()}</p>
+                    <p>$${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
                 </div>
                 <div class="cart-item-controls">
                     <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
@@ -1581,7 +1719,7 @@ class ShoppingCart {
         
         // Calcular total
         const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = total.toLocaleString();
+        cartTotal.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
     
     toggleCart() {
@@ -1790,6 +1928,15 @@ style.textContent = `
         color: #6d4c41 !important;
     }
     
+    /* Centrar textos de las tarjetas de productos */
+    .card-title {
+        text-align: center !important;
+    }
+    
+    .card-description {
+        text-align: center !important;
+    }
+    
     /* Estilos específicos para coincidir con la imagen */
     .product-card .card-price::before {
         content: '$';
@@ -1871,79 +2018,157 @@ document.head.appendChild(style);
 
 <!-- Script del Sistema de Carrito -->
 <script src="{{ url_for('static', filename='js/cart-system.js') }}"></script>
-<script>
-// El carrito se inicializa automáticamente desde cart-system.js
-// NO necesitamos configuración adicional aquí
-</script>
 
+<!-- 🎯 SISTEMA DE FLECHITAS DEL CARRITO - VERSIÓN ORGANIZADA Y DEFINITIVA -->
 <script>
-// JavaScript directo para el toggle del carrito
-document.addEventListener('DOMContentLoaded', function() {
+// Esperar a que todo esté cargado
+window.addEventListener('load', function() {
+    console.log('🚀 Página cargada - Configurando toggle del carrito');
+    
+    // Pequeña espera adicional para asegurar que cart-system.js esté listo
+    setTimeout(function() {
+        initializeCartArrows();
+    }, 1000);
+});
+
+function initializeCartArrows() {
+    console.log('� Configurando toggle del carrito...');
+    
     const cartFloat = document.getElementById('cartFloat');
     const cartToggle = document.getElementById('cartToggle');
-    const cartHeader = cartFloat ? cartFloat.querySelector('.cart-header') : null;
     
-    function updateArrowIcon() {
-        const icon = cartToggle ? cartToggle.querySelector('i') : null;
+    if (!cartFloat) {
+        console.error('❌ cartFloat no encontrado');
+        return;
+    }
+    
+    if (!cartToggle) {
+        console.error('❌ cartToggle no encontrado');
+        return;
+    }
+    
+    console.log('✅ Elementos encontrados:', { cartFloat, cartToggle });
+    
+    // Función para actualizar la flecha - CORREGIDA
+    function updateArrow() {
+        // Buscar el botón toggle actualizado después del clonado
+        const currentToggle = document.getElementById('cartToggle');
+        const icon = currentToggle ? currentToggle.querySelector('i') : null;
+        
+        console.log('🔧 Actualizando flecha...');
+        console.log('   - Toggle encontrado:', !!currentToggle);
+        console.log('   - Ícono encontrado:', !!icon);
+        
+        if (!icon) {
+            console.warn('⚠️ No se encontró el ícono de la flecha');
+            return;
+        }
+        
+        const isExpanded = cartFloat.classList.contains('expanded');
+        console.log(`🔍 Estado del carrito: ${isExpanded ? 'EXPANDIDO' : 'CONTRAÍDO'}`);
+        
+        if (isExpanded) {
+            icon.className = 'fas fa-chevron-down';
+            console.log('🔽 Flecha cambiada a: ABAJO (para contraer)');
+        } else {
+            icon.className = 'fas fa-chevron-up';
+            console.log('🔼 Flecha cambiada a: ARRIBA (para expandir)');
+        }
+        
+        console.log(`   - Clase final del ícono: ${icon.className}`);
+    }
+    
+    // Función toggle principal
+    function toggleCart() {
+        console.log('👆 TOGGLE EJECUTADO');
+        cartFloat.classList.toggle('expanded');
+        console.log('� Estado después del toggle:', {
+            expanded: cartFloat.classList.contains('expanded'),
+            classes: cartFloat.className
+        });
+        updateArrow();
+    }
+    
+    // Remover todos los listeners existentes clonando el elemento
+    const newToggle = cartToggle.cloneNode(true);
+    cartToggle.parentNode.replaceChild(newToggle, cartToggle);
+    console.log('♻️ Toggle button renovado');
+    
+    // Agregar el evento click CON MANEJO CORRECTO DE LA FLECHA
+    newToggle.addEventListener('click', function(e) {
+        console.log('🎯 CLICK DETECTADO EN LA FLECHA');
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        // Ejecutar toggle
+        toggleCart();
+        
+        // FORZAR actualización de la flecha después del click
+        setTimeout(function() {
+            const toggleButton = document.getElementById('cartToggle');
+            const icon = toggleButton ? toggleButton.querySelector('i') : null;
+            
+            if (icon && cartFloat) {
+                const isExpanded = cartFloat.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    icon.className = 'fas fa-chevron-down';
+                    console.log('🔽 FORZADO: Flecha hacia ABAJO');
+                } else {
+                    icon.className = 'fas fa-chevron-up';
+                    console.log('🔼 FORZADO: Flecha hacia ARRIBA');
+                }
+            }
+        }, 200);
+    });
+    
+    // Inicializar flecha
+    updateArrow();
+    
+    console.log('✅ Toggle configurado correctamente');
+    
+    // Hacer la función toggle global para debugging
+    window.cartArrowToggle = toggleCart;
+    window.updateCartArrow = updateArrow;
+    window.forceArrowUpdate = function() {
+        const toggleButton = document.getElementById('cartToggle');
+        const icon = toggleButton ? toggleButton.querySelector('i') : null;
+        const cartFloat = document.getElementById('cartFloat');
+        
+        console.log('🔧 === ACTUALIZACIÓN FORZADA DE FLECHA ===');
+        console.log('Toggle button:', toggleButton);
+        console.log('Icon:', icon);
+        console.log('Cart float:', cartFloat);
+        
         if (icon && cartFloat) {
-            if (cartFloat.classList.contains('expanded')) {
-                // Carrito expandido = flecha hacia abajo (para minimizar)
+            const isExpanded = cartFloat.classList.contains('expanded');
+            console.log('Estado expandido:', isExpanded);
+            
+            if (isExpanded) {
                 icon.className = 'fas fa-chevron-down';
+                console.log('🔽 Flecha forzada hacia ABAJO');
             } else {
-                // Carrito minimizado = flecha hacia arriba (para expandir)
                 icon.className = 'fas fa-chevron-up';
+                console.log('🔼 Flecha forzada hacia ARRIBA');
             }
         }
-    }
+    };
+    window.inspectCart = function() {
+        console.log('🔍 === INSPECCIÓN DEL CARRITO ===');
+        console.log('cartFloat:', cartFloat);
+        console.log('cartToggle:', newToggle);
+        console.log('Clases del carrito:', cartFloat.className);
+        console.log('Estado expandido:', cartFloat.classList.contains('expanded'));
+    };
     
-    function toggleCartFloat() {
-        if (cartFloat) {
-            cartFloat.classList.toggle('expanded');
-            updateArrowIcon();
-        }
-    }
-    
-    // Función para mostrar el carrito expandido
-    function showCartExpanded() {
-        if (cartFloat) {
-            cartFloat.classList.add('expanded');
-            updateArrowIcon();
-        }
-    }
-    
-    // Función para mostrar el carrito minimizado
-    function showCartMinimized() {
-        if (cartFloat) {
-            cartFloat.classList.remove('expanded');
-            updateArrowIcon();
-        }
-    }
-    
-    // Evento en el botón toggle
-    if (cartToggle) {
-        cartToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleCartFloat();
-        });
-    }
-    
-    // Evento en el header completo
-    if (cartHeader) {
-        cartHeader.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleCartFloat();
-        });
-    }
-    
-    // Inicializar la flecha correctamente
-    updateArrowIcon();
-    
-    // Hacer las funciones globales para uso en otras partes
-    window.showCartExpanded = showCartExpanded;
-    window.showCartMinimized = showCartMinimized;
-    window.updateCartArrow = updateArrowIcon;
-});
+    console.log('✅ === CONFIGURACIÓN COMPLETADA ===');
+    console.log('📋 Funciones de debugging disponibles:');
+    console.log('  • cartArrowToggle() - Alternar carrito manualmente');
+    console.log('  • updateCartArrow() - Actualizar flecha manualmente');
+    console.log('  • forceArrowUpdate() - Forzar actualización de flecha');
+    console.log('  • inspectCart() - Inspeccionar estado del carrito');
+    console.log('🧪 Para probar manualmente, escribe: forceArrowUpdate()');
+}
 </script>
 {% endblock %}
