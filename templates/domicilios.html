@@ -11,7 +11,7 @@
         </div>
         <div class="hero-content" style="position:relative; z-index:2; text-align:center; width:100%; max-width:900px; margin:auto; padding:2.2rem 0.5rem 1.2rem 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
             <div class="hero-content-nikao">
-                <h1 class="hero-title-nikao"><i class="fas fa-motorcycle"></i> Servicio de Domicilios</h1>
+                <h1 class="hero-title-nikao"><i class="fas fa-motorcycle"></i> SERVICIO DE DOMICILIOS</h1>
                 <p class="hero-subtitle-nikao">Llevamos el auténtico sabor de nuestras arepas hasta tu puerta</p>
                 <div class="hero-btns-nikao">
                     <a href="https://wa.me/573042025223?text=Hola! Quiero hacer un pedido a domicilio" class="btn-hero-main btn-hero-sec">
@@ -92,10 +92,6 @@
                 
                 <div class="zone-details">
                     <div class="detail">
-                        <i class="fas fa-clock"></i>
-                        <span>{{ zona.tiempo }}</span>
-                    </div>
-                    <div class="detail">
                         <i class="fas fa-motorcycle"></i>
                         <span>${{ "{:,}".format(zona.costo) }}</span>
                     </div>
@@ -121,9 +117,9 @@
             <div class="info-block">
                 <h3><i class="fas fa-clock"></i> Horarios de Entrega</h3>
                 <ul>
-                    <li><strong>Lunes a Sábados:</strong> 5:00 PM - 10:00 PM</li>
+                    <li><strong>Lunes a Sábados:</strong> 5:00 PM - 12:00 AM</li>
+                    <li><strong>Festivos:</strong> 5:00 PM - 12:00 AM</li>
                     <li><strong>Domingos:</strong> No atendemos</li>
-                    <li><strong>Festivos:</strong> No atendemos</li>
                 </ul>
             </div>
             
@@ -131,9 +127,7 @@
                 <h3><i class="fas fa-credit-card"></i> Métodos de Pago</h3>
                 <ul>
                     <li>Efectivo contra entrega</li>
-                    <li>Transferencia bancaria</li>
                     <li>Nequi / Daviplata</li>
-                    <li>Tarjetas débito/crédito</li>
                 </ul>
             </div>
             
@@ -188,12 +182,17 @@
 }
 .hero-title-nikao {
   font-family: 'Playfair Display',serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #fff;
   font-weight: 800;
-  text-shadow: 2px 4px 12px #000b;
-  letter-spacing: 2px;
-  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
 }
 .hero-subtitle-nikao {
   font-size: 1.4rem;
@@ -235,8 +234,9 @@
     padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
   }
   .hero-title-nikao {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 0.7rem;
+    letter-spacing: 2px;
   }
   .hero-subtitle-nikao {
     font-size: 1.05rem;

@@ -316,6 +316,7 @@
     font-size: 1.1rem;
     color: #666;
     line-height: 1.6;
+    text-align: center;
 }
 
 /* Responsive para secciones */
@@ -336,6 +337,7 @@
     
     .section-header p {
         font-size: 1rem;
+        text-align: center;
     }
 }
 
@@ -350,6 +352,7 @@
     
     .section-header p {
         font-size: 0.95rem;
+        text-align: center;
     }
 }
 

@@ -347,6 +347,7 @@
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
   
   .cta-buttons {
@@ -376,6 +377,7 @@
   
   .cta-content p {
     font-size: 1rem;
+    text-align: center;
   }
   
   .cta-buttons .btn {

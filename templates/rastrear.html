@@ -11,7 +11,7 @@
         </div>
         <div class="hero-content" style="position:relative; z-index:2; text-align:center; width:100%; max-width:900px; margin:auto; padding:2.2rem 0.5rem 1.2rem 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
             <div class="hero-content-nikao">
-                <h1 class="hero-title-nikao"><i class="fas fa-search"></i> Rastrear Pedido</h1>
+                <h1 class="hero-title-nikao"><i class="fas fa-search"></i> RASTREAR PEDIDO</h1>
                 <p class="hero-subtitle-nikao">Consulta el estado de tu pedido en tiempo real</p>
                 <div class="hero-btns-nikao">
                     <a href="{{ url_for('domicilios') }}" class="btn-hero-main btn-hero-sec">
@@ -195,12 +195,17 @@
 }
 .hero-title-nikao {
   font-family: 'Playfair Display',serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #fff;
   font-weight: 800;
-  text-shadow: 2px 4px 12px #000b;
-  letter-spacing: 2px;
-  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
 }
 .hero-subtitle-nikao {
   font-size: 1.4rem;
@@ -237,8 +242,9 @@
     padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
   }
   .hero-title-nikao {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 0.7rem;
+    letter-spacing: 2px;
   }
   .hero-subtitle-nikao {
     font-size: 1.05rem;

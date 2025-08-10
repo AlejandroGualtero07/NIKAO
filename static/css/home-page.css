@@ -661,6 +661,10 @@
   margin: 0 auto;
 }
 
+.cta-content p {
+  text-align: center;
+}
+
 .cta-title {
   font-family: 'Fredoka One', cursive;
   font-size: 3rem;

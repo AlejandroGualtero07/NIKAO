@@ -203,32 +203,27 @@ def domicilios():
     zonas_entrega = [
         {
             'zona': 'Ciudad Latina',
-            'tiempo': '20-30 min',
-            'costo': 3500,
+            'costo': 2000,
             'disponible': True
         },
         {
             'zona': 'Hogares Soacha',
-            'tiempo': '25-35 min',
-            'costo': 4000,
+            'costo': 2000,
             'disponible': True
         },
         {
             'zona': 'Maipore',
-            'tiempo': '30-40 min',
-            'costo': 4500,
+            'costo': 2000,
             'disponible': True
         },
         {
             'zona': 'Soacha Compartir',
-            'tiempo': '25-35 min',
-            'costo': 4000,
+            'costo': 2000,
             'disponible': True
         },
         {
             'zona': 'Parque de Soacha Altico',
-            'tiempo': '35-45 min',
-            'costo': 5000,
+            'costo': 2000,
             'disponible': True
         }
     ]
@@ -251,15 +246,11 @@ def ayuda():
     faqs = [
         {
             'pregunta': '¿Cuáles son los horarios de atención?',
-            'respuesta': 'Atendemos de lunes a sábados de 5:00 PM a 10:00 PM. Los domicilios se realizan hasta las 10:30 PM.'
-        },
-        {
-            'pregunta': '¿Cuál es el tiempo de entrega?',
-            'respuesta': 'El tiempo de entrega varía entre 20 a 45 minutos dependiendo de la zona. Puedes consultar los tiempos específicos en nuestra sección de domicilios.'
+            'respuesta': 'Atendemos de lunes a sábados y festivos de 5:00 PM a 12:00 AM. Los domingos no atendemos.'
         },
         {
             'pregunta': '¿Cuáles son las formas de pago?',
-            'respuesta': 'Aceptamos efectivo, transferencias bancarias, Nequi, Daviplata y tarjetas débito/crédito.'
+            'respuesta': 'Aceptamos efectivo, Nequi y Daviplata.'
         },
         {
             'pregunta': '¿Puedo cancelar mi pedido?',

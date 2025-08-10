@@ -13,7 +13,7 @@
     </div>
     <div class="hero-content" style="position:relative; z-index:2; text-align:center; width:100%; max-width:900px; margin:auto; padding:2.2rem 0.5rem 1.2rem 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
         <div class="hero-content-nikao">
-            <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> Nuestra Carta</h1>
+            <h1 class="hero-title-nikao"><i class="fas fa-utensils"></i> NUESTRA CARTA</h1>
             <p class="hero-subtitle-nikao">Descubre todas nuestras deliciosas especialidades</p>
             <div class="hero-btns-nikao">
                 <a href="#carta-completa" class="btn-hero-main">
@@ -139,8 +139,17 @@
         </div>
         
         <div class="cart-summary">
+            <div class="subtotal">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">$0</span>
+            </div>
+            <div class="delivery-fee" id="cartDelivery" style="display: none;">
+                <span>Domicilio:</span>
+                <span id="cartDeliveryFee">$2,000</span>
+            </div>
             <div class="cart-total">
-                <strong>Total: $<span id="cartTotal">0</span></strong>
+                <span>Total:</span>
+                <strong>$<span id="cartTotal">0</span></strong>
             </div>
             
             <div class="cart-actions">
@@ -1032,12 +1041,17 @@ div.product-card a.btn-wishlist:hover {
 }
 .hero-title-nikao {
   font-family: 'Playfair Display',serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #fff;
   font-weight: 800;
-  text-shadow: 2px 4px 12px #000b;
-  letter-spacing: 2px;
-  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 2px 4px 15px rgba(0, 0, 0, 0.7);
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #ffd700 50%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
 }
 .hero-subtitle-nikao {
   font-size: 1.4rem;
@@ -1121,8 +1135,9 @@ div.product-card a.btn-wishlist:hover {
     padding: 1.2rem 0.2rem 0.7rem 0.2rem !important;
   }
   .hero-title-nikao {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 0.7rem;
+    letter-spacing: 2px;
   }
   .hero-subtitle-nikao {
     font-size: 1.05rem;
@@ -1405,10 +1420,40 @@ div.product-card a.btn-wishlist:hover {
     background: #f8f9fa;
 }
 
+.cart-summary .subtotal,
+.cart-summary .delivery-fee {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 8px !important;
+    font-size: 16px !important;
+    color: #666 !important;
+    width: 100% !important;
+}
+
+.cart-summary .subtotal span:first-child,
+.cart-summary .delivery-fee span:first-child {
+    font-weight: 500 !important;
+    text-align: left !important;
+}
+
+.cart-summary .subtotal span:last-child,
+.cart-summary .delivery-fee span:last-child {
+    font-weight: 600 !important;
+    color: #333 !important;
+    text-align: right !important;
+}
+
 .cart-total {
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 18px;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 15px 0 !important;
+    padding-top: 10px !important;
+    border-top: 1px solid #ddd !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    width: 100% !important;
 }
 
 .cart-actions {
@@ -1693,6 +1738,8 @@ class ShoppingCart {
     updateCartDisplay() {
         const cartFloat = document.getElementById('cartFloat');
         const cartItems = document.getElementById('cartItems');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartDelivery = document.getElementById('cartDelivery');
         const cartTotal = document.getElementById('cartTotal');
         
         if (this.items.length === 0) {
@@ -1707,7 +1754,7 @@ class ShoppingCart {
             <div class="cart-item">
                 <div class="cart-item-info">
                     <h4>${item.name}</h4>
-                    <p>$${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
+                    <p>$${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </div>
                 <div class="cart-item-controls">
                     <button class="quantity-btn" onclick="cart.updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
@@ -1718,8 +1765,20 @@ class ShoppingCart {
         `).join('');
         
         // Calcular total
-        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        const subtotal = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const deliveryFee = this.items.length > 0 ? 2000 : 0;
+        const total = subtotal + deliveryFee;
+        
+        cartSubtotal.textContent = '$' + subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        
+        if (this.items.length > 0) {
+            cartDelivery.style.display = 'block';
+            document.getElementById('cartDeliveryFee').textContent = '$' + deliveryFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        } else {
+            cartDelivery.style.display = 'none';
+        }
+        
+        cartTotal.textContent = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
     
     toggleCart() {
@@ -1745,9 +1804,11 @@ class ShoppingCart {
             `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toLocaleString()}`
         ).join('\n');
         
-        const total = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const subtotal = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const deliveryFee = 2000;
+        const total = subtotal + deliveryFee;
         
-        const whatsappMessage = `Hola! Quiero hacer el siguiente pedido:\n\n${message}\n\nTotal: $${total.toLocaleString()}`;
+        const whatsappMessage = `Hola! Quiero hacer el siguiente pedido:\n\n${message}\n\nSubtotal: $${subtotal.toLocaleString()}\nDomicilio: $${deliveryFee.toLocaleString()}\nTotal: $${total.toLocaleString()}`;
         
         window.open(`https://wa.me/573042025223?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     }

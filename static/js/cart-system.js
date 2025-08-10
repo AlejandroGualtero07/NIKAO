@@ -2,7 +2,7 @@
 class ShoppingCart {
     constructor() {
         this.items = [];
-        this.deliveryFee = 4000;
+        this.deliveryFee = 2000;
         this.init();
         this.loadCartFromStorage();
     }
