@@ -20,6 +20,11 @@
     </div>
 </section>
 <style>
+/* Ocultar solo las flechas del carrusel de categorías */
+.category-carousel .swiper-button-next,
+.category-carousel .swiper-button-prev {
+    display: none !important;
+}
 .hero-title-nikao {
   font-family: 'Playfair Display',serif;
   font-size: 3.2rem;
@@ -206,7 +211,7 @@
         <div class="swiper-container category-carousel">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <a href="{{ url_for('carta') }}?category=clasicas" class="category-card">
+                    <a href="{{ url_for('carta') }}?category=clasicas" class="category-card category-link" data-category="clasicas">
                         <img src="{{ url_for('static', filename='images/imagen arepas ej3.jpeg') }}" alt="Arepas Tradicionales" class="category-image">
                         <div class="category-overlay">
                             <h3 class="category-title">Arepas Clásicas</h3>
@@ -215,7 +220,7 @@
                 </div>
                 
                 <div class="swiper-slide">
-                    <a href="{{ url_for('carta') }}?category=especiales" class="category-card">
+                    <a href="{{ url_for('carta') }}?category=especiales" class="category-card category-link" data-category="especiales">
                         <img src="{{ url_for('static', filename='images/imagen arepas ej7.jpeg') }}" alt="Arepas Especiales" class="category-image">
                         <div class="category-overlay">
                             <h3 class="category-title">Arepas Especiales</h3>
@@ -224,8 +229,8 @@
                 </div>
                 
                 <div class="swiper-slide">
-                    <a href="{{ url_for('carta') }}?category=perros" class="category-card">
-                        <img src="{{ url_for('static', filename='images/imagen arepas ej4.jpeg') }}" alt="Perros Calientes" class="category-image">
+                    <a href="{{ url_for('carta') }}?category=perros" class="category-card category-link" data-category="perros">
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE.png') }}" alt="Perros Calientes" class="category-image">
                         <div class="category-overlay">
                             <h3 class="category-title">Perros Calientes</h3>
                         </div>
@@ -233,8 +238,8 @@
                 </div>
                 
                 <div class="swiper-slide">
-                    <a href="{{ url_for('carta') }}?category=premium" class="category-card">
-                        <img src="{{ url_for('static', filename='images/imagen arepas ej3.jpeg') }}" alt="Especialidades Premium" class="category-image">
+                    <a href="{{ url_for('carta') }}?category=premium" class="category-card category-link" data-category="premium">
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORIESPECIAL.png') }}" alt="Especialidades Premium" class="category-image">
                         <div class="category-overlay">
                             <h3 class="category-title">Especialidades Premium</h3>
                         </div>
@@ -243,8 +248,8 @@
             </div>
             
             <!-- Navegación del carrusel de categorías -->
-            <div class="swiper-button-next category-next"></div>
-            <div class="swiper-button-prev category-prev"></div>
+            <div class="swiper-button-next category-next" style="display:none !important;"></div>
+            <div class="swiper-button-prev category-prev" style="display:none !important;"></div>
             <!-- Paginación para el carrusel de categorías -->
             <div class="swiper-pagination category-pagination"></div>
         </div>
@@ -319,7 +324,6 @@
 <section class="features-section">
     <div class="container features-container">
         <h2 class="section-title">¿Por qué elegir Nikao?</h2>
-        
         <div class="features-grid">
             <div class="feature-item">
                 <div class="feature-icon">
@@ -328,7 +332,6 @@
                 <h3 class="feature-title">Sabor auténtico</h3>
                 <p class="feature-description">Nuestras arepas están preparadas siguiendo recetas tradicionales colombianas, con el toque especial que solo NIKAO puede ofrecer. El sabor que te transporta a Colombia.</p>
             </div>
-            
             <div class="feature-item">
                 <div class="feature-icon">
                     <i class="fas fa-leaf"></i>
@@ -336,7 +339,6 @@
                 <h3 class="feature-title">Ingredientes frescos</h3>
                 <p class="feature-description">Seleccionamos diariamente los mejores ingredientes para garantizar la frescura y calidad en cada arepa. Sin conservantes ni aditivos artificiales.</p>
             </div>
-            
             <div class="feature-item">
                 <div class="feature-icon">
                     <i class="fas fa-clock"></i>
@@ -344,7 +346,6 @@
                 <h3 class="feature-title">Servicio rápido</h3>
                 <p class="feature-description">Valoramos tu tiempo. Por eso nuestro servicio es ágil y eficiente, tanto en el local como en las entregas a domicilio, siempre manteniendo la mejor calidad.</p>
             </div>
-            
             <div class="feature-item">
                 <div class="feature-icon">
                     <i class="fas fa-heart"></i>
@@ -352,6 +353,18 @@
                 <h3 class="feature-title">Preparado con amor</h3>
                 <p class="feature-description">En NIKAO cada arepa es preparada con dedicación y pasión, siguiendo nuestra tradición familiar que nos distingue desde 2018. Sabor que se siente en cada bocado.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Espacio para reseñas de clientes -->
+<section class="reviews-section" style="padding: 60px 0 40px 0; background: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title" style="margin-bottom: 30px;">Reseñas de nuestros clientes</h2>
+        <!-- Aquí se mostrarán las reseñas próximamente -->
+        <div class="reviews-placeholder" style="text-align:center; color:#aaa; font-size:1.1rem; padding: 30px 0;">
+            <i class="fas fa-comments" style="font-size:2.5rem; margin-bottom:10px;"></i><br>
+            Próximamente podrás ver aquí las opiniones y experiencias de nuestros clientes.
         </div>
     </div>
 </section>
@@ -394,7 +407,11 @@
                 </div>
                 <h3>Tu carrito está vacío</h3>
                 <p>¡Agrega algunos productos deliciosos!</p>
-                <a href="{{ url_for('carta') }}" class="btn btn-primary btn-orange">Ver Menú Completo</a>
+                                <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:25px;">
+                                                        <a href="{{ url_for('carta') }}" class="btn-hero-main btn-orange" style="text-align:center;min-width:160px;max-width:220px;width:100%;border-radius:30px;font-size:1.1rem;padding:0.9rem 0;box-shadow:0 4px 16px #0001;font-weight:700;letter-spacing:0.5px;">
+                                                            Ver Menú Completo
+                                                        </a>
+                                </div>
             </div>
         </div>
         
@@ -445,6 +462,16 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <!-- Inicialización del Swiper -->
 <script>
+        // Al hacer clic en una categoría, redirigir con el filtro correspondiente
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.category-link').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var category = link.getAttribute('data-category');
+                    window.location.href = "{{ url_for('carta') }}?category=" + category;
+                });
+            });
+        });
     document.addEventListener('DOMContentLoaded', function() {
         // Inicializar el carrusel de categorías
         const categoryCarousel = new Swiper('.category-carousel', {

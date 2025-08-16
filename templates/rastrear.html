@@ -550,23 +550,31 @@
 }
 
 .btn-try-again {
-    background: linear-gradient(135deg, #ff6b00, #ff8533);
-    color: white;
+    background: linear-gradient(90deg, #ff9800 0%, #ff6b00 100%);
+    color: #fff;
     border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 22px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 24px rgba(255, 107, 0, 0.18), 0 2px 8px #ff980055;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     margin: 0 auto;
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(.4,2,.6,1);
+    outline: none;
+    border: 2px solid #ff9800;
 }
 
-.btn-try-again:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+.btn-try-again:hover, .btn-try-again:focus {
+    background: linear-gradient(90deg, #ffb347 0%, #ff9800 100%);
+    color: #fff;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 32px rgba(255, 107, 0, 0.22), 0 4px 16px #ff980088;
+    border-color: #ff6b00;
 }
 
 .tracking-info {
@@ -971,7 +979,25 @@ class OrderTracker {
     
     showError(message) {
         this.hideLoading();
-        alert(message); // En una implementación real, usarías un modal o toast más elegante
+        // Mostrar mensaje de error visual debajo del input
+        let errorMsg = document.getElementById('pedido-error-msg');
+        if (!errorMsg) {
+            errorMsg = document.createElement('div');
+            errorMsg.id = 'pedido-error-msg';
+            errorMsg.style.color = '#dc3545';
+            errorMsg.style.fontWeight = '600';
+            errorMsg.style.marginTop = '8px';
+            errorMsg.style.fontSize = '0.98rem';
+            errorMsg.style.transition = 'opacity 0.3s';
+            const formGroup = document.querySelector('.form-group');
+            if (formGroup) formGroup.appendChild(errorMsg);
+        }
+        errorMsg.textContent = message;
+        errorMsg.style.opacity = 1;
+        // Ocultar el mensaje después de 3 segundos
+        setTimeout(() => {
+            errorMsg.style.opacity = 0;
+        }, 3000);
     }
     
     resetForm() {

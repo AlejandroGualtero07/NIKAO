@@ -23,7 +23,7 @@ PRODUCTOS = [
         'nombre': 'AREPA SENCILLA',
         'descripcion': 'Arepa tradicional con mantequilla y sal. Simple y deliciosa.',
         'precio': 1000,
-        'categoria': 'sencillas',
+        'categoria': 'clasicas',
         'icono': '🫓',
         'disponible': True
     },
@@ -32,7 +32,7 @@ PRODUCTOS = [
         'nombre': 'AREPA DE QUESO',
         'descripcion': 'Arepa rellena con queso derretido.',
         'precio': 2800,
-        'categoria': 'sencillas',
+        'categoria': 'clasicas',
         'icono': '�',
         'disponible': True
     },
@@ -41,7 +41,7 @@ PRODUCTOS = [
         'nombre': 'AREPA DE JAMÓN Y QUESO',
         'descripcion': 'Clásica combinación de jamón y queso derretido.',
         'precio': 4000,
-        'categoria': 'sencillas',
+        'categoria': 'clasicas',
         'icono': '🥪',
         'disponible': True
     },
@@ -50,7 +50,7 @@ PRODUCTOS = [
         'nombre': 'AREPA QUESUDA',
         'descripcion': 'Arepa con 3 lonjas de queso derretido.',
         'precio': 5500,
-        'categoria': 'sencillas',
+        'categoria': 'clasicas',
         'icono': '🧀',
         'disponible': True
     },

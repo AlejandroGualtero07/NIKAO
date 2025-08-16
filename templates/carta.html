@@ -85,15 +85,30 @@
             {% for producto in productos %}
             <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; height: auto;">
                 {% if loop.first %}<div class="card-badge" style="position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; padding: 5px 10px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;">Más Vendido</div>{% endif %}
-                
+
                 <div class="card-img-wrapper" style="overflow: hidden; border-radius: 15px 15px 0 0; position: relative;">
-                    <img src="{{ url_for('static', filename='images/imagen arepas ej'~(loop.index % 4 + 3)|string~'.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% set img_jpeg = 'images/actualizacion_info/' ~ producto.nombre ~ '.jpeg' %}
+                    {% set img_jpg = 'images/actualizacion_info/' ~ producto.nombre ~ '.jpg' %}
+                    {% set img_png = 'images/actualizacion_info/' ~ producto.nombre ~ '.png' %}
+                    {% if producto.nombre == 'AREPA DE CHORIZO' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CHORIZO.jpeg') }}" alt="AREPA DE CHORIZO" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'DORIESPECIAL' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORIESPECIAL.png') }}" alt="DORIESPECIAL" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'DORILOCO' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORILOCO.jpeg') }}" alt="DORILOCO" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'PERRO CALIENTE' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE.png') }}" alt="PERRO CALIENTE" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'PERRO CALIENTE FELIZ' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRA CALIENTE FELIZ.jpeg') }}" alt="PERRO CALIENTE FELIZ" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/imagen arepas ej'~(loop.index % 4 + 3)|string~'.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% endif %}
                 </div>
-                
+
                 <div class="card-content" style="padding: 20px; background: white;">
                     <h3 class="card-title" style="font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.2rem; background: linear-gradient(135deg, #8d6e63, #6d4c41, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: all 0.3s ease;">{{ producto.nombre }}</h3>
                     <p class="card-description" style="font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.5;">{{ producto.descripcion }}</p>
-                    
+
                     <div class="card-rating" style="display: flex; align-items: center; gap: 5px; margin-bottom: 15px;">
                         <div class="stars" style="display: flex; color: #ffc107; font-size: 0.9rem;">
                             <i class="fas fa-star"></i>
@@ -104,9 +119,9 @@
                         </div>
                         <span class="rating-count" style="font-size: 0.85rem; color: #888;">({{ range(40, 130)|random }})</span>
                     </div>
-                    
-                    <div class="card-price" style="font-weight: 800; font-size: 1.4rem; color: #8d6e63; margin-bottom: 15px; display: flex; align-items: center;">${{ "{:,}".format(producto.precio) }}</div>
-                    
+
+                    <div class="card-price" style="font-weight: 800; font-size: 1.4rem; color: #8d6e63; margin-bottom: 15px; display: flex; align-items: center;">${{ '{:,}'.format(producto.precio) }}</div>
+
                     <div class="card-action" style="display: flex; gap: 10px;">
                         <button class="btn-add-cart" data-id="{{ producto.id }}" data-name="{{ producto.nombre }}" data-price="{{ producto.precio }}" style="padding: 12px 18px !important; background: #8d6e63 !important; color: white !important; border: none !important; border-radius: 8px !important; display: flex !important; align-items: center !important; gap: 8px !important; font-weight: 600 !important; cursor: pointer !important; transition: all 0.3s ease !important; flex: 1 !important; justify-content: center !important; overflow: hidden !important; position: relative !important; z-index: 1 !important; font-size: 14px !important;">
                             <i class="fas fa-shopping-cart"></i>
@@ -1653,6 +1668,34 @@ html body .card-action button.btn-add-cart[data-name]:hover {
 
 {% block extra_js %}
 <script>
+// --- Filtro automático por categoría desde la URL ---
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    if (category) {
+        // Activar el botón de filtro correspondiente
+        const filterBtn = document.querySelector('.filter-btn[data-filter="' + category + '"]');
+        if (filterBtn) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            filterBtn.classList.add('active');
+            // Lanzar el evento para que se aplique el filtro
+            filterBtn.click();
+            // Forzar actualización del contador de productos encontrados correctamente
+            setTimeout(function() {
+                // Buscar el filtro activo y simular input vacío para forzar el filtrado y el contador
+                if (window.ProductFilter && window.ProductFilter.prototype && window.ProductFilter.prototype.filterProducts) {
+                    const pf = new ProductFilter();
+                    pf.filterProducts();
+                } else {
+                    // Fallback: buscar el contador y actualizarlo manualmente
+                    const visibleProducts = Array.from(document.querySelectorAll('.product-card')).filter(p => p.style.display !== 'none').length;
+                    const resultCount = document.getElementById('resultCount');
+                    if (resultCount) resultCount.textContent = visibleProducts;
+                }
+            }, 250);
+        }
+    }
+});
 // Funcionalidad del carrito de compras
 class ShoppingCart {
     constructor() {
@@ -1816,11 +1859,17 @@ class ShoppingCart {
     showNotification(message, type) {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
+        // Personalización para carrito vacío
+        let icon = 'check-circle';
+        let msg = message;
+        if (message === 'Carrito vacío' || message === 'Carrito vaciado') {
+            icon = 'shopping-cart';
+            msg = 'Carrito vacío';
+        }
         notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-            <span>${message}</span>
+            <i class="fas fa-${icon}"></i>
+            <span>${msg}</span>
         `;
-        
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -1835,9 +1884,7 @@ class ShoppingCart {
             gap: 10px;
             animation: slideInRight 0.3s ease;
         `;
-        
         document.body.appendChild(notification);
-        
         setTimeout(() => {
             notification.style.animation = 'slideOutRight 0.3s ease';
             setTimeout(() => {
@@ -1959,7 +2006,9 @@ class ProductFilter {
 
 // Inicializar filtros cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    new ProductFilter();
+    const pf = new ProductFilter();
+    // Forzar actualización del contador al cargar, para reflejar el filtro activo
+    setTimeout(() => pf.filterProducts(), 100);
 });
 
 // Añadir estilos para las animaciones

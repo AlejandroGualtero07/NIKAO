@@ -305,9 +305,18 @@ class ShoppingCart {
 
     showNotification(message) {
         if (this.notification && this.notificationText) {
-            this.notificationText.textContent = message;
+            // Personalización para carrito vacío
+            let icon = 'fa-check-circle';
+            let msg = message;
+            let bg = '#28a745';
+            if (message === 'Carrito vaciado' || message === 'Carrito vacío') {
+                icon = 'fa-shopping-cart';
+                msg = 'Carrito vacío';
+                bg = '#13b3c5'; // azul igual que en carta.html
+            }
+            this.notification.innerHTML = `<div class="notification-content"><i class="fas ${icon}"></i> <span id="notification-text">${msg}</span></div>`;
+            this.notification.style.background = bg;
             this.notification.classList.add('show');
-
             setTimeout(() => {
                 this.notification.classList.remove('show');
             }, 3000);
