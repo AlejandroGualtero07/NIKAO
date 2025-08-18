@@ -269,7 +269,27 @@
                     <div class="product-card" data-category="{{ producto.categoria }}">
                         {% if loop.first %}<div class="card-badge">Más Vendido</div>{% endif %}
                         <div class="card-img-wrapper">
-                            <img src="{{ url_for('static', filename='images/imagen arepas ej'~(loop.index % 4 + 3)|string~'.jpeg') }}" alt="{{ producto.nombre }}">
+                            {% if producto.nombre == 'AREPA DE CARNE' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CARNE.jpeg') }}" alt="AREPA DE CARNE" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'AREPA DE CHORIZO' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CHORIZO.jpeg') }}" alt="AREPA DE CHORIZO" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'AREPA DE LA CASA' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE LA CASA.jpeg') }}" alt="AREPA DE LA CASA" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'AREPA ESQUINA DEL ANTOJO' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA ESQUINA DEL ANTOJO.jpeg') }}" alt="AREPA ESQUINA DEL ANTOJO" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'AREPA QUESUDA' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA QUESUDA.jpeg') }}" alt="AREPA QUESUDA" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'DORIESPECIAL' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/DORIESPECIAL.png') }}" alt="DORIESPECIAL" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'DORILOCO' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/DORILOCO.jpeg') }}" alt="DORILOCO" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'PERRA CALIENTE FELIZ' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/PERRA CALIENTE FELIZ.jpeg') }}" alt="PERRA CALIENTE FELIZ" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% elif producto.nombre == 'PERRO CALIENTE' %}
+                                <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE.png') }}" alt="PERRO CALIENTE" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='images/imagen arepas ej3.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 160px; object-fit: cover; transition: transform 0.3s ease;">
+                            {% endif %}
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">{{ producto.nombre }}</h3>

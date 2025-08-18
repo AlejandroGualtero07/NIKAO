@@ -81,31 +81,36 @@
             </div>
         </div>
         
-        <div class="products-grid" id="productsGrid" style="display: grid !important; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 25px !important; margin-top: 30px !important; visibility: visible !important; justify-items: start !important;">
+    <div class="products-grid" id="productsGrid" style="display: grid !important; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)) !important; gap: 28px !important; margin-top: 30px !important; visibility: visible !important; justify-items: center !important;">
             {% for producto in productos %}
-            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; height: auto;">
+            <div class="product-card" data-category="{{ producto.categoria }}" data-price="{{ producto.precio }}" data-name="{{ producto.nombre.lower() }}" style="display: block !important; visibility: visible !important; opacity: 1 !important; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.10); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; height: auto; width: 310px; min-height: 440px; max-width: 100%;">
                 {% if loop.first %}<div class="card-badge" style="position: absolute; top: 15px; right: 15px; background: #dc3545; color: white; padding: 5px 10px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;">Más Vendido</div>{% endif %}
 
-                <div class="card-img-wrapper" style="overflow: hidden; border-radius: 15px 15px 0 0; position: relative;">
-                    {% set img_jpeg = 'images/actualizacion_info/' ~ producto.nombre ~ '.jpeg' %}
-                    {% set img_jpg = 'images/actualizacion_info/' ~ producto.nombre ~ '.jpg' %}
-                    {% set img_png = 'images/actualizacion_info/' ~ producto.nombre ~ '.png' %}
-                    {% if producto.nombre == 'AREPA DE CHORIZO' %}
-                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CHORIZO.jpeg') }}" alt="AREPA DE CHORIZO" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                <div class="card-img-wrapper" style="overflow: hidden; border-radius: 18px 18px 0 0; position: relative; height: 200px; background: #f7f7f7; display: flex; align-items: center; justify-content: center;">
+                    {% if producto.nombre == 'AREPA DE CARNE' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CARNE.jpeg') }}" alt="AREPA DE CARNE" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'AREPA DE CHORIZO' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE CHORIZO.jpeg') }}" alt="AREPA DE CHORIZO" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'AREPA DE LA CASA' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA DE LA CASA.jpeg') }}" alt="AREPA DE LA CASA" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'AREPA ESQUINA DEL ANTOJO' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA ESQUINA DEL ANTOJO.jpeg') }}" alt="AREPA ESQUINA DEL ANTOJO" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'AREPA QUESUDA' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/AREPA QUESUDA.jpeg') }}" alt="AREPA QUESUDA" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                     {% elif producto.nombre == 'DORIESPECIAL' %}
-                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORIESPECIAL.png') }}" alt="DORIESPECIAL" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORIESPECIAL.png') }}" alt="DORIESPECIAL" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                     {% elif producto.nombre == 'DORILOCO' %}
-                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORILOCO.jpeg') }}" alt="DORILOCO" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
-                    {% elif producto.nombre == 'PERRO CALIENTE' %}
-                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE.png') }}" alt="PERRO CALIENTE" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/DORILOCO.jpeg') }}" alt="DORILOCO" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                     {% elif producto.nombre == 'PERRO CALIENTE FELIZ' %}
-                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRA CALIENTE FELIZ.jpeg') }}" alt="PERRO CALIENTE FELIZ" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE FELIZ.jpeg') }}" alt="PERRO CALIENTE FELIZ" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                    {% elif producto.nombre == 'PERRO CALIENTE' %}
+                        <img src="{{ url_for('static', filename='images/actualizacion_info/PERRO CALIENTE.png') }}" alt="PERRO CALIENTE" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                     {% else %}
-                        <img src="{{ url_for('static', filename='images/imagen arepas ej'~(loop.index % 4 + 3)|string~'.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                        <img src="{{ url_for('static', filename='images/imagen arepas ej3.jpeg') }}" alt="{{ producto.nombre }}" style="width: 100%; height: 100%; max-height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                     {% endif %}
                 </div>
 
-                <div class="card-content" style="padding: 20px; background: white;">
+                <div class="card-content" style="padding: 18px 14px 14px 14px; background: white;">
                     <h3 class="card-title" style="font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1.2rem; background: linear-gradient(135deg, #8d6e63, #6d4c41, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: all 0.3s ease;">{{ producto.nombre }}</h3>
                     <p class="card-description" style="font-size: 0.9rem; color: #666; margin-bottom: 15px; line-height: 1.5;">{{ producto.descripcion }}</p>
 
