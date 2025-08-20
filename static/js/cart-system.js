@@ -201,7 +201,7 @@ class ShoppingCart {
             <img src="${item.image}" alt="${item.name}" class="cart-item-image">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">$${this.formatPrice(item.price)}</div>
+                <div class="cart-item-price">$${item.price.toLocaleString('es-CO')}</div>
             </div>
             <div class="cart-item-controls">
                 <div class="quantity-control">
@@ -224,14 +224,19 @@ class ShoppingCart {
 
     updateCartTotal() {
         const subtotal = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const total = subtotal + (this.items.length > 0 ? this.deliveryFee : 0);
+        const deliveryFee = this.items.length > 0 ? this.deliveryFee : 0;
+        const total = subtotal + deliveryFee;
 
         if (this.cartSubtotal) {
-            this.cartSubtotal.textContent = `$${this.formatPrice(subtotal)}`;
+            this.cartSubtotal.textContent = `$${subtotal.toLocaleString('es-CO')}`;
         }
-        
+        // Corregir el valor de domicilio
+        const deliveryFeeElem = document.getElementById('delivery-fee');
+        if (deliveryFeeElem) {
+            deliveryFeeElem.textContent = `$${deliveryFee.toLocaleString('es-CO')}`;
+        }
         if (this.cartTotal) {
-            this.cartTotal.textContent = `$${this.formatPrice(total)}`;
+            this.cartTotal.textContent = `$${total.toLocaleString('es-CO')}`;
         }
     }
 
@@ -334,19 +339,25 @@ class ShoppingCart {
     }
 
     getProductImage(productId) {
-        // Mapear IDs a imágenes específicas o usar una imagen por defecto
-        const imageMap = {
-            1: '/static/images/imagen arepas ej3.jpeg',
-            2: '/static/images/imagen arepas ej4.jpeg',
-            3: '/static/images/imagen arepas ej6.jpeg',
-            4: '/static/images/imagen arepas ej7.jpeg'
-        };
-        
-        return imageMap[productId] || `/static/images/imagen arepas ej${(productId % 4) + 3}.jpeg`;
+        // Buscar la imagen real del producto en la tarjeta visible en el DOM
+        // Busca el botón de añadir con el data-id correspondiente
+        const btn = document.querySelector(`.btn-add-cart[data-id='${productId}']`);
+        if (btn) {
+            // Buscar la tarjeta de producto contenedora
+            const card = btn.closest('.product-card');
+            if (card) {
+                const img = card.querySelector('.card-img-wrapper img');
+                if (img && img.src) {
+                    return img.src;
+                }
+            }
+        }
+        // Si no se encuentra, usar una imagen por defecto
+        return '/static/images/imagen arepas ej3.jpeg';
     }
 
     formatPrice(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        return price.toLocaleString('es-CO');
     }
 
     saveCartToStorage() {
